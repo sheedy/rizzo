@@ -118,7 +118,7 @@ require([ "jquery", "public/assets/javascripts/lib/core/authenticator" ], functi
       });
 
       it("shows the number of unread messages on the submenu item", function() {
-        expect($(".nav__submenu__notification:visible").text()).toBe("5");
+        expect($(".nav__submenu__notification:visible").text()).toBe("(5)");
       });
 
     });

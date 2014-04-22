@@ -25,14 +25,17 @@ module.exports = function(grunt) {
       active: {
         files: [ {
           expand: true,
-          cwd: "app/assets/images/icons/active",
+          cwd: "app/assets/images/icons",
           dest: "app/assets/stylesheets/icons",
-          src: [ "*.svg" ]
+          src: [ "active/*.svg", "interest/*.svg" ]
         } ],
         options: {
           cssprefix: ".icon--",
           customselectors: {
             "*": [ ".icon--$1--before:before, .icon--$1--after:after" ],
+            // leave single words unquoted for jscs to pass
+            magazine:   [ ".icon--guide, .icon--guide--before:before, .icon--guide--after:after" ],
+            "place--pin": [ ".icon--place, .icon--place--before:before, .icon--place--after:after" ],
             "chevron-right": [ ".picker__nav--next" ],
             "chevron-left": [ ".picker__nav--prev" ],
             "chevron-down": [ ".select2-choice:after" ],

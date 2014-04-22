@@ -22,11 +22,6 @@ input, textarea, select
 ul
   list-style-position: outside
 
-.nav--primary
-  .nav__submenu__content
-    &:after
-      top: -28px
-
 .wrapper--footer
   background-color: $body-background !important
   a
@@ -59,7 +54,6 @@ ul
 .row--primary
   @extend %lp-font-stack
   margin-bottom: 0 !important
-  font-size: 14px
 
 .row__inner--secondary
   padding-top: 0
@@ -84,7 +78,7 @@ ul
 
 .nav__submenu__link
   &:hover
-    color: #fff
+    color: $body-copy
 
 .row--content
   // Ensure that the primary--nav dropdowns sit above mpu units
@@ -219,16 +213,11 @@ body.ad-wallpaper
   padding: 0 !important
   border: none !important
 
-.nav__submenu__content
-  &:after
-    top: -17px
-
 .shop
   .nav__submenu__link
     border-color: $green !important
     border-style: solid !important
     border-width: 1px 0 !important
-
 
 .shop.noBreadCrumb
   background-image: none!important
@@ -319,9 +308,17 @@ body.reportAbuse
 body
   font-size: 12px !important
 
-.search__input--primary
-  font-size: 15px
+.nav__item--primary
+  font-size: 13px !important
 
+.primary-search-autocomplete
+  font-size: 13px !important
+.autocomplete__results__item
+  font-size: 14px !important
+.backup-button
+  font-size: 13px !important
+  &:hover
+    color: #FFF
 // Ads
 .ad-wallpaper:after
   background: none !important
