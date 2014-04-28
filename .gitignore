@@ -51,6 +51,11 @@ vendor/assets/javascripts/pickadate/lib/compressed/
 vendor/assets/javascripts/pickadate/lib/themes/
 vendor/assets/javascripts/pickadate/lib/translations/
 
+#jquery
+vendor/assets/javascripts/jquery/jquery-migrate.js
+vendor/assets/javascripts/jquery/jquery-migrate.min.js
+vendor/assets/javascripts/jquery/jquery.min.js
+
 # hogan
 vendor/assets/javascripts/hogan/lib
 vendor/assets/javascripts/hogan/test
