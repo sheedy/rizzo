@@ -63,3 +63,11 @@ vendor/assets/javascripts/hogan/tools
 vendor/assets/javascripts/hogan/web
 vendor/assets/javascripts/hogan/wrappers
 vendor/assets/javascripts/hogan/.*
+vendor/assets/javascripts/hogan/dist/hogan-3.0.0.min.amd.js
+vendor/assets/javascripts/hogan/dist/hogan-3.0.0.min.common.js
+vendor/assets/javascripts/hogan/dist/hogan-3.0.0.min.js
+vendor/assets/javascripts/hogan/dist/hogan-3.0.0.min.mustache.js
+vendor/assets/javascripts/hogan/dist/hogan.template-3.0.0.min.amd.js
+vendor/assets/javascripts/hogan/dist/hogan.template-3.0.0.min.common.js
+vendor/assets/javascripts/hogan/dist/hogan.template-3.0.0.min.js
+vendor/assets/javascripts/hogan/dist/hogan.template-3.0.0.min.mustache.js
