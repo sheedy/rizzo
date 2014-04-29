@@ -86,6 +86,9 @@ module.exports = function(grunt) {
       cleanJs: {
         command: "rm -rf public/assets/javascripts"
       },
+      cleanCompiledJs: {
+        command: "rm -rf foo/*"
+      },
       move: {
         command: "mv app/assets/stylesheets/icons/png/  app/assets/images/icons/png/"
       },
@@ -104,14 +107,14 @@ module.exports = function(grunt) {
         files: [
           {
             expand: true,
-            cwd: "./app/assets/javascripts/lib",
-            src: [ "**/*.coffee", "**/**/*.coffee" ],
-            dest: "./public/assets/javascripts/lib",
+            cwd: "./app/assets/javascripts/",
+            src: [ "**/*.coffee", "**/**/*.coffee", "**/**/**/*.coffee" ],
+            dest: "./public/assets/javascripts/",
             ext: ".js"
           },
           {
             expand: true,
-            cwd: "./spec/javascripts/lib",
+            cwd: "./spec/javascripts/",
             src: [ "**/*.coffee" ],
             dest: "./public/assets/javascripts/spec",
             ext: ".js"
@@ -123,14 +126,20 @@ module.exports = function(grunt) {
       source: {
         expand: true,
         cwd: "./app/assets/javascripts/lib",
-        src: [ "**/*.js", "**/**/*.js" ],
+        src: [ "**/**/*.js" ],
         dest: "./public/assets/javascripts/lib"
       },
       specs: {
         expand: true,
         cwd: "./spec/javascripts/lib",
-        src: [ "**/*.js", "**/**/*.js" ],
+        src: [ "**/**/*.js" ],
         dest: "./public/assets/javascripts/spec"
+      },
+      vendor: {
+        expand: true,
+        cwd: "./vendor/assets/javascripts",
+        src: [ "**/**/**/**/*.js" ],
+        dest: "./public/assets/javascripts"
       }
     },
     connect: {
@@ -200,6 +209,33 @@ module.exports = function(grunt) {
       options: {
         config: "./.jscs.json"
       }
+    },
+    requirejs: {
+      compile: {
+        options: {
+          appDir: "public/assets/javascripts",
+          dir: "./foo",
+          baseUrl: "./",
+          paths: {
+            flamsteed: "flamsteed/lib/javascripts/flamsteed",
+            gpt: "//www.googletagservices.com/tag/js/gpt",
+            hogan: "hogan/dist/hogan-3.0.0.amd",
+            jplugs: "jquery-plugins",
+            jquery: "jquery/jquery",
+            sailthru: "sailthru/v1",
+            sCode: "omniture/s_code",
+            trackjs: "trackjs/trackjs",
+            dfp: "jquery.dfp.js/jquery.dfp",
+            autocomplete: "autocomplete/dist/autocomplete"
+          },
+          modules: [
+            { name: "app_core" },
+            { name: "app_core_legacy" },
+            { name: "styleguide" }
+          ],
+          findNestedDependencies: true
+        }
+      }
     }
 
   });
@@ -213,9 +249,10 @@ module.exports = function(grunt) {
   grunt.registerTask("dev", [ "connect", "open:jasmine", "jasmine", "watch" ]);
   grunt.registerTask("wip", [ "jasmine:rizzo:build", "open:jasmine", "connect:server:keepalive" ]);
   grunt.registerTask("report", [ "shell:cleanJs", "coffee", "copy", "plato", "shell:openPlato" ]);
-  grunt.registerTask("imageoptim", [ "imageoptim" ]);
+
   grunt.registerTask("icon:active", [ "grunticon:active", "shell:cleanIcons", "shell:move" ]);
   grunt.registerTask("icon:critical", [ "grunticon:critical", "shell:cleanIcons", "shell:move" ]);
   grunt.registerTask("icon", [ "svgmin", "icon:active", "icon:critical" ]);
   grunt.registerTask("setup", [ "shell:fetchSubmodules", "shell:enableHooks" ]);
+  grunt.registerTask("rjs", [ "shell:cleanCompiledJs", "shell:cleanJs", "coffee", "copy:source", "copy:vendor", "requirejs", "shell:cleanJs" ]);
 };

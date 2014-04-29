@@ -10,6 +10,7 @@
         "grunt-contrib-watch": "latest",
         "grunt-contrib-copy": "latest",
         "grunt-contrib-jshint": "latest",
+        "grunt-contrib-requirejs": "latest",
         "grunt-jscs-checker": "latest",
         "grunt-imageoptim": "latest",
         "grunt-shell": "latest",
