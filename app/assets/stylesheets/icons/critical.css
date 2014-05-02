@@ -16,9 +16,6 @@
 .icon--add--before:before, .icon--add--after:after,
 .icon--add { background-image: url('png/add.png'); background-repeat: no-repeat; }
 
-.icon--adventure-travel--before:before, .icon--adventure-travel--after:after,
-.icon--adventure-travel { background-image: url('png/adventure-travel.png'); background-repeat: no-repeat; }
-
 .icon--air-conditioning--before:before, .icon--air-conditioning--after:after,
 .icon--air-conditioning { background-image: url('png/air-conditioning.png'); background-repeat: no-repeat; }
 
@@ -55,9 +52,6 @@
 .icon--bar--before:before, .icon--bar--after:after,
 .icon--bar { background-image: url('png/bar.png'); background-repeat: no-repeat; }
 
-.icon--beaches--before:before, .icon--beaches--after:after,
-.icon--beaches { background-image: url('png/beaches.png'); background-repeat: no-repeat; }
-
 .icon--bicycle--before:before, .icon--bicycle--after:after,
 .icon--bicycle { background-image: url('png/bicycle.png'); background-repeat: no-repeat; }
 
@@ -72,9 +66,6 @@
 
 .icon--breakfast--before:before, .icon--breakfast--after:after,
 .icon--breakfast { background-image: url('png/breakfast.png'); background-repeat: no-repeat; }
-
-.icon--budget-travel--before:before, .icon--budget-travel--after:after,
-.icon--budget-travel { background-image: url('png/budget-travel.png'); background-repeat: no-repeat; }
 
 .icon--bundle--before:before, .icon--bundle--after:after,
 .icon--bundle { background-image: url('png/bundle.png'); background-repeat: no-repeat; }
@@ -122,9 +113,6 @@
 
 .icon--children-activities--before:before, .icon--children-activities--after:after,
 .icon--children-activities { background-image: url('png/children-activities.png'); background-repeat: no-repeat; }
-
-.icon--coasts-and-islands--before:before, .icon--coasts-and-islands--after:after,
-.icon--coasts-and-islands { background-image: url('png/coasts-and-islands.png'); background-repeat: no-repeat; }
 
 .icon--collapse--before:before, .icon--collapse--after:after,
 .icon--collapse { background-image: url('png/collapse.png'); background-repeat: no-repeat; }
@@ -204,9 +192,6 @@
 .icon--facebook--before:before, .icon--facebook--after:after,
 .icon--facebook { background-image: url('png/facebook.png'); background-repeat: no-repeat; }
 
-.icon--family-travel--before:before, .icon--family-travel--after:after,
-.icon--family-travel { background-image: url('png/family-travel.png'); background-repeat: no-repeat; }
-
 .icon--family--before:before, .icon--family--after:after,
 .icon--family { background-image: url('png/family.png'); background-repeat: no-repeat; }
 
@@ -215,12 +200,6 @@
 
 .icon--ferry--before:before, .icon--ferry--after:after,
 .icon--ferry { background-image: url('png/ferry.png'); background-repeat: no-repeat; }
-
-.icon--festival-travel--before:before, .icon--festival-travel--after:after,
-.icon--festival-travel { background-image: url('png/festival-travel.png'); background-repeat: no-repeat; }
-
-.icon--festivals-and-events--before:before, .icon--festivals-and-events--after:after,
-.icon--festivals-and-events { background-image: url('png/festivals-and-events.png'); background-repeat: no-repeat; }
 
 .icon--filter--before:before, .icon--filter--after:after,
 .icon--filter { background-image: url('png/filter.png'); background-repeat: no-repeat; }
@@ -245,12 +224,6 @@
 
 .icon--folder--before:before, .icon--folder--after:after,
 .icon--folder { background-image: url('png/folder.png'); background-repeat: no-repeat; }
-
-.icon--food-and-drink--before:before, .icon--food-and-drink--after:after,
-.icon--food-and-drink { background-image: url('png/food-and-drink.png'); background-repeat: no-repeat; }
-
-.icon--gear-and-tech--before:before, .icon--gear-and-tech--after:after,
-.icon--gear-and-tech { background-image: url('png/gear-and-tech.png'); background-repeat: no-repeat; }
 
 .icon--globe--before:before, .icon--globe--after:after,
 .icon--globe { background-image: url('png/globe.png'); background-repeat: no-repeat; }
@@ -284,12 +257,6 @@
 
 .icon--home--before:before, .icon--home--after:after,
 .icon--home { background-image: url('png/home.png'); background-repeat: no-repeat; }
-
-.icon--honeymoon--before:before, .icon--honeymoon--after:after,
-.icon--honeymoon { background-image: url('png/honeymoon.png'); background-repeat: no-repeat; }
-
-.icon--honeymoons-and-romance--before:before, .icon--honeymoons-and-romance--after:after,
-.icon--honeymoons-and-romance { background-image: url('png/honeymoons-and-romance.png'); background-repeat: no-repeat; }
 
 .icon--hotel--line--before:before, .icon--hotel--line--after:after,
 .icon--hotel--line { background-image: url('png/hotel--line.png'); background-repeat: no-repeat; }
@@ -333,9 +300,6 @@
 .icon--ipad--before:before, .icon--ipad--after:after,
 .icon--ipad { background-image: url('png/ipad.png'); background-repeat: no-repeat; }
 
-.icon--island--before:before, .icon--island--after:after,
-.icon--island { background-image: url('png/island.png'); background-repeat: no-repeat; }
-
 .icon--italics--before:before, .icon--italics--after:after,
 .icon--italics { background-image: url('png/italics.png'); background-repeat: no-repeat; }
 
@@ -365,9 +329,6 @@
 
 .icon--luggage-storage--before:before, .icon--luggage-storage--after:after,
 .icon--luggage-storage { background-image: url('png/luggage-storage.png'); background-repeat: no-repeat; }
-
-.icon--luxury-travel--before:before, .icon--luxury-travel--after:after,
-.icon--luxury-travel { background-image: url('png/luxury-travel.png'); background-repeat: no-repeat; }
 
 .icon--magazine--line--before:before, .icon--magazine--line--after:after,
 .icon--magazine--line { background-image: url('png/magazine--line.png'); background-repeat: no-repeat; }
@@ -420,9 +381,6 @@
 .icon--pets--before:before, .icon--pets--after:after,
 .icon--pets { background-image: url('png/pets.png'); background-repeat: no-repeat; }
 
-.icon--photography--before:before, .icon--photography--after:after,
-.icon--photography { background-image: url('png/photography.png'); background-repeat: no-repeat; }
-
 .icon--pinterest--before:before, .icon--pinterest--after:after,
 .icon--pinterest { background-image: url('png/pinterest.png'); background-repeat: no-repeat; }
 
@@ -467,15 +425,6 @@
 
 .icon--restaurant--before:before, .icon--restaurant--after:after,
 .icon--restaurant { background-image: url('png/restaurant.png'); background-repeat: no-repeat; }
-
-.icon--road-trips--before:before, .icon--road-trips--after:after,
-.icon--road-trips { background-image: url('png/road-trips.png'); background-repeat: no-repeat; }
-
-.icon--round-the-world-travel--before:before, .icon--round-the-world-travel--after:after,
-.icon--round-the-world-travel { background-image: url('png/round-the-world-travel.png'); background-repeat: no-repeat; }
-
-.icon--round-the-world--before:before, .icon--round-the-world--after:after,
-.icon--round-the-world { background-image: url('png/round-the-world.png'); background-repeat: no-repeat; }
 
 .icon--rss--before:before, .icon--rss--after:after,
 .icon--rss { background-image: url('png/rss.png'); background-repeat: no-repeat; }
@@ -609,9 +558,6 @@
 .icon--trash--before:before, .icon--trash--after:after,
 .icon--trash { background-image: url('png/trash.png'); background-repeat: no-repeat; }
 
-.icon--travel-photography--before:before, .icon--travel-photography--after:after,
-.icon--travel-photography { background-image: url('png/travel-photography.png'); background-repeat: no-repeat; }
-
 .icon--trophy--before:before, .icon--trophy--after:after,
 .icon--trophy { background-image: url('png/trophy.png'); background-repeat: no-repeat; }
 
@@ -626,9 +572,6 @@
 
 .icon--user--before:before, .icon--user--after:after,
 .icon--user { background-image: url('png/user.png'); background-repeat: no-repeat; }
-
-.icon--value-travel--before:before, .icon--value-travel--after:after,
-.icon--value-travel { background-image: url('png/value-travel.png'); background-repeat: no-repeat; }
 
 .icon--video--line--before:before, .icon--video--line--after:after,
 .icon--video--line { background-image: url('png/video--line.png'); background-repeat: no-repeat; }
