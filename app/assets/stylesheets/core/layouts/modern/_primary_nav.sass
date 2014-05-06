@@ -42,7 +42,7 @@
   margin: 7px 10px 0 0
   width: 82px
   vertical-align: top
-  padding-top: 3px
+  padding-top: 2px
   .responsive &
     margin-left: 2%
     +respond-to(wide-view)
@@ -76,7 +76,7 @@
       margin-left: 157px
 
 .nav__item--primary
-  padding: 21px 6px
+  padding: 21px 6px 20px
   text-transform: uppercase
   +font-size(13)
   .nav__icon
@@ -91,6 +91,7 @@
     border-bottom: 1px solid $offscreen-nav-border
     padding-left: 60px
     position: relative
+    text-transform: none
     &:hover
       background-color: $header-blue
       &:before
@@ -111,6 +112,7 @@
       +font-size(13)
       padding: 21px 4px
       border: none
+      text-transform: uppercase
       &:hover
         background: none
         &:before

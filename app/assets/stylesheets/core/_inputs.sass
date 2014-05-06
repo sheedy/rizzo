@@ -114,10 +114,22 @@ input[type="submit"]
   position: absolute
   right: 8px
   top: 6px
+  background-color: transparent
+  border: 0
+  cursor: pointer
   background-position: 0 -56px
+  @if $is-ie
+    +size(30px)
+    top: 2px
+    right: 2px
+    background-position: 0 -40px
   &.active-search
     opacity: 1
     background-position: 0 -28px
+    @if $is-ie
+      background-position: 0 0
+
+
 
 .primary-search-autocomplete
   .autocomplete
@@ -143,10 +155,6 @@ input[type="submit"]
       +css-arrow-central(top, $size: 30px)
       &:after
         position: absolute
-        -webkit-filter: drop-shadow(0 -1px 0px rgba(0,0,0,.3))
-        -moz-filter: drop-shadow(0 -1px 0px rgba(0,0,0,.3))
-        -ms-filter: drop-shadow(0 -1px 0px rgba(0,0,0,.3))
-        -o-filter: drop-shadow(0 -1px 0px rgba(0,0,0,.3))
         filter: drop-shadow(0 -1px 0px rgba(0,0,0,.3))
       .backup-button
         width: 90%
