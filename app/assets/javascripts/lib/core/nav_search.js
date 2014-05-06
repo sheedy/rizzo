@@ -3,7 +3,7 @@ define([ "jquery", "autocomplete" ], function($, Autocomplete) {
   "use strict";
 
   function NavSearch(selector) {
-    
+
     // switch search icon on click
     $(selector).on("focus", function() {
       $(".search__input__icon").addClass("active-search");
