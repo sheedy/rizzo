@@ -23,9 +23,8 @@
   @extend %transition--nav
   position: absolute
   top: 0
-  left: 10px
-  +respond-to(wide-view)
-    left: 20px
+  left: 20px
+
   .homepage &
     left: 20px
     background-color: #1d508d
@@ -175,9 +174,8 @@
   &:hover:before
     opacity: 1
 
-.nav--user
-  +respond-to(wide-view)
-    margin-right: 20px
+.nav--primary--user
+  margin-right: 20px
 
 .nav__item--user
   color: $nav-primary-type
