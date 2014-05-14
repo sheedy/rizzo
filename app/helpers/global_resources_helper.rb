@@ -37,7 +37,7 @@ module GlobalResourcesHelper
       },
       {title:'Interests',
         uri: 'http://www.lonelyplanet.com/interests',
-        icon_class: 'icon--place--pin--line--before icon--white--before',
+        icon_class: 'icon--adventure-travel--before icon--white--before',
         submenu: [
           {title:'Adventure travel', uri:'http://www.lonelyplanet.com/adventure-travel', style:'adventure-travel', icon_class: 'icon--adventure-travel--before'},
           {title:'Beaches', uri:'http://www.lonelyplanet.com/beaches', style:'beaches', icon_class: 'icon--beaches--before'},

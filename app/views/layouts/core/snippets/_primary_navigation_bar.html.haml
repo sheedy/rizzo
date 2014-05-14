@@ -44,6 +44,10 @@
   .wv--split--left
 
     .wv--nav--inline.nav--primary#js-nav--primary(role="navigation" aria-label="Primary navigation")
+      - if responsive
+        %a.nav__item.nav__item--primary{ href: "http://www.lonelyplanet.com/search" }<
+          %i.nav__icon{class: 'icon--search--before icon--white--before'}
+          Search
 
       - core_navigation_items.each do |n|
         - if n[:submenu]
