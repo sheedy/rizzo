@@ -125,9 +125,9 @@ module.exports = function(grunt) {
     copy: {
       source: {
         expand: true,
-        cwd: "./app/assets/javascripts/lib",
+        cwd: "./app/assets/javascripts",
         src: [ "**/**/*.js" ],
-        dest: "./public/assets/javascripts/lib"
+        dest: "./public/assets/javascripts"
       },
       specs: {
         expand: true,
