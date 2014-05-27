@@ -1,11 +1,20 @@
-define( ['jquery', 'lib/core/authenticator','lib/core/shopping_cart', 'lib/core/msg', 'lib/utils/local_store', 'lib/components/select_group_manager', 'lib/core/ad_manager_v2', 'lib/page/swipe', "lib/core/feature_detect"], ($, Authenticator, ShoppingCart, Msg, LocalStore, SelectGroupManager, AdManager, Swipe) ->
+define [
+  'jquery',
+  'lib/page/swipe',
+  'lib/core/authenticator',
+  'lib/core/shopping_cart',
+  'lib/core/ad_manager_v2',
+  'lib/core/cookie_compliance',
+  'lib/components/select_group_manager',
+  "lib/core/feature_detect"
+], ($, Swipe, Authenticator, ShoppingCart, AdManager, CookieCompliance, SelectGroupManager) ->
 
   class Base
 
     constructor: (args={})->
       @showUserBasket()
       @initAds() unless args.secure
-      @showCookieComplianceMsg()
+      @showCookieMessage()
       @initialiseSelectGroupManager()
       @addNavTracking()
       @initSwipe()
@@ -20,22 +29,8 @@ define( ['jquery', 'lib/core/authenticator','lib/core/shopping_cart', 'lib/core/
     initialiseSelectGroupManager: ->
       new SelectGroupManager()
 
-    showCookieComplianceMsg: ->
-      if LocalStore.get('cookie-compliance') is undefined or LocalStore.get('cookie-compliance') is null
-        args =
-          content: "<p class='cookie-text'><strong>Hi there,</strong> we use cookies to improve your experience on our website. You can <a class='cookie-link' href='http://www.lonelyplanet.com/legal/cookies'>update your settings</a> by clicking the Cookie Policy link at the bottom of the page.</p>"
-          style: "row--cookie-compliance js-cookie-compliance"
-          userOptions :
-            close: true
-            more: true
-          delegate:
-            onRemove : ->
-              $('div.js-cookie-compliance').removeClass('is-open')
-              $('div.js-cookie-compliance').addClass('is-closed')
-            onAdd : ->
-              window.setTimeout( ( => $('div.js-cookie-compliance').addClass('is-open')), 1)
-        msg = new Msg(args)
-        LocalStore.set('cookie-compliance', true)
+    showCookieMessage: ->
+      new CookieCompliance()
 
     addNavTracking: ->
       $('#js-primary-nav').on 'click', '.js-nav-item', ->
@@ -58,4 +53,3 @@ define( ['jquery', 'lib/core/authenticator','lib/core/shopping_cart', 'lib/core/
 
     initSwipe: ->
       new Swipe()
-)

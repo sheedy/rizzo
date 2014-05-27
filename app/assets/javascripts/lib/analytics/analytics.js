@@ -42,6 +42,7 @@ define([ "jquery", "lib/analytics/analytics_auth", "sCode" ], function($, Analyt
         this["_" + analytics.callback](analytics.url, analytics.stack);
       }
     }.bind(this));
+
   };
 
   // -------------------------------------------------------------------------
