@@ -20,12 +20,13 @@ define([ "jquery", "lib/utils/template", "lib/components/tabs", "lib/core/timeag
     unreadActivitiesNumberSelector: ".js-unread-activities-number",
     unreadMessagesNumberSelector: ".js-unread-messages-number",
     newFeedHighlightClass: "is-highlighted",
+    initialHighlightedActivitiesNumber: 0,
     maxFeedActivities: 5,
     fetchInterval: 15000
-  },
+  };
 
-  UserFeed = function() {
-    this.config = defaults;
+  function UserFeed(args) {
+    this.config = $.extend({}, defaults, args);
     this.$activities = $(this.config.activitiesSelector);
     this.$messages = $(this.config.messagesSelector);
     this.$footer = $(this.config.footerSelector);
@@ -33,17 +34,17 @@ define([ "jquery", "lib/utils/template", "lib/components/tabs", "lib/core/timeag
     this.$unreadMessagesIndicator = $(this.config.unreadMessagesNumberSelector);
     this.$unreadFeedIndicator = $(this.config.unreadFeedNumberSelector);
     this.currentActivities;
-    this.highlightedActivitiesNumber = 0;
+    this.highlightedActivitiesNumber = this.config.initialHighlightedActivitiesNumber;
 
     this.init();
-  };
+  }
 
   // ------------------------------------------------------------------------------
   // Initialise
   // ------------------------------------------------------------------------------
 
   UserFeed.prototype.init = function() {
-    new Tabs({ selector: this.config.feedSelector });
+    this._tabsInstance = new Tabs({ selector: this.config.feedSelector });
     this._fetchFeed();
   };
 
@@ -54,8 +55,12 @@ define([ "jquery", "lib/utils/template", "lib/components/tabs", "lib/core/timeag
   UserFeed.prototype._bindLinks = function() {
     var _this = this;
     $(this.config.feedSelector + " " + this.config.feedItemSelector).off("click").on("click", function() {
-      window.location.href = $(this).find(_this.config.targetLinkSelector).attr("href");
+      _this._goToUrl($(this).find(_this.config.targetLinkSelector).attr("href"));
     });
+  };
+
+  UserFeed.prototype._goToUrl = function(url) {
+    window.location.href = url;
   };
 
   UserFeed.prototype._updateUnreadFeedIndicator = function(newFeedItemsNumber) {
@@ -68,8 +73,8 @@ define([ "jquery", "lib/utils/template", "lib/components/tabs", "lib/core/timeag
 
   UserFeed.prototype._createUserActivities = function(feedActivities) {
     var _this = this,
-        activitiesHtml = "",
-        i = 0;
+      activitiesHtml = "",
+      i = 0;
 
     // Concatenate activities
     while ((i < feedActivities.length) && (i < this.config.maxFeedActivities)) {
@@ -95,7 +100,7 @@ define([ "jquery", "lib/utils/template", "lib/components/tabs", "lib/core/timeag
 
   UserFeed.prototype._createUserMessages = function(feedMessages, newMessagesNumber) {
     var messagesHtml = "",
-        i = 0;
+      i = 0;
 
     // Concatenate messages
     while ((i < feedMessages.length) && (i < this.config.maxFeedActivities)) {
@@ -119,10 +124,10 @@ define([ "jquery", "lib/utils/template", "lib/components/tabs", "lib/core/timeag
   };
 
   UserFeed.prototype._getActivityNumber = function(feed) {
-    if (!feed.activities.length) { return; }
+    if (!feed.activities) { return; }
 
     var newActivitiesCount = 0,
-        i = 0;
+      i = 0;
 
     for (i; i < feed.activities.length; i++) {
       this._isNewActivity(feed.activities[i].timestamp) && newActivitiesCount++;
@@ -160,7 +165,7 @@ define([ "jquery", "lib/utils/template", "lib/components/tabs", "lib/core/timeag
   UserFeed.prototype._updateMessages = function(feed) {
     var newMessagesNumber = feed.unreadMessagesCount;
 
-    feed.messages.length && this._createUserMessages(feed.messages, newMessagesNumber);
+    feed.messages && feed.messages.length && this._createUserMessages(feed.messages, newMessagesNumber);
     this._updateUnreadFeedIndicator(this.highlightedActivitiesNumber + newMessagesNumber);
 
     // Update timeago for feed content only

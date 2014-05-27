@@ -55,7 +55,6 @@ define([ "jquery", "lib/utils/template", "lib/core/user_feed" ], function($, Tem
         $rendered = $(Template.render(template, window.lp.user)),
         $userAvatar;
 
-
     if (window.lp.user.unreadMessageCount > 0) {
       $rendered.find(".js-responsive-unread-messages").removeClass("is-hidden");
     }
