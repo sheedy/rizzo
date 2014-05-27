@@ -1,27 +1,29 @@
 {
-    "name": "rizzo",
-    "version": "0.9.2",
-    "devDependencies": {
-        "grunt": "latest",
-        "grunt-contrib-connect": "latest",
-        "grunt-contrib-coffee": "latest",
-        "grunt-contrib-jasmine": "0.5.2",
-        "grunt-contrib-watch": "latest",
-        "grunt-contrib-copy": "latest",
-        "grunt-contrib-jshint": "latest",
-        "grunt-contrib-requirejs": "latest",
-        "grunt-jscs-checker": "latest",
-        "grunt-imageoptim": "latest",
-        "grunt-shell": "latest",
-        "grunt-grunticon": "latest",
-        "grunt-svgmin": "latest",
-        "grunt-concurrent": "latest",
-        "grunt-template-jasmine-requirejs": "0.1.9",
-        "grunt-plato": "latest",
-        "grunt-open": "latest",
-        "matchdep": "latest"
-    },
-    "optionalDependencies": {
-      "yeoman-generators": "git+ssh://git@github.com:lonelyplanet/yeoman#c7d05b299ea9d9fdeb59f0aa7f9116eee9592165"
-    }
+  "name": "rizzo",
+  "version": "0.9.2",
+  "devDependencies": {
+    "grunt": "latest",
+    "grunt-contrib-connect": "latest",
+    "grunt-contrib-coffee": "latest",
+    "grunt-contrib-jasmine": "0.5.2",
+    "grunt-contrib-watch": "latest",
+    "grunt-contrib-copy": "latest",
+    "grunt-contrib-jshint": "latest",
+    "grunt-contrib-requirejs": "latest",
+    "grunt-jscs-checker": "latest",
+    "grunt-imageoptim": "latest",
+    "grunt-shell": "latest",
+    "grunt-grunticon": "latest",
+    "grunt-svgmin": "latest",
+    "grunt-concurrent": "latest",
+    "grunt-template-jasmine-requirejs": "0.1.9",
+    "grunt-plato": "latest",
+    "grunt-open": "latest",
+    "grunt-rev": "latest",
+    "matchdep": "latest",
+    "assetflow": "~0.1.6"
+  },
+  "optionalDependencies": {
+    "yeoman-generators": "git+ssh://git@github.com:lonelyplanet/yeoman#c7d05b299ea9d9fdeb59f0aa7f9116eee9592165"
+  }
 }

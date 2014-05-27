@@ -236,12 +236,28 @@ module.exports = function(grunt) {
           findNestedDependencies: true
         }
       }
+    },
+
+    assets: {
+      options: {
+        manifest: "foo/manifest.json",
+        truncateHash: 32
+      },
+      js: {
+        src: [ "./foo/app_core.js", "./foo/app_core_legacy.js", "./foo/styleguide.js" ],
+        dest: "./foo",
+        options: {
+          rel: "./foo/"
+        }
+      }
     }
 
   });
 
   // This loads in all the grunt tasks auto-magically.
   require("matchdep").filterDev("grunt-*").forEach(grunt.loadNpmTasks);
+
+  grunt.loadNpmTasks("assetflow");
 
   // Tasks
   grunt.registerTask("default", [ "shell:cleanJs", "coffee", "copy", "connect", "jasmine" ]);
@@ -254,5 +270,5 @@ module.exports = function(grunt) {
   grunt.registerTask("icon:critical", [ "grunticon:critical", "shell:cleanIcons", "shell:move" ]);
   grunt.registerTask("icon", [ "svgmin", "icon:active", "icon:critical" ]);
   grunt.registerTask("setup", [ "shell:fetchSubmodules", "shell:enableHooks" ]);
-  grunt.registerTask("rjs", [ "shell:cleanCompiledJs", "shell:cleanJs", "coffee", "copy:source", "copy:vendor", "requirejs", "shell:cleanJs" ]);
+  grunt.registerTask("rjs", [ "shell:cleanCompiledJs", "shell:cleanJs", "coffee", "copy:source", "copy:vendor", "requirejs", "assets:js", "shell:cleanJs" ]);
 };
