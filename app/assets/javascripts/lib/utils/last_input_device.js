@@ -4,10 +4,12 @@ define(function() {
 
   if (!document.addEventListener) { return false; }
 
-  var first = {},
-      listener = document.getElementById("js-row--content");
+  var listener = document.getElementById("js-row--content"),
+      userDevices = {};
 
   function updateClass(deviceType) {
+    if (userDevices[deviceType]) { return; }
+
     var match = document.documentElement.className.match(/last-input-(\w+)/),
         oldClass = match && match[0],
         oldDeviceType = match && match[1],
@@ -21,10 +23,10 @@ define(function() {
       document.documentElement.className += " last-input-" + deviceType;
     }
 
-    if (!listener || !first[deviceType]) { return; }
+    userDevices[deviceType] = true;
 
-    first[deviceType] = true;
-
+    // announce the presence of each device as it's used for the first time
+    if (!listener) { return; }
     event = document.createEvent("CustomEvent");
     event.initCustomEvent(":device/" + deviceType);
     listener.dispatchEvent(event);
