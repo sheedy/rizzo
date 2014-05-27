@@ -1,4 +1,4 @@
-require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
+require ['public/assets/javascripts/lib/page/controller.js'], (Controller) ->
 
   describe 'Controller', ->
 

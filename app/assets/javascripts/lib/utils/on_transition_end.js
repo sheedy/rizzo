@@ -1,7 +1,5 @@
 // takes a listener, a function and an optional delay
-define([
-  "lib/utils/feature_detect"
-], function() {
+define([], function() {
 
   "use strict";
 

@@ -4,7 +4,7 @@ require([ "jquery" ], function($) {
 
   require([
     "lib/core/base",
-    "lib/utils/scroll_perf",
+    "lib/page/scroll_perf",
     "flamsteed",
     "trackjs",
     "polyfills/function_bind",

@@ -1,12 +1,13 @@
 define [
   'jquery',
-  'lib/utils/swipe'
-  'lib/core/ad_manager_v2',
+  'lib/page/swipe',
   'lib/core/authenticator',
   'lib/core/shopping_cart',
+  'lib/core/ad_manager_v2',
   'lib/core/cookie_compliance',
-  'lib/managers/select_group_manager',
-], ($, Swipe, AdManager, Authenticator, ShoppingCart, CookieCompliance, SelectGroupManager) ->
+  'lib/components/select_group_manager',
+  "lib/core/feature_detect"
+], ($, Swipe, Authenticator, ShoppingCart, AdManager, CookieCompliance, SelectGroupManager) ->
 
   class Base
 

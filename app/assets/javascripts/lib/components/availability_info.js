@@ -1,4 +1,4 @@
-define([ "jquery", "lib/extends/events", "lib/utils/page_state" ], function($, EventEmitter, PageState) {
+define([ "jquery", "lib/mixins/events", "lib/mixins/page_state" ], function($, asEventEmitter, withPageState) {
 
   "use strict";
 
@@ -14,8 +14,8 @@ define([ "jquery", "lib/extends/events", "lib/utils/page_state" ], function($, E
     }
   }
 
-  $.extend(AvailabilityInfo.prototype, PageState.prototype);
-  $.extend(AvailabilityInfo.prototype, EventEmitter);
+  withPageState.call(AvailabilityInfo.prototype);
+  asEventEmitter.call(AvailabilityInfo.prototype);
 
   AvailabilityInfo.prototype._init = function() {
     this.$btn = this.$el.find(".js-availability-edit-btn");

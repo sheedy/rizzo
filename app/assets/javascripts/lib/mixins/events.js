@@ -2,17 +2,17 @@ define([ "jquery" ], function($) {
 
   "use strict";
 
-  var EventEmitter = {
+  var asEventEmitter = function() {
 
-    _JQInit: function() {
+    this._JQInit = function() {
       this._JQ = $(this);
-    },
+    };
 
-    trigger: function(evt, data) {
+    this.trigger = function(evt, data) {
       this.$el.trigger(evt, data);
-    },
+    };
 
-    triggerNative: function(elem, evt, data) {
+    this.triggerNative = function(elem, evt, data) {
       if (!document.createEvent("Event")) {
         return false;
       }
@@ -22,20 +22,20 @@ define([ "jquery" ], function($) {
 
       customEvent.initEvent(evt, true, true);
       elem.dispatchEvent(customEvent);
-    },
+    };
 
-    on: function(evt, handler) {
+    this.on = function(evt, handler) {
       this._JQ || this._JQInit();
       this._JQ.on(evt, handler);
-    },
+    };
 
-    off: function(evt, handler) {
+    this.off = function(evt, handler) {
       this._JQ || this._JQInit();
       this._JQ.off(evt, handler);
-    }
+    };
 
   };
 
-  return EventEmitter;
+  return asEventEmitter;
 
 });

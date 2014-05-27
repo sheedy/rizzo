@@ -29,7 +29,7 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
         expect(lightbox.listenToFlyout).toBeDefined();
       });
 
-      it("should extend EventEmitter functionality", function() {
+      it("should extend asEventEmitter functionality", function() {
         expect(lightbox.trigger).toBeDefined();
       });
 

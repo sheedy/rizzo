@@ -1,4 +1,4 @@
-require([ "jquery", "public/assets/javascripts/lib/components/meta.js" ], function($, Meta) {
+require([ "jquery", "public/assets/javascripts/lib/page/meta.js" ], function($, Meta) {
 
   "use strict";
 

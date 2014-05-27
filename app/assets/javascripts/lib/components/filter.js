@@ -1,8 +1,8 @@
 define([
   "jquery",
-  "lib/extends/events",
+  "lib/mixins/events",
   "lib/utils/serialize_form"
-], function($, EventEmitter, Serializer) {
+], function($, asEventEmitter, Serializer) {
 
   "use strict";
 
@@ -23,7 +23,7 @@ define([
     }
   }
 
-  $.extend(Filter.prototype, EventEmitter);
+  asEventEmitter.call(Filter.prototype);
 
   Filter.prototype._init = function() {
     this._listen();

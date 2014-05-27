@@ -1,4 +1,4 @@
-require ['public/assets/javascripts/lib/utils/client_cache.js'], (ClientCache) ->
+require ['public/assets/javascripts/lib/page/client_cache.js'], (ClientCache) ->
 
   describe 'ClientCache', ->
 

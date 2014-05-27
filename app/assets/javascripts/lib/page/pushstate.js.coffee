@@ -1,9 +1,11 @@
-define ['jquery', 'lib/utils/page_state', 'lib/extends/events'], ($, PageState, EventEmitter) ->
+define ['jquery', 'lib/mixins/page_state', 'lib/mixins/events'], ($, withPageState, EventEmitter) ->
 
 
-  class PushState extends PageState
+  class PushState
 
     LISTENER = '#js-card-holder'
+
+    withPageState.call(@prototype)
 
     constructor: (args = {}) ->
       # Ignore initial popstate in chrome

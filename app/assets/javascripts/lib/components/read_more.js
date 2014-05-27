@@ -12,7 +12,7 @@ define([ "jquery" ], function($) {
     tolerance: 0
   };
 
-  function SectionToggle(args) {
+  function ReadMore(args) {
     this.config = $.extend({}, defaults, args);
     this.$el = $(this.config.selector);
     this.$wrapper = this.$el.find(this.config.wrapper);
@@ -20,7 +20,7 @@ define([ "jquery" ], function($) {
     this.$el.length && this._init();
   }
 
-  SectionToggle.prototype._init = function() {
+  ReadMore.prototype._init = function() {
     this.$wrapper.addClass(this.config.style === "inline" ? "read-more-inline" : "read-more-block");
 
     this.totalHeight = this.getFullHeight();
@@ -44,7 +44,7 @@ define([ "jquery" ], function($) {
     }
   };
 
-  SectionToggle.prototype.getFullHeight = function() {
+  ReadMore.prototype.getFullHeight = function() {
     var i, len,
        height = 0,
        $children = this.$wrapper.children();
@@ -56,7 +56,7 @@ define([ "jquery" ], function($) {
     return height;
   };
 
-  SectionToggle.prototype.addToggle = function() {
+  ReadMore.prototype.addToggle = function() {
     this.$toggle = $("<button />")
       .attr("type", "button")
       .addClass(this.config.toggleStyle)
@@ -69,12 +69,12 @@ define([ "jquery" ], function($) {
     }
   };
 
-  SectionToggle.prototype.clickToggle = function() {
+  ReadMore.prototype.clickToggle = function() {
     this.setWrapperState(this.status === "closed" ? "open" : "closed");
     this.onUpdate();
   };
 
-  SectionToggle.prototype.setWrapperState = function(state) {
+  ReadMore.prototype.setWrapperState = function(state) {
     var lastStatus = this.status || (state === "closed" ? "open" : "closed");
 
     this.$el.removeClass("is-" + lastStatus).addClass("is-" + state);
@@ -91,12 +91,12 @@ define([ "jquery" ], function($) {
     this.status = state;
   };
 
-  SectionToggle.prototype.onUpdate = function() {
+  ReadMore.prototype.onUpdate = function() {
     if (this.config.delegate && this.config.delegate.onUpdate) {
       this.config.delegate.onUpdate.call(this, this.status, this.config.selector);
     }
   };
 
-  return SectionToggle;
+  return ReadMore;
 
 });

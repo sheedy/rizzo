@@ -1,4 +1,4 @@
-define([ "jquery", "lib/extends/events" ], function($, EventEmitter) {
+define([ "jquery", "lib/mixins/events" ], function($, asEventEmitter) {
 
   "use strict";
 
@@ -25,7 +25,7 @@ define([ "jquery", "lib/extends/events" ], function($, EventEmitter) {
     }
   }
 
-  $.extend(LoadMore.prototype, EventEmitter);
+  asEventEmitter.call(LoadMore.prototype);
 
   LoadMore.prototype._init = function() {
     if (!this.config.visible) {

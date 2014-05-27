@@ -1,8 +1,14 @@
-require([ "jquery", "public/assets/javascripts/lib/utils/viewport_helper.js" ], function($, viewportHelper) {
+require([ "jquery", "public/assets/javascripts/lib/page/viewport_helper.js" ], function($, withViewportHelper) {
 
   "use strict";
 
-  describe("viewportHelper", function() {
+  describe("withViewportHelper", function() {
+
+    var viewportHelper;
+
+    beforeEach(function() {
+      viewportHelper = withViewportHelper.call({});
+    });
 
     describe("Initialisation", function() {
 

@@ -1,4 +1,4 @@
-require([ "public/assets/javascripts/lib/components/section_toggle.js" ], function(SectionToggle) {
+require([ "public/assets/javascripts/lib/components/read_more.js" ], function(SectionToggle) {
 
   describe("Section Toggle", function() {
 

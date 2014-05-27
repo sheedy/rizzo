@@ -1,4 +1,4 @@
-require(["lib/utils/scroll_perf"], function(ScrollPerf) {
+require(["lib/page/scroll_perf"], function(ScrollPerf) {
   "use strict";
   describe("ScrollPerf", function() {
 

@@ -1,5 +1,5 @@
 
-define([ "jquery", "lib/extends/events", "lib/components/world_places" ], function($, EventEmitter) {
+define([ "jquery", "lib/mixins/events", "lib/components/world_places" ], function($, asEventEmitter) {
 
   "use strict";
 
@@ -22,7 +22,7 @@ define([ "jquery", "lib/extends/events", "lib/components/world_places" ], functi
     }
   }
 
-  $.extend(Stack.prototype, EventEmitter);
+  asEventEmitter.call(Stack.prototype);
 
   Stack.prototype._init = function() {
     var _this = this;

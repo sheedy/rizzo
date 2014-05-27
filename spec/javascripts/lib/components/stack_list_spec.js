@@ -1,4 +1,4 @@
-require([ "public/assets/javascripts/lib/components/stack_list.js" ], function(StackList) {
+require([ "public/assets/javascripts/lib/page/left_nav.js" ], function(StackList) {
 
   describe("StackList", function() {
 

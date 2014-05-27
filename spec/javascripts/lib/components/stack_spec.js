@@ -1,4 +1,4 @@
-require([ "public/assets/javascripts/lib/components/stack.js" ], function(Stack) {
+require([ "public/assets/javascripts/lib/page/stack.js" ], function(Stack) {
 
   describe("Stack", function() {
 

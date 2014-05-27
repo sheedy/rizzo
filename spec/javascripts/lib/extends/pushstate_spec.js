@@ -1,4 +1,4 @@
-require([ "jquery", "public/assets/javascripts/lib/extends/pushstate.js" ], function($, Pushstate) {
+require([ "jquery", "public/assets/javascripts/lib/page/pushstate.js" ], function($, Pushstate) {
 
   "use strict";
 

@@ -1,85 +1,85 @@
-require ['public/assets/javascripts/lib/utils/page_state.js'], (PageState) ->
+require ['public/assets/javascripts/lib/mixins/page_state.js'], (withPageState) ->
 
-  describe 'PageState', ->
+  describe 'withPageState', ->
 
-    pageState = new PageState()
+    withPageState = new withPageState()
 
     describe 'Object', ->
       it 'is defined', ->
-        expect(PageState).toBeDefined()
+        expect(withPageState).toBeDefined()
 
     describe 'Has Filtered', ->
 
       describe 'by subpath', ->
         beforeEach ->
-          spyOn(pageState, "withinFilterUrl").andReturn(true)
+          spyOn(withPageState, "withinFilterUrl").andReturn(true)
 
         it 'returns true for hasFiltered', ->
-          expect(pageState.hasFiltered()).toBe(true)
+          expect(withPageState.hasFiltered()).toBe(true)
 
       describe 'by querystring', ->
         beforeEach ->
-          spyOn(pageState, "withinFilterUrl").andReturn(false)
-          spyOn(pageState, "getParams").andReturn("/england/london/hotels?filters=foo")
+          spyOn(withPageState, "withinFilterUrl").andReturn(false)
+          spyOn(withPageState, "getParams").andReturn("/england/london/hotels?filters=foo")
 
         it 'returns true for hasFiltered', ->
-          expect(pageState.hasFiltered()).toBe(true)
+          expect(withPageState.hasFiltered()).toBe(true)
 
     describe 'Has not Filtered', ->
 
       describe 'by subpath', ->
         beforeEach ->
-          spyOn(pageState, "withinFilterUrl").andReturn(false)
+          spyOn(withPageState, "withinFilterUrl").andReturn(false)
 
         it 'returns true for hasFiltered', ->
-          expect(pageState.hasFiltered()).toBe(false)
+          expect(withPageState.hasFiltered()).toBe(false)
 
       describe 'by querystring', ->
         beforeEach ->
-          spyOn(pageState, "withinFilterUrl").andReturn(false)
-          spyOn(pageState, "getParams").andReturn("/england/london/hotels?search=foo")
+          spyOn(withPageState, "withinFilterUrl").andReturn(false)
+          spyOn(withPageState, "getParams").andReturn("/england/london/hotels?search=foo")
 
         it 'returns true for hasFiltered', ->
-          expect(pageState.hasFiltered()).toBe(false)
+          expect(withPageState.hasFiltered()).toBe(false)
 
 
     describe 'Has Searched', ->
 
       describe 'by querystring', ->
         beforeEach ->
-          spyOn(pageState, "getParams").andReturn("/england/london/hotels?search=foo")
+          spyOn(withPageState, "getParams").andReturn("/england/london/hotels?search=foo")
 
         it 'returns true for hasSearched', ->
-          expect(pageState.hasSearched()).toBe(true)
+          expect(withPageState.hasSearched()).toBe(true)
 
       describe 'by querystring', ->
         beforeEach ->
-          spyOn(pageState, "getParams").andReturn("/england/london/hotels?filters=foo")
+          spyOn(withPageState, "getParams").andReturn("/england/london/hotels?filters=foo")
 
         it 'returns true for hasSearched', ->
-          expect(pageState.hasSearched()).toBe(false)
+          expect(withPageState.hasSearched()).toBe(false)
 
 
     describe 'Get Document Root', ->
 
       describe 'within a subcategory url', ->
         beforeEach ->
-          spyOn(pageState, "withinFilterUrl").andReturn(true)
+          spyOn(withPageState, "withinFilterUrl").andReturn(true)
 
         it 'in hotels', ->
-          expect(pageState.createDocumentRoot("/england/london/hotels/rated")).toBe("/england/london/hotels")
-          expect(pageState.createDocumentRoot("/england/london/hotels/apartments")).toBe("/england/london/hotels")
-          expect(pageState.createDocumentRoot("/england/london/hotels/5-star")).toBe("/england/london/hotels")
+          expect(withPageState.createDocumentRoot("/england/london/hotels/rated")).toBe("/england/london/hotels")
+          expect(withPageState.createDocumentRoot("/england/london/hotels/apartments")).toBe("/england/london/hotels")
+          expect(withPageState.createDocumentRoot("/england/london/hotels/5-star")).toBe("/england/london/hotels")
 
         it 'in things to do', ->
-          expect(pageState.createDocumentRoot("/england/london/things-to-do/snowboarding")).toBe("/england/london/things-to-do")
+          expect(withPageState.createDocumentRoot("/england/london/things-to-do/snowboarding")).toBe("/england/london/things-to-do")
 
       describe 'without a subcategory url', ->
         beforeEach ->
-          spyOn(pageState, "withinFilterUrl").andReturn(false)
+          spyOn(withPageState, "withinFilterUrl").andReturn(false)
 
         it 'in hotels', ->
-          expect(pageState.createDocumentRoot("/england/london/hotels/")).toBe("/england/london/hotels/")
+          expect(withPageState.createDocumentRoot("/england/london/hotels/")).toBe("/england/london/hotels/")
 
         it 'in things to do', ->
-          expect(pageState.createDocumentRoot("/england/london/things-to-do/")).toBe("/england/london/things-to-do/")
+          expect(withPageState.createDocumentRoot("/england/london/things-to-do/")).toBe("/england/london/things-to-do/")
