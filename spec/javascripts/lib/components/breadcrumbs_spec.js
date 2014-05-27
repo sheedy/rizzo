@@ -1,4 +1,4 @@
-require([ "jquery", "public/assets/javascripts/lib/components/breadcrumbs.js" ], function($, Breadcrumbs) {
+require([ "jquery", "public/assets/javascripts/lib/page/breadcrumbs.js" ], function($, Breadcrumbs) {
 
   "use strict";
 

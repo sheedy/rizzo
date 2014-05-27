@@ -1,4 +1,4 @@
-require([ "public/assets/javascripts/lib/utils/toggle_active.js" ], function(ToggleActive) {
+require([ "public/assets/javascripts/lib/components/toggle_active.js" ], function(ToggleActive) {
 
   describe("ToggleActive", function() {
 

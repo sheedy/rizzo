@@ -6,10 +6,10 @@
 define([
   "jquery",
   "lib/mixins/flyout",
+  "lib/mixins/events",
   "lib/utils/template",
-  "lib/extends/events",
-  "lib/utils/viewport_helper"
-], function($, asFlyout, Template, EventEmitter, viewportHelper) {
+  "lib/page/viewport_helper"
+], function($, asFlyout, asEventEmitter, Template, withViewportHelper) {
 
   "use strict";
 
@@ -36,8 +36,8 @@ define([
   // The argument with the facet is required at the moment and is soon to be
   // removed from the flyout mixin.
   asFlyout.call(LightBox.prototype);
-  $.extend(LightBox.prototype, EventEmitter);
-  $.extend(LightBox.prototype, viewportHelper);
+  asEventEmitter.call(LightBox.prototype);
+  withViewportHelper.call(LightBox.prototype);
 
   // -------------------------------------------------------------------------
   // Initialise

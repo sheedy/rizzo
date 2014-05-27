@@ -1,10 +1,10 @@
-define([ "jquery", "lib/extends/events" ], function($, EventEmitter) {
+define([ "jquery", "lib/mixins/events" ], function($, asEventEmitter) {
 
   "use strict";
 
   var LISTENER = "#js-card-holder";
 
-  function StackList(args) {
+  function LeftNav(args) {
     var defaults = {
       analytics: {
         callback: "trackStack"
@@ -20,14 +20,14 @@ define([ "jquery", "lib/extends/events" ], function($, EventEmitter) {
     }
   }
 
-  $.extend(StackList.prototype, EventEmitter);
+  asEventEmitter.call(LeftNav.prototype);
 
-  StackList.prototype._init = function() {
+  LeftNav.prototype._init = function() {
     this.$list = this.$el.find(this.config.list);
     this._broadcast();
   };
 
-  StackList.prototype._broadcast = function() {
+  LeftNav.prototype._broadcast = function() {
     var _this = this;
 
     this.$el.on("click", this.config.list, function(e) {
@@ -51,11 +51,11 @@ define([ "jquery", "lib/extends/events" ], function($, EventEmitter) {
     });
   };
 
-  StackList.prototype._select = function($el) {
+  LeftNav.prototype._select = function($el) {
     this.$list.removeClass("is-active");
     $el.addClass("is-active");
   };
 
-  return StackList;
+  return LeftNav;
 
 });

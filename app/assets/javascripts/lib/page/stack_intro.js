@@ -1,4 +1,4 @@
-define([ "jquery", "lib/extends/events" ], function($, EventEmitter) {
+define([ "jquery", "lib/mixins/events" ], function($, asEventEmitter) {
 
   "use strict";
 
@@ -20,7 +20,7 @@ define([ "jquery", "lib/extends/events" ], function($, EventEmitter) {
     }
   }
 
-  $.extend(StackIntro.prototype, EventEmitter);
+  asEventEmitter.call(StackIntro.prototype);
 
   StackIntro.prototype._init = function() {
     this.$title = this.$el.find(this.config.title);

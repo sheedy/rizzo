@@ -1,4 +1,4 @@
-require([ "jquery", "public/assets/javascripts/lib/utils/link_to" ], function($, LinkTo) {
+require([ "jquery", "public/assets/javascripts/lib/components/link_to" ], function($, LinkTo) {
 
   "use strict";
 

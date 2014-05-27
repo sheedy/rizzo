@@ -1,6 +1,6 @@
 require([
   "jquery",
-  "public/assets/javascripts/lib/utils/swipe.js"
+  "public/assets/javascripts/lib/page/swipe.js"
 ], function($, Swipe) {
 
   "use strict";

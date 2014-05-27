@@ -1,11 +1,11 @@
 define([
   "jquery",
-  "lib/extends/events",
-  "lib/utils/page_state",
+  "lib/mixins/events",
+  "lib/mixins/page_state",
   "lib/utils/serialize_form",
   "lib/components/datepicker",
-  "lib/managers/select_group_manager"
-], function($, EventEmitter, PageState, Serializer, AvailabilityDatepicker, SelectManager) {
+  "lib/components/select_group_manager"
+], function($, asEventEmitter, withPageState, Serializer, AvailabilityDatepicker, SelectManager) {
 
   "use strict";
 
@@ -21,8 +21,8 @@ define([
     }
   }
 
-  $.extend(AvailabilitySearch.prototype, PageState.prototype);
-  $.extend(AvailabilitySearch.prototype, EventEmitter);
+  withPageState.call(AvailabilitySearch.prototype);
+  asEventEmitter.call(AvailabilitySearch.prototype);
 
   AvailabilitySearch.prototype._init = function() {
     this.$form = this.$el.find("form");

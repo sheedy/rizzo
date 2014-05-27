@@ -1,8 +1,8 @@
-define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/extends/pushstate', 'lib/utils/deparam'], ($, PageState, EventEmitter, PushState) ->
+define ['jquery', 'lib/mixins/events', 'lib/page/pushstate', 'lib/utils/deparam'], ($, asEventEmitter, PushState) ->
 
-  class Controller extends PageState
+  class Controller
 
-    $.extend(@prototype, EventEmitter)
+    asEventEmitter.call(@prototype);
     $.extend(@prototype, PushState.prototype)
 
     LISTENER = '#js-card-holder'

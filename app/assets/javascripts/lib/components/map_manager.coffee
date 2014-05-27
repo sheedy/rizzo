@@ -14,7 +14,7 @@
 # }
 #
 
-define ['jquery', 'lib/maps/map_styles', 'lib/utils/css_helper', 'polyfills/scrollIntoViewIfNeeded'], ($, mapStyles, cssHelper) ->
+define ['jquery', 'lib/components/map_styles', 'lib/utils/css_helper', 'polyfills/scrollIntoViewIfNeeded'], ($, mapStyles, cssHelper) ->
 
   class MapManager
     @version: '0.0.11'

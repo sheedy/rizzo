@@ -3,11 +3,11 @@ require([ "jquery" ], function($) {
   "use strict";
 
   require([
-    "lib/utils/swipe",
+    "lib/page/swipe",
     "lib/utils/konami",
-    "lib/utils/scroll_perf",
-    "lib/utils/toggle_active",
-    "lib/managers/select_group_manager",
+    "lib/page/scroll_perf",
+    "lib/components/toggle_active",
+    "lib/components/select_group_manager",
     "lib/styleguide/svg",
     "lib/styleguide/copy",
     "lib/styleguide/swipe",
@@ -17,7 +17,6 @@ require([ "jquery" ], function($) {
     "lib/styleguide/colours",
     "lib/components/lightbox",
     "lib/styleguide/lightbox",
-    "lib/utils/feature_detect",
     "lib/styleguide/typography",
     "pickadate/lib/picker.date",
     "lib/components/range_slider",

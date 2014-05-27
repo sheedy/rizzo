@@ -1,4 +1,4 @@
-require ['public/assets/javascripts/lib/managers/select_group_manager'], (SelectGroupManager) ->
+require ['public/assets/javascripts/lib/components/select_group_manager'], (SelectGroupManager) ->
 
   describe 'Select Group Manager', ->
 

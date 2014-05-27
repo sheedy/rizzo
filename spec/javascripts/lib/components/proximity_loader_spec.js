@@ -1,4 +1,4 @@
-require([ "public/assets/javascripts/lib/components/proximity_loader.js" ], function(ProximityLoader) {
+require([ "public/assets/javascripts/lib/utils/proximity_loader.js" ], function(ProximityLoader) {
 
   var config = {
     list: ".js-loader-one, .js-loader-two, .js-loader-three",

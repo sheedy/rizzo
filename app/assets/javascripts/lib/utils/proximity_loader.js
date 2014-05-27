@@ -1,4 +1,4 @@
-define([ "jquery", "lib/extends/events", "lib/utils/debounce" ], function($, EventEmitter, debounce) {
+define([ "jquery", "lib/mixins/events", "lib/utils/debounce" ], function($, asEventEmitter, debounce) {
 
   "use strict";
 
@@ -18,7 +18,7 @@ define([ "jquery", "lib/extends/events", "lib/utils/debounce" ], function($, Eve
     this.$el.length && this._init();
   }
 
-  $.extend(ProximityLoader.prototype, EventEmitter);
+  asEventEmitter.call(ProximityLoader.prototype);
 
   ProximityLoader.prototype._init = function() {
     this.targets = this._setupElements(this.$el.find(this.config.list));
