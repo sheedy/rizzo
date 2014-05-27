@@ -9,7 +9,7 @@ define([
   "lib/mixins/events",
   "lib/utils/template",
   "lib/page/viewport_helper"
-], function($, asFlyout, asEventEmitter, Template, asViewportHelper) {
+], function($, asFlyout, asEventEmitter, Template, withViewportHelper) {
 
   "use strict";
 
@@ -37,7 +37,7 @@ define([
   // removed from the flyout mixin.
   asFlyout.call(LightBox.prototype);
   asEventEmitter.call(LightBox.prototype);
-  asViewportHelper.call(LightBox.prototype);
+  withViewportHelper.call(LightBox.prototype);
 
   // -------------------------------------------------------------------------
   // Initialise

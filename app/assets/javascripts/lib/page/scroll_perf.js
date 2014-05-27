@@ -1,5 +1,10 @@
 // http://www.thecssninja.com/javascript/follow-up-60fps-scroll
-define([ "jquery", "lib/utils/debounce" ], function($, debounce) {
+
+define([
+  "jquery",
+  "lib/utils/debounce"
+], function($, debounce) {
+
   "use strict";
 
   var ScrollPerf = function ScrollPerf() {

@@ -5,7 +5,7 @@ define([
   "lib/utils/serialize_form",
   "lib/components/datepicker",
   "lib/components/select_group_manager"
-], function($, asEventEmitter, asPageState, Serializer, AvailabilityDatepicker, SelectManager) {
+], function($, asEventEmitter, withPageState, Serializer, AvailabilityDatepicker, SelectManager) {
 
   "use strict";
 
@@ -21,7 +21,7 @@ define([
     }
   }
 
-  asPageState.call(AvailabilitySearch.prototype);
+  withPageState.call(AvailabilitySearch.prototype);
   asEventEmitter.call(AvailabilitySearch.prototype);
 
   AvailabilitySearch.prototype._init = function() {

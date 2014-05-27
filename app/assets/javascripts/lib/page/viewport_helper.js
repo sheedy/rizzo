@@ -1,6 +1,6 @@
 // ------------------------------------------------------------------------------
 //
-// asViewportHelper
+// withViewportHelper
 //
 // ------------------------------------------------------------------------------
 
@@ -8,7 +8,7 @@ define([ "jquery" ], function($) {
 
   "use strict";
 
-  var asViewportHelper = function() {
+  var withViewportHelper = function() {
 
     this.viewport = function() {
       var win = this._getWindow();
@@ -46,6 +46,6 @@ define([ "jquery" ], function($) {
 
   };
 
-  return asViewportHelper;
+  return withViewportHelper;
 
 });

@@ -2,7 +2,7 @@ define([], function() {
 
   "use strict";
 
-  var asPageState = function() {
+  var withPageState = function() {
     this.checkFilters = /filters/;
     this.checkSearch = /search/;
     this.legacyBrowsers = /(browser)?ie(7|8)/i;
@@ -81,6 +81,6 @@ define([], function() {
 
   };
 
-  return asPageState;
+  return withPageState;
 
 });
