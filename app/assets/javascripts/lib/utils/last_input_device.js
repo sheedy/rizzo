@@ -10,10 +10,10 @@ define(function() {
   function updateClass(deviceType) {
     var match = document.documentElement.className.match(/last-input-(\w+)/),
         oldClass = match && match[0],
-        oldDevice = match && match[1],
+        oldDeviceType = match && match[1],
         event;
 
-    if (oldDevice == deviceType) { return; }
+    if (oldDeviceType == deviceType) { return; }
 
     if (match && oldClass) {
       document.documentElement.className = document.documentElement.className.replace(oldClass, "last-input-" + deviceType);
