@@ -7,11 +7,32 @@
 //
 // ------------------------------------------------------------------------------
 require([ "jquery" ], function($) {
+
   "use strict";
 
-  var camelFeature, feature, features;
+  var features = {};
 
-  features = {};
+  // ----------------------------------------------------------------------------
+  // Booleans
+  // ----------------------------------------------------------------------------
+
+  features.cssmasks = function() {
+    return document.body.style["-webkit-mask-repeat"] != null;
+  };
+
+  features.cssfilters = function() {
+    return document.body.style.webkitFilter != null && document.body.style.filter != null;
+  };
+
+  features.placeholder = function() {
+    return "placeholder" in document.createElement("input");
+  };
+
+  features["pointer-events"] = function() {
+    var element = document.createElement("smile");
+    element.style.cssText = "pointer-events: auto";
+    return element.style.pointerEvents == "auto";
+  };
 
   features["3d"] = function() {
     var el = document.createElement("p"),
@@ -30,95 +51,74 @@ require([ "jquery" ], function($) {
     return has3d != null && has3d.length > 0 && has3d != "none";
   };
 
-  features.cssmasks = function() {
-    return document.body.style["-webkit-mask-repeat"] != null;
-  };
-
-  features.cssfilters = function() {
-    return document.body.style.webkitFilter != null && document.body.style.filter != null;
-  };
-
-  features.placeholder = function() {
-    return "placeholder" in document.createElement("input");
-  };
-
-  features["pointer-events"] = function() {
-    var element;
-    element = document.createElement("smile");
-    element.style.cssText = "pointer-events: auto";
-    return element.style.pointerEvents == "auto";
-  };
-
-  features.transform = function() {
-    var transforms = {
-      webkitTransform: "-webkit-transform",
-      OTransform: "-o-transform",
-      msTransform: "-ms-transform",
-      MozTransform: "-moz-transform",
-      transform: "transform"
-    },
-    properties = {},
-    transform;
-
-    for (transform in transforms) {
-      if (transform in document.documentElement.style) {
-        properties.js = transform;
-        properties.css = transforms[transform];
-      }
-    }
-    return properties.js && properties.css && properties;
-  };
-
-  features.transitionend = function() {
-    var element = document.createElement("div"),
-    transitions = {
-      webkitTransition: "webkitTransitionEnd",
-      oTransition: "oTransitionEnd otransitionend",
-      mozTransition: "transitionend",
-      transition: "transitionend"
-    },
-    transition;
-
-    for (transition in transitions) {
-      if (element.style[transition] != null) {
-        return transitions[transition];
-      }
-    }
-    return false;
-  };
-
   features.touch = function() {
-    var $window = $(window);
-    $window = $(window);
-    $window.on("touchstart", function firstTouch() {
-      if (window.lp.supportsAvailable) {
-        window.lp.supports.touch = true;
-      } else {
-        $(document).on(":featureDetect/available", function() {
-          window.lp.supports.touch = true;
-        });
-      }
-      $(document).trigger(":featureDetect/supportsTouch");
-      return $window.off("touchstart", firstTouch);
-    });
     return "ontouchstart" in window && "maybe";
   };
 
-  features.requestAnimationFrame = function() {
-    var _requestAnimationFrame = (function( win, t ) {
-      return win["webkitR" + t] || win["r" + t] || win["mozR" + t] || win["msR" + t] || false;
-    }(window, "equestAnimationFrame"));
+  // lp.supports.localStorage is defined in _head_js.haml
+  // and is used for loading and caching our webfonts.
 
-    return _requestAnimationFrame;
+  // ----------------------------------------------------------------------------
+  // JS Properties
+  // - Return the method name
+  // ----------------------------------------------------------------------------
+
+  features.transitionend = function() {
+    var
+      transitions = {
+        webkitTransition: "webkitTransitionEnd",
+        MozTransition: "transitionend",
+        transition: "transitionend"
+      },
+      transition;
+
+    // We can't detect the event directly so we assume based on
+    // the support for the CSS property.
+    for (transition in transitions) {
+      if (transition in document.documentElement.style) {
+        return transitions[transition];
+      }
+    }
+
+    return false;
+  };
+
+  features.requestAnimationFrame = function() {
+    var t = "equestAnimationFrame";
+    return window["r" + t] || window["webkitR" + t] || window["mozR" + t] || window["msR" + t] || false;
   };
 
   features.cancelAnimationFrame = function() {
-    var _cancelAnimationFrame = (function( win, t ) {
-      return win["webkitC" + t] || win["c" + t] || win["mozC" + t] || win["msC" + t] || false;
-    }(window, "ancelAnimationFrame"));
-
-    return _cancelAnimationFrame;
+    var t = "ancelAnimationFrame";
+    return window["c" + t] || window["webkitC" + t] || window["mozC" + t] || window["msC" + t] || false;
   };
+
+  // ----------------------------------------------------------------------------
+  // CSS Properties
+  // - Return both the CSS property name and JS style declaration property name
+  // ----------------------------------------------------------------------------
+
+  features.transform = function() {
+    var
+      transforms = {
+        webkitTransform: "-webkit-transform",
+        MozTransform: "-moz-transform",
+        msTransform: "-ms-transform",
+        transform: "transform"
+      },
+      transform;
+
+    for (transform in transforms) {
+      if (transform in document.documentElement.style) {
+        return {
+          js: transform,
+          css: transforms[transform]
+        };
+      }
+    }
+  };
+
+  var camelFeature, feature;
 
   for (feature in features) {
     camelFeature = ($.camelCase && $.camelCase(feature)) || feature;
