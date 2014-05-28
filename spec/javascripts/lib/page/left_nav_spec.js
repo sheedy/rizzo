@@ -1,6 +1,6 @@
-require([ "public/assets/javascripts/lib/page/left_nav.js" ], function(StackList) {
+require([ "public/assets/javascripts/lib/page/left_nav.js" ], function(LeftNav) {
 
-  describe("StackList", function() {
+  describe("LeftNav", function() {
 
     var config = {
       el: "#js-stack-list-aside",
@@ -9,60 +9,60 @@ require([ "public/assets/javascripts/lib/page/left_nav.js" ], function(StackList
 
     describe("Object", function() {
       it("is defined", function() {
-        expect(StackList).toBeDefined();
+        expect(LeftNav).toBeDefined();
       });
     });
 
     describe("Initialising", function() {
       beforeEach(function() {
         loadFixtures("stack_list.html");
-        window.stackList = new StackList(config);
+        window.leftNav = new LeftNav(config);
       });
 
       it("has default options", function() {
-        expect(stackList.config).toBeDefined();
+        expect(leftNav.config).toBeDefined();
       });
     });
 
     describe("Not initialising", function() {
       beforeEach(function() {
         loadFixtures("stack_list.html");
-        window.stackList = new StackList({
+        window.leftNav = new LeftNav({
           el: ".foo"
         });
-        spyOn(stackList, "_init");
+        spyOn(leftNav, "_init");
       });
 
       it("When the parent element does not exist", function() {
-        expect(stackList._init).not.toHaveBeenCalled();
+        expect(leftNav._init).not.toHaveBeenCalled();
       });
     });
 
     describe("when the user clicks on a stack", function() {
       beforeEach(function() {
         loadFixtures("stack_list.html");
-        window.stackList = new StackList(config);
+        window.leftNav = new LeftNav(config);
       });
 
       it("triggers the page request event", function() {
-        var element = stackList.$el.find(".js-neighbourhood-item");
+        var element = leftNav.$el.find(".js-neighbourhood-item");
         var params = {
           url: element.attr("href")
         };
-        var spyEvent = spyOnEvent(stackList.$el, ":page/request");
+        var spyEvent = spyOnEvent(leftNav.$el, ":page/request");
         element.trigger("click");
-        expect(":page/request").toHaveBeenTriggeredOnAndWith(stackList.$el, params);
+        expect(":page/request").toHaveBeenTriggeredOnAndWith(leftNav.$el, params);
       });
 
       describe("when the user clicks on a stack", function() {
         beforeEach(function() {
           loadFixtures("stack_list.html");
-          window.stackList = new StackList(config);
+          window.leftNav = new LeftNav(config);
         });
 
         it("sets the nav item as current", function() {
           var element = $(".js-neighbourhood-item");
-          stackList._select(element);
+          leftNav._select(element);
           expect(element).toHaveClass("is-active");
           expect($(".js-facet")).not.toHaveClass("is-active");
         });
