@@ -19,6 +19,7 @@ require([ "jquery" ], function($) {
     "lib/styleguide/lightbox",
     "lib/styleguide/typography",
     "pickadate/lib/picker.date",
+    "lib/utils/last_input_device",
     "lib/components/range_slider",
     "lib/styleguide/snippet-expand"
   ], function(Swipe, Konami, ScrollPerf, ToggleActive, SelectGroupManager) {
