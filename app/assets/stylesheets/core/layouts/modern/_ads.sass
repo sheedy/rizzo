@@ -4,9 +4,13 @@
 
 .row--sponsored
   @extend %transition--slower
-  min-height: 98px
-  padding: 16px 0
+  min-height: 100px
   overflow: hidden
+
+  .responsive &
+    min-height: 60px
+    +respond-to(728)
+      min-height: 100px
 
   &.is-closed
     min-height: 0
@@ -19,23 +23,33 @@
 
 .row--leaderboard
   +z-layer(modal)
-  background-color: $row-leaderboard
   position: relative
-  &.footer-leaderboard
-    background-color: #e7ebee
 
 .ad-leaderboard
+  padding: 16px 0
+  line-height: 100px
   text-align: center
+
+  .responsive &
+    padding: 12px 0
+    line-height: 60px
+    +respond-to(728)
+      padding: 16px 0
+      line-height: 100px
 
 .ad-leaderboard__inner
   @extend %inline-block
-  position: relative
   display: inline-block
-  vertical-align: bottom
-  background-color: $row-primary--darker
+  vertical-align: middle
 
-  &.footer
-    border: none
+.row--leaderboard--header
+  background-color: $row-leaderboard
+
+  .ad-leaderboard__inner
+    background-color: $row-primary--darker
+
+.row--leaderboard--footer
+  background: darken($body-background, 2.5%)
 
 // ----------------------------------------------------------------------------
 // Page billboard
@@ -45,7 +59,13 @@
   background: darken($body-background, 2.5%)
 
 .ad-billboard
+  padding: 20px 0
   text-align: center
+
+  .responsive &
+    padding: 12px 0
+    +respond-to(728)
+      padding: 20px 0
 
 .ad-billboard__inner
   display: inline-block
