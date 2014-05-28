@@ -12,7 +12,7 @@ define([ "jquery", "lib/utils/template" ], function($, Template) {
   "use strict";
 
   var Authenticator = function() {
-    this.statusUrl = "http://luna.community.lonelyplanet.com/thorntree/users/status";
+    this.statusUrl = "https://luna-community.lonelyplanet.com/thorntree/users/status";
 
     this.init();
   },
