@@ -2,7 +2,7 @@
   no_options = properties[:options].nil? || properties[:options].empty?
   tooltip = properties[:tooltip]
   if properties[:selected]
-    selected_title = properties[:options].find{ |option| (option[:value] == properties[:selected] || option[:title]) == properties[:selected] }.try(:[], :title)
+    selected_title = properties[:options].find{ |option| option[:value] == properties[:selected] || option[:title] == properties[:selected] }.try(:[], :title)
   end
 
 .dropdown.js-select-group-manager{ class: "#{properties[:class]}#{no_options ? ' is-disabled' : ''}#{!tooltip.nil? ? ' tooltip--container' : ''}" }
