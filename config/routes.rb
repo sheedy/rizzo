@@ -22,6 +22,7 @@ Rizzo::Application.routes.draw do
   get 'global-body-footer'           => 'global_resources#show', :defaults => { :snippet => "body_footer", :legacystyle => "true" }
 
   get 'noscript/global-head'         => 'global_resources#show', :defaults => { :snippet => "head", :noscript => "true"}
+  get 'noscript/global-body-header'  => 'global_resources#show', :defaults => { :snippet => "body_header", :noscript => "true" }
   get 'noscript/global-body-footer'  => 'global_resources#show', :defaults => { :snippet => "body_footer", :noscript => "true"}
 
   get 'secure/global-head'           => 'global_resources#show', :defaults => { :snippet => "head", :secure => "true", :suppress_tynt => "true" }
