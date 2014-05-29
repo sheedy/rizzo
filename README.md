@@ -337,11 +337,11 @@ For example:
 
 * Try to avoid single character variable names, words are easier to read and we can leave minification to a minifier
 
-* Don't use comma first
+* Please don't use comma first
 
 * Name collections (arrays, objects, sets, maps) in plural, ie: `badger` is a thing, `badgers` is a collection of things
 
-* test for truthiness:
+* Use truthiness to your advantage:
 
     ```javascript
     if (collection.length) ...
@@ -373,5 +373,3 @@ For example:
       animal.cut(animal.hair).shampoo().rinse(); // sanitizes animals for collection by spooks
     }
     ```
-
-* Try to use a function expression unless a function declaration [is necessary](http://javascriptweblog.wordpress.com/2010/07/06/function-declarations-vs-function-expressions/)
