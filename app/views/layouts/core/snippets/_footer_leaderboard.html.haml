@@ -1,4 +1,5 @@
-.row.row--sponsored.row--leaderboard.row--leaderboard--footer.is-closed
-  .ad-leaderboard
-    .ad-leaderboard__inner.footer
-      = yield :lower_leaderboard
+- if @display_footer_leaderboard
+  .row.row--sponsored.row--leaderboard.row--leaderboard--footer.is-closed
+    .ad-leaderboard
+      .ad-leaderboard__inner
+        = ui_component('ads/leaderboard', properties: { targeting: { position: "footer" } })
