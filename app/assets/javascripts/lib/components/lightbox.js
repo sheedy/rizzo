@@ -44,18 +44,12 @@ define([
   // -------------------------------------------------------------------------
 
   LightBox.prototype.init = function() {
-    var $body = $("body");
     _this = this;
 
     this.customClass && this.$lightbox.addClass(this.customClass);
 
     // Just in case there are defined dimensions already specified.
     this._centerLightbox();
-
-    this.$lightbox.css({
-      height: $body.height(),
-      width: $body.width()
-    });
 
     if (this.showPreloader) {
       this.preloaderTmpl = Template.render($("#tmpl-preloader").text(), {});
@@ -77,7 +71,12 @@ define([
     });
 
     this.$el.on(":lightbox/open", function(event, data) {
+      _this._centerLightbox();
       _this.$lightbox.addClass("is-active");
+      $("html, body").css({
+        overflow: "hidden"
+      });
+
       setTimeout(function() {
         _this.listenToFlyout(event, data);
       }, 20);
@@ -91,6 +90,10 @@ define([
 
     this.$el.on(":flyout/close", function() {
       if (_this.$lightbox.hasClass("is-active")){
+        $("html, body").css({
+          overflow: "initial"
+        });
+
         if (_this.requestMade){
           _this.requestMade = false;
           $("#js-card-holder").trigger(":controller/back");
@@ -116,7 +119,6 @@ define([
 
   LightBox.prototype._fetchContent = function(url) {
     _this.$lightbox.addClass("is-loading");
-    _this._centerLightbox();
 
     $("#js-card-holder").trigger(":layer/request", { url: url });
   };
@@ -125,18 +127,20 @@ define([
   LightBox.prototype._renderContent = function(content) {
     _this.$lightbox.removeClass("is-loading");
     _this.$lightboxContent.html(content);
-    _this._centerLightbox();
   };
 
   LightBox.prototype._centerLightbox = function() {
-    this.$lightboxContent.parent().css({
-      left: this._centeredLeftPosition(),
-      top: this._centeredTopPosition()
+    var viewport = _this.viewport();
+    _this.$lightbox.css({
+      left: 0,
+      top: (viewport.top < 55 ? 0 : viewport.top - 55),
+      height: viewport.height - (viewport.top < 55 ? 55 - viewport.top : 0 ),
+      width: viewport.width + 15 //this 15 is to cover the scroll bar
     });
   };
 
   LightBox.prototype._centeredLeftPosition = function() {
-    var lightboxW = this.$lightboxContent.parent().width(),
+    var lightboxW = this.$lightboxContent.width(),
         viewport = _this.viewport(),
         left = viewport.left + (viewport.width / 2) - (lightboxW / 2);
 
@@ -148,12 +152,12 @@ define([
   };
 
   LightBox.prototype._centeredTopPosition = function() {
-    var lightboxH = this.$lightboxContent.parent().height(),
+    var lightboxH = this.$lightboxContent.height(),
         viewport = _this.viewport(),
         top = viewport.top + (viewport.height / 2) - (lightboxH / 2);
 
     if (lightboxH > _this.viewport().height) {
-      top = viewport.top;
+      top = viewport.top + 50;
     }
 
     return top;
