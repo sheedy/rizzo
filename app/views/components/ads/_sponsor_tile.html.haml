@@ -8,4 +8,6 @@
 
   attrs.merge!(properties) if defined? properties
 
+  attrs[:targeting] = attrs[:targeting].to_json
+
 .adunit.adunit--sponsortile{ id: "js-ad-sponsorTile-#{Time.now.to_i}", data: attrs }

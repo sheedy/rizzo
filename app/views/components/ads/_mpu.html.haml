@@ -8,4 +8,6 @@
 
   attrs.merge!(properties) if defined? properties
 
+  attrs[:targeting] = attrs[:targeting].to_json
+
 .adunit.adunit--mpu{ id: "js-ad-mpu-#{Time.now.to_i}", data: attrs }

@@ -1,6 +1,5 @@
 - unless @hide_leaderboard
-  - properties = @leaderboard_targeting.nil? ? nil : { targeting: @leaderboard_targeting }
   .row.row--sponsored.row--leaderboard.row--leaderboard--header
     .ad-leaderboard
       .ad-leaderboard__inner
-        = ui_component('ads/leaderboard', properties: properties)
+        = ui_component('ads/leaderboard')

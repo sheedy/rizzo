@@ -8,4 +8,6 @@
 
   attrs.merge!(properties) if defined? properties
 
+  attrs[:targeting] = attrs[:targeting].to_json
+
 .adunit.adunit--traffic-driver{ id: "js-ad-trafficDriver-#{Time.now.to_i}", data: attrs }

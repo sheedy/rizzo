@@ -8,4 +8,6 @@
 
   attrs.merge!(properties) if defined? properties
 
+  attrs[:targeting] = attrs[:targeting].to_json
+
 .adunit.adunit--leaderboard{ id: "js-ad-leaderboard-#{Time.now.to_i}", data: attrs }
