@@ -65,6 +65,11 @@ define([
 
   LightBox.prototype.listen = function() {
 
+    this.$el.on("click", ".card--layer__close", function(event) {
+      event.preventDefault();
+      _this._closeFlyout();
+    });
+
     this.$opener.on("click", function(event) {
       event.preventDefault();
       _this.trigger(":lightbox/open", { opener: event.currentTarget,  target: _this.$lightboxContent });
@@ -72,7 +77,7 @@ define([
 
     this.$el.on(":lightbox/open", function(event, data) {
       _this._centerLightbox();
-      _this.$lightbox.addClass("is-active");
+      _this.$lightbox.addClass("is-active is-visible");
       $("html, body").css({
         overflow: "hidden"
       });
@@ -98,12 +103,20 @@ define([
           _this.requestMade = false;
           $("#js-card-holder").trigger(":controller/back");
         }
-        _this.$lightbox.removeClass("is-active");
 
         _this.$lightbox.on(window.lp.supports.transitionend, function() {
-          _this.$lightboxContent.empty();
           _this.$lightbox.off(window.lp.supports.transitionend);
+
+          _this.$lightbox.on(window.lp.supports.transitionend, function() {
+            _this.$lightboxContent.empty();
+            _this.$lightbox.removeClass("is-visible");
+            _this.$lightbox.off(window.lp.supports.transitionend);
+          });
+          _this.$lightbox.removeClass("is-active");
         });
+
+        _this.$lightbox.removeClass("content-ready");
+
       }
 
     });
@@ -125,8 +138,22 @@ define([
 
   // @content: {string} the content to dump into the lightbox.
   LightBox.prototype._renderContent = function(content) {
+
+    _this.$lightbox.on(window.lp.supports.transitionend, function() {
+      _this.$lightbox.off(window.lp.supports.transitionend);
+
+      _this.$lightboxContent.html(content);
+
+      _this.$lightbox.on(window.lp.supports.transitionend, function() {
+        _this.trigger(":lightbox/contentReady");
+        _this.$lightbox.off(window.lp.supports.transitionend);
+      });
+
+      _this.$lightbox.addClass("content-ready");
+
+    });
+
     _this.$lightbox.removeClass("is-loading");
-    _this.$lightboxContent.html(content);
   };
 
   LightBox.prototype._centerLightbox = function() {

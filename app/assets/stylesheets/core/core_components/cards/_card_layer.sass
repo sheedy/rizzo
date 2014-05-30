@@ -10,8 +10,13 @@
   .row--billboard
     width: 100%
     background: transparent
+    height: 98px
+    padding: 16px 0
+  .row--secondary
+    padding-top: 20px
   .row__title--secondary
     max-width: 100%
+    background-color: transparent
     .place-title
       padding-left: 28px
       &:before
@@ -22,6 +27,7 @@
 .card--layer__content
   @extend %clearfix
   @extend %rounded-corners
+  @extend %large-shadow
   position: relative
   margin-top: 50px
   padding: 25px 25px 0px 25px
@@ -48,8 +54,11 @@
 .card--layer__close
   +size(30px)
   position: absolute
-  top: 20px
+  top: 26px
   right: 20px
+  &:hover
+    background-position: 0 0
+    top: 25px
 
 .card--layer__article
   padding-bottom: 10px

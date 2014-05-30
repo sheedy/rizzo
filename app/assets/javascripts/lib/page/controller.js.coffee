@@ -43,13 +43,13 @@ define ['jquery', 'lib/mixins/events', 'lib/page/pushstate', 'lib/utils/deparam'
 
       $(LISTENER).on ':layer/request', (e, data, analytics) =>
         @_generateState( data.url.split('?')[0] )
-        @navigate(@_serializeState(), @states[@currentState].documentRoot)
+        @navigate(@_serializeState(), @states[@currentState].documentRoot, true)
         @_callServer(@_createRequestUrl(@states[@currentState].documentRoot), @htmlPage, analytics, 'html')
 
       $(LISTENER).on ':controller/back', (e, data, analytics) =>
         @_removeState()
         @_generateState(@states[@currentState].documentRoot)
-        @navigate(@_serializeState(), @states[@currentState].documentRoot)
+        @navigate(@_serializeState(), @states[@currentState].documentRoot, true)
 
     # Publish
 

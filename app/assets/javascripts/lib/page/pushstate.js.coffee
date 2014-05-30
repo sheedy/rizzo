@@ -16,11 +16,11 @@ define ['jquery', 'lib/mixins/page_state', 'lib/mixins/events'], ($, withPageSta
       $.extend @config, args
       @_initHistory()
 
-    navigate: (state, rootUrl) ->
+    navigate: (state, rootUrl, replaceState=false) ->
       url = @_createUrl(state, rootUrl)
 
       if (@_supportsHistory() or @_supportsHash())
-        @_setState(url)
+        @_setState(url, replaceState)
       else
         @setUrl(url)
 
