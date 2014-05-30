@@ -31,7 +31,7 @@
             %span.user-basket__icon.icon--shop-basket.icon--custom
               View Basket
 
-          - unless defined? no_scripts
+          - unless no_scripts.present?
             %script#js-user-nav-template{ type: "text/mustache" }
               = render partial: "templates/global-nav/user_nav"
 
