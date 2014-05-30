@@ -19,7 +19,6 @@ $responsive-nav-width: 240px
   .responsive &
     +z-layer(middle)
     @extend %transition--nav
-    box-shadow: 16px 4px 20px -6px rgba(0, 0, 0, 0.2) inset
     position: absolute
     overflow: hidden
     top: 0
@@ -27,6 +26,8 @@ $responsive-nav-width: 240px
     width: $responsive-nav-width
     height: 100%
     background: $offscreen-nav-background
+    .enhanced &
+      box-shadow: 16px 4px 20px -6px rgba(0, 0, 0, 0.2) inset
     +respond-to(wide-view)
       box-shadow: none
       width: 100%
