@@ -7,14 +7,15 @@ The main goal of Rizzo is to enable sharing of templates and assets across all L
 
 ## Install & Get Dependencies
 
-    $ git clone git@github.com:lonelyplanet/rizzo.git && cd rizzo
-    $ cp .ruby-version.example .ruby-version
-    $ cp .ruby-gemset.example .ruby-gemset
-    $ cd .
-    $ bundle install
-    $ npm install
-    $ grunt setup
-
+```bash
+$ git clone git@github.com:lonelyplanet/rizzo.git && cd rizzo
+$ cp .ruby-version.example .ruby-version
+$ cp .ruby-gemset.example .ruby-gemset
+$ cd .
+$ bundle install
+$ npm install
+$ grunt setup # sets up jscs & jshint git precommit hook for contributors, and inits the private font submodule
+```
 
 # Table of contents
 
@@ -281,11 +282,17 @@ For example:
 
 * End files with no more and no less than 1 newline
 
-* The [.editorconfig](https://github.com/lonelyplanet/rizzo/blob/06b2c761b56184901d7a2341f6a872a541e7dee7/.editorconfig) will take care of the above for you
+* The [.editorconfig](https://github.com/lonelyplanet/rizzo/commit/8fb812c705c1a88135fed35074a5eddf1a359553) will take care of the above for you
 
-#### 2. Syntax
+#### 2. Language and appearence
 
 * Stick to double quotes
+
+* Please don't use comma first
+
+* Try to avoid single character variable names, words are easier to read and we have installed programs to minify code
+
+* Name collections (arrays, objects, sets, maps) in plural, ie: `badger` is a thing, `badgers` is a collection of `badger`s
 
 * Declare variables at the top of their scope:
 
@@ -301,7 +308,9 @@ For example:
 * Use strict as the first line inside your require function
 
     ```javascript
-    require("website", function(website) {
+    require([
+      "website"
+    ], function(website) {
 
       "use strict";
 
@@ -321,25 +330,22 @@ For example:
     }
     ```
 
-#### 3. Typechecking
+* When listing `require`ments, put each module name on a new line, as so:
 
-* In [this](http://contribute.jquery.org/style-guide/js/#type-checks) style, ten and sixpence.
+    ```javascript
+    require([
+      "lib/godliness"
+      "lib/cleanliness"
+    ], function(Godliness, Cleanliness) {
+    ```
 
-#### 4. Language
-
-* Use camelCase for method and variable names.
+* We like to use camelCase for method and variable names.
 
     `twistAgainLikeWeDidLastSummer()`
  
     __not__
 
     `rock_around_the_clock()`
-
-* Try to avoid single character variable names, words are easier to read and we can leave minification to a minifier
-
-* Please don't use comma first
-
-* Name collections (arrays, objects, sets, maps) in plural, ie: `badger` is a thing, `badgers` is a collection of things
 
 * Use truthiness to your advantage:
 
@@ -357,7 +363,7 @@ For example:
     if (truthyThing === true)
     ```
 
-* Put comments before the line or block they are about. Never use eol comments
+* Put comments before the line or block they are about. Don't use eol comments
  
     ```javascript
     // sanitize animals for collection by spooks
@@ -366,10 +372,48 @@ For example:
     }
     ```
  
-    __never__
+    __not__
  
     ```javascript
     var animalSanitizer = function(animal) {
       animal.cut(animal.hair).shampoo().rinse(); // sanitizes animals for collection by spooks
     }
     ```
+
+
+The [.jshintrc](https://github.com/lonelyplanet/rizzo/blob/195a0ae5b47b315f4a5a7495316730b74bb1efe2/.jshintrc) and [.jsrc.json](https://github.com/lonelyplanet/rizzo/blob/195a0ae5b47b315f4a5a7495316730b74bb1efe2/.jscs.json) will gently scold you into most of the above.
+
+#### 3. Typechecking
+
+###### String
+
+```javascript
+typeof thing == "string"
+``` 
+###### Number
+
+```javascript
+typeof thing == "number"
+```
+###### Boolean
+
+```javascript
+typeof thing == "boolean"
+```
+
+###### Function
+
+```javascript
+typeof jQuery.isFunction(thing)
+```
+###### Element
+
+```javascript
+object.nodeType
+```
+
+###### null/undefined
+
+```javascript
+thing == null
+```
