@@ -126,7 +126,7 @@ define([ "jquery", "lib/analytics/analytics_auth", "sCode" ], function($, Analyt
     var a;
 
     for (a in this.config) {
-      window.s[a] = null;
+      window.s[a] = undefined;
     }
     this.config = {};
     for (a in this.prevConfig) {

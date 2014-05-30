@@ -32,7 +32,9 @@ define([
       createControls: false,
       keyboardControl: true
     }, this.config.sliderConfig));
-    if (!(this.slider && this.slider.$currentSlide)) { return; }
+
+    if (!(this.slider && this.slider.$currentSlide)) return;
+
     this._gatherElements();
     this._handleEvents();
   };

@@ -88,7 +88,7 @@ define([
     });
 
     this.config.keyboardControls && $(document).on("keydown", function(event) {
-      if (event.metaKey || event.ctrlKey) { return; }
+      if (event.metaKey || event.ctrlKey) return;
 
       switch (event.which) {
         case 37:
@@ -103,7 +103,7 @@ define([
     });
 
     this.$images.on("load", function(event) {
-      if (!this.$slides.hasClass("is-loaded")) { return; }
+      if (!this.$slides.hasClass("is-loaded")) return;
       var slide = this.$slides.has(event.target);
       slide.removeClass("is-loading").addClass("is-loaded");
     });
@@ -181,12 +181,12 @@ define([
   };
 
   Slider.prototype._nextSlide = function() {
-    if (this.$el.is(".at-end")) { return; }
+    if (this.$el.is(".at-end")) return;
     this._goToSlide(this.currentSlide + 1);
   };
 
   Slider.prototype._previousSlide = function() {
-    if (this.$el.is(".at-beginning")) { return; }
+    if (this.$el.is(".at-beginning")) return;
     this._goToSlide(this.currentSlide - 1);
   };
 
