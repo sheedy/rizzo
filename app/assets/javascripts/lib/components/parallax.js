@@ -18,9 +18,11 @@ define([
     $(window).bind("scroll", $.proxy(this._onScroll, this));
   };
 
+  withViewportHelper.call(HeroParallax.prototype);
+
   HeroParallax.prototype._updateBg = function( i ) {
     var $el = this.$els.eq(i);
-    if (withViewportHelper.withinViewport($el)) {
+    if (this.withinViewport($el)) {
       var percent = 30 + ((($el.offset().top - _pageYOffset) * speed) / $el.height());
       $el.css("backgroundPosition", "center " + percent + "%");
     }
