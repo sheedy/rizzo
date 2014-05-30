@@ -27,7 +27,13 @@
     .split--left
       %h3.copy--h3 .row--leaderboard
     .split--right
-      %p The advertising row.
+      %p The primary advertising row.
+
+    %br
+    %p.alert.alert--warning
+      May be hidden by setting
+      %code @hide_leaderboard = true
+      in the controller.
 
   .card.styleguide-row.clearfix
     .split--left
@@ -41,11 +47,22 @@
     .split--right
       %p Houses the Page Title and Secondary Nav.
 
-  .card.styleguide-row.clearfix.alert--warning
+  .card.styleguide-row.clearfix.alert--success
     .split--left
       %h3.copy--h3 .row--content
     .split--right
       %p This is where your application code is rendered.
+
+  .card.styleguide-row.clearfix
+    .split--left
+      %h3.copy--h3 .row--leaderboard
+    .split--right
+      %p The optional secondary advertising row.
+    %br
+    %p.alert.alert--warning
+      May be displayed by setting
+      %code @display_footer_leaderboard = true
+      in the controller.
 
   .card.styleguide-row.clearfix
     .split--left
