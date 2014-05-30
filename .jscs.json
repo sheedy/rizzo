@@ -1,6 +1,5 @@
 {
   "requireCurlyBraces": [
-    "if",
     "else",
     "for",
     "while",
@@ -46,61 +45,6 @@
 
   "requireCommaBeforeLineBreak": true,
 
-  "requireOperatorBeforeLineBreak": [
-    "?",
-    "+",
-    "-",
-    "/",
-    "*",
-    "=",
-    "==",
-    "===",
-    "!=",
-    "!==",
-    ">",
-    ">=",
-    "<",
-    "<="
-  ],
-
-  "disallowLeftStickedOperators": [
-    "?",
-    "+",
-    "-",
-    "/",
-    "*",
-    "=",
-    "==",
-    "===",
-    "!=",
-    "!==",
-    ">",
-    ">=",
-    "<",
-    "<="
-  ],
-
-  "requireRightStickedOperators": [
-    "!"
-  ],
-
-  "disallowRightStickedOperators": [
-    "?",
-    "+",
-    "/",
-    ":",
-    "*",
-    "=",
-    "==",
-    "===",
-    "!=",
-    "!==",
-    ">",
-    ">=",
-    "<",
-    "<="
-  ],
-
   "disallowSpaceAfterPrefixUnaryOperators": [
     "++",
     "--",
@@ -127,8 +71,36 @@
     "=",
     "==",
     "===",
+    "%",
     "!=",
-    "!=="
+    "!==",
+    "+=",
+    "-=",
+    "/=",
+    "*=",
+    "%=",
+    "&=",
+    "^=",
+    "|=",
+    "==",
+    "===",
+    "!=",
+    "!==",
+    "&&",
+    "&",
+    "^",
+    "|",
+    "||",
+    ">",
+    "<",
+    "<<",
+    ">>",
+    ">>>",
+    "<=",
+    ">=",
+    "<<=",
+    ">>=",
+    ">>>="
   ],
 
   "requireSpaceAfterBinaryOperators": [
@@ -139,8 +111,36 @@
     "=",
     "==",
     "===",
+    "%",
     "!=",
-    "!=="
+    "!==",
+    "+=",
+    "-=",
+    "/=",
+    "*=",
+    "%=",
+    "&=",
+    "^=",
+    "|=",
+    "==",
+    "===",
+    "!=",
+    "!==",
+    "&&",
+    "&",
+    "^",
+    "|",
+    "||",
+    ">",
+    "<",
+    "<<",
+    ">>",
+    ">>>",
+    "<=",
+    ">=",
+    "<<=",
+    ">>=",
+    ">>>="
   ],
 
   "disallowMultipleLineStrings": true,
@@ -157,6 +157,10 @@
 
   "disallowTrailingWhitespace": true,
 
+  "disallowKeywords": [
+    "delete"
+  ],
+
   "disallowKeywordsOnNewLine": [
     "else",
     "catch"
@@ -167,6 +171,8 @@
   "requireCapitalizedConstructors": true,
 
   "requireDotNotation": true,
+
+  "disallowYodaConditions": true,
 
   "excludeFiles": [
     "node_modules/**",
