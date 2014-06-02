@@ -112,10 +112,14 @@ define([
             _this.$lightbox.removeClass("is-visible");
             _this.$lightbox.off(window.lp.supports.transitionend);
           });
-          _this.$lightbox.removeClass("is-active");
+          setTimeout(function() {
+            _this.$lightbox.removeClass("is-active");
+          },1);
         });
 
-        _this.$lightbox.removeClass("content-ready");
+        setTimeout(function() {
+          _this.$lightbox.removeClass("content-ready");
+        }, 1);
 
       }
 
@@ -139,19 +143,24 @@ define([
   // @content: {string} the content to dump into the lightbox.
   LightBox.prototype._renderContent = function(content) {
 
-    _this.$lightbox.on(window.lp.supports.transitionend, function() {
-      _this.$lightbox.off(window.lp.supports.transitionend);
-
-      _this.$lightboxContent.html(content);
-
+    if (window.lp.supports.transitionend){
       _this.$lightbox.on(window.lp.supports.transitionend, function() {
-        _this.trigger(":lightbox/contentReady");
         _this.$lightbox.off(window.lp.supports.transitionend);
+
+        _this.$lightboxContent.html(content);
+
+        _this.$lightbox.on(window.lp.supports.transitionend, function() {
+          _this.trigger(":lightbox/contentReady");
+          _this.$lightbox.off(window.lp.supports.transitionend);
+        });
+
+        _this.$lightbox.addClass("content-ready");
+
       });
-
-      _this.$lightbox.addClass("content-ready");
-
-    });
+    }else {
+      _this.$lightboxContent.html(content);
+      _this.trigger(":lightbox/contentReady");
+    }
 
     _this.$lightbox.removeClass("is-loading");
   };
@@ -161,7 +170,7 @@ define([
     _this.$lightbox.css({
       left: 0,
       top: (viewport.top < 55 ? 0 : viewport.top - 55),
-      height: viewport.height - (viewport.top < 55 ? 55 - viewport.top : 0 ),
+      height: viewport.height - (viewport.top < 55 ? 55 - viewport.top : 0 ), // that 55 is to cover the header
       width: viewport.width + 15 //this 15 is to cover the scroll bar
     });
   };

@@ -76,7 +76,7 @@ define ['jquery', 'lib/mixins/page_state', 'lib/mixins/events'], ($, withPageSta
           window.history.pushState({}, null, url)
 
           # Chrome workaround
-          @currentUrl = @getUrl;
+          @currentUrl = @getUrl();
       else
         # Ensure we don't trigger a refresh
         @allowHistoryNav = false

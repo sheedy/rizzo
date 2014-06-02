@@ -1,12 +1,13 @@
-define ['jquery', 'lib/mixins/events', 'lib/page/pushstate', 'lib/utils/deparam'], ($, asEventEmitter, PushState) ->
+define ['jquery', 'lib/mixins/events', 'lib/page/pushstate', 'lib/mixins/page_state', 'lib/utils/deparam'], ($, asEventEmitter, PushState, withPageState) ->
 
   class Controller
 
     asEventEmitter.call(@prototype);
-    $.extend(@prototype, PushState.prototype)
+    withPageState.call(@prototype)
 
     LISTENER = '#js-card-holder'
     states: null
+    pushstate: null,
 
     constructor: (args = {}) ->
       $.extend @config, args
@@ -18,7 +19,7 @@ define ['jquery', 'lib/mixins/events', 'lib/page/pushstate', 'lib/utils/deparam'
     init: ->
 
       # Controller uses the main listening element for pub & sub
-      new PushState()
+      @pushstate = new PushState()
       @$el = $(LISTENER)
       @_generateState(@getSlug())
 
@@ -27,7 +28,7 @@ define ['jquery', 'lib/mixins/events', 'lib/page/pushstate', 'lib/utils/deparam'
     listen: ->
       $(LISTENER).on ':cards/request', (e, data, analytics) =>
         @_updateState(data)
-        @navigate(@_serializeState(), @states[@currentState].documentRoot)
+        @pushstate.navigate(@_serializeState(), @states[@currentState].documentRoot)
         @_callServer(@_createRequestUrl(), @replace, analytics)
 
       $(LISTENER).on ':cards/append', (e, data, analytics) =>
@@ -38,18 +39,18 @@ define ['jquery', 'lib/mixins/events', 'lib/page/pushstate', 'lib/utils/deparam'
 
       $(LISTENER).on ':page/request', (e, data, analytics) =>
         @_generateState( data.url.split('?')[0] )
-        @navigate(@_serializeState(), @states[@currentState].documentRoot)
+        @pushstate.navigate(@_serializeState(), @states[@currentState].documentRoot)
         @_callServer(@_createRequestUrl(@states[@currentState].documentRoot), @newPage, analytics)
 
       $(LISTENER).on ':layer/request', (e, data, analytics) =>
         @_generateState( data.url.split('?')[0] )
-        @navigate(@_serializeState(), @states[@currentState].documentRoot, true)
+        @pushstate.navigate(@_serializeState(), @states[@currentState].documentRoot)
         @_callServer(@_createRequestUrl(@states[@currentState].documentRoot), @htmlPage, analytics, 'html')
 
       $(LISTENER).on ':controller/back', (e, data, analytics) =>
         @_removeState()
         @_generateState(@states[@currentState].documentRoot)
-        @navigate(@_serializeState(), @states[@currentState].documentRoot, true)
+        @pushstate.navigate(@_serializeState(), @states[@currentState].documentRoot)
 
     # Publish
 
