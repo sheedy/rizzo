@@ -13,7 +13,7 @@ define [
 
     constructor: (args={})->
       @showUserBasket()
-      @initAds() unless args.secure
+      @initAds()
       @showCookieMessage()
       @initialiseSelectGroupManager()
       @addNavTracking()
