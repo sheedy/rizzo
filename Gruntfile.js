@@ -158,15 +158,19 @@ module.exports = function(grunt) {
             requireConfig: {
               baseUrl: "./",
               paths: {
-                jquery: "./vendor/assets/javascripts/jquery/jquery",
-                jsmin: "./vendor/assets/javascripts/lonelyplanet_minjs/dist/$",
-                polyfills: "./vendor/assets/javascripts/polyfills",
-                lib: "./public/assets/javascripts/lib",
+                flamsteed: "flamsteed/lib/javascripts/flamsteed",
+                hogan: "hogan/dist/hogan-3.0.0.amd",
                 jplugs: "./vendor/assets/javascripts/jquery-plugins",
+                jquery: "./vendor/assets/javascripts/jquery/jquery",
+                sailthru: "./vendor/assets/javascripts/sailthru/v1",
                 sCode: "./vendor/assets/javascripts/omniture/s_code",
-                gpt: "http://www.googletagservices.com/tag/js/gpt",
+                trackjs: "./vendor/assets/javascripts/trackjs/trackjs",
+                dfp: "./vendor/assets/javascripts/jquery.dfp.js/jquery.dfp",
+                autocomplete: "./vendor/assets/javascripts/autocomplete/dist/autocomplete",
+                nouislider: "./vendor/assets/javascripts/nouislider",
                 pickadate: "./vendor/assets/javascripts/pickadate",
-                dfp: "./vendor/assets/javascripts/jquery.dfp.js/jquery.dfp"
+                polyfills: "./vendor/assets/javascripts/polyfills",
+                lib: "./public/assets/javascripts/lib"
               }
             }
           }
