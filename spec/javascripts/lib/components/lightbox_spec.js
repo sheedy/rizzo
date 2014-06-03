@@ -48,18 +48,65 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
 
     });
 
+    describe("Open/Close", function() {
+      beforeEach(function() {
+        loadFixtures("lightbox.html");
+        jasmine.Clock.useMock();
+        window.lp.supports = {
+          transitionend: "webkitTransitionEnd"
+        };
+        lightbox = new LightBox({ showPreloader: true });
+
+        $("#js-row--content").trigger(":lightbox/open");
+        $("#js-lightbox").trigger("webkitTransitionEnd");
+      });
+
+      it("should have css classes", function() {
+        expect($("#js-lightbox")).toHaveClass("is-active is-visible");
+        expect($("html, body")).toHaveClass("lightbox--noscroll");
+      });
+
+      it("should close and clean the lightbox", function() {
+
+        $("#js-row--content").trigger(":flyout/close");
+        $("#js-lightbox").trigger("webkitTransitionEnd");
+        $("#js-lightbox").trigger("webkitTransitionEnd");
+        jasmine.Clock.tick(1);
+
+        expect($("#js-lightbox")).not.toHaveClass("content-ready");
+        expect($("#js-lightbox")).not.toHaveClass("is-active");
+        expect($("html, body")).not.toHaveClass("lightbox--noscroll");
+      });
+
+      afterEach(function() {
+        window.lp.supports = {};
+      });
+
+    });
+
     describe("Functionality", function() {
+      beforeEach(function() {
+        window.lp.supports = {
+          transitionend: "webkitTransitionEnd"
+        };
+      });
 
       it("can update the lightbox contents", function() {
         $("#js-row--content").trigger(":lightbox/renderContent", "Test content here.");
         $("#js-lightbox").trigger("webkitTransitionEnd");
+        $("#js-lightbox").trigger("webkitTransitionEnd");
 
         expect($(".js-lightbox-content").html()).toBe("Test content here.");
+        expect($("#js-lightbox")).toHaveClass("content-ready");
 
       });
 
       it("can add a custom class to the lightbox", function() {
         expect($("#js-lightbox")).toHaveClass("lightbox-foo");
+      });
+
+      afterEach(function() {
+        window.lp.supports = {};
       });
 
     });
@@ -76,34 +123,17 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
 
     describe("Lightbox centering", function() {
 
-      it("sets up the container to be the full height and width of the viewport, with the header visible", function() {
+      it("sets up the container to be the full height and width of the viewport", function() {
 
         spyOn(lightbox, "viewport").andReturn({
-          left: 0,
           height: 800,
-          top: 0,
-          width: 1000
-        });
-
-        lightbox._centerLightbox();
-
-        expect($("#js-lightbox").height()).toBe(800 - 55);
-        expect($("#js-lightbox").width()).toBe(1000 + 15);
-      });
-
-      it("sets up the container to be the full height and width of the viewport, with header visible", function() {
-
-        spyOn(lightbox, "viewport").andReturn({
-          left: 0,
-          height: 800,
-          top: 80,
           width: 1000
         });
 
         lightbox._centerLightbox();
 
         expect($("#js-lightbox").height()).toBe(800);
-        expect($("#js-lightbox").width()).toBe(1000 + 15);
+        expect($("#js-lightbox").width()).toBe(1000 + 15); // 15 to cover the body scroll
       });
 
     });

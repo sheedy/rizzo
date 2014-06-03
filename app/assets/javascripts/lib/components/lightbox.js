@@ -65,7 +65,7 @@ define([
 
   LightBox.prototype.listen = function() {
 
-    this.$el.on("click", ".card--layer__close", function(event) {
+    this.$lightbox.on("click", ".card--layer__close", function(event) {
       event.preventDefault();
       _this._closeFlyout();
     });
@@ -76,11 +76,9 @@ define([
     });
 
     this.$el.on(":lightbox/open", function(event, data) {
-      _this._centerLightbox();
       _this.$lightbox.addClass("is-active is-visible");
-      $("html, body").css({
-        overflow: "hidden"
-      });
+      $("html, body").addClass("lightbox--noscroll");
+      _this._centerLightbox();
 
       setTimeout(function() {
         _this.listenToFlyout(event, data);
@@ -95,9 +93,7 @@ define([
 
     this.$el.on(":flyout/close", function() {
       if (_this.$lightbox.hasClass("is-active")){
-        $("html, body").css({
-          overflow: "initial"
-        });
+        $("html, body").removeClass("lightbox--noscroll");
 
         if (_this.requestMade){
           _this.requestMade = false;
@@ -169,34 +165,9 @@ define([
     var viewport = _this.viewport();
     _this.$lightbox.css({
       left: 0,
-      top: (viewport.top < 55 ? 0 : viewport.top - 55),
-      height: viewport.height - (viewport.top < 55 ? 55 - viewport.top : 0 ), // that 55 is to cover the header
+      height: viewport.height, // that 55 is to cover the header
       width: viewport.width + 15 //this 15 is to cover the scroll bar
     });
-  };
-
-  LightBox.prototype._centeredLeftPosition = function() {
-    var lightboxW = this.$lightboxContent.width(),
-        viewport = _this.viewport(),
-        left = viewport.left + (viewport.width / 2) - (lightboxW / 2);
-
-    if (lightboxW > _this.viewport().width) {
-      left = viewport.left;
-    }
-
-    return left;
-  };
-
-  LightBox.prototype._centeredTopPosition = function() {
-    var lightboxH = this.$lightboxContent.height(),
-        viewport = _this.viewport(),
-        top = viewport.top + (viewport.height / 2) - (lightboxH / 2);
-
-    if (lightboxH > _this.viewport().height) {
-      top = viewport.top + 50;
-    }
-
-    return top;
   };
 
   // Self instantiate if the default class is used.
