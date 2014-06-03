@@ -16,7 +16,13 @@
   window.lp = {
     tracking: {},
     analytics: {
-      dataLayer: {}
+      dataLayer: {},
+      eventBuffer: [],
+      api: {
+        trackEvent: function(data){
+          window.lp.analytics.eventBuffer.push(data);
+        }
+      }
     },
     supports: {}
   };
