@@ -8,7 +8,8 @@ define([
   "lib/mixins/flyout",
   "lib/mixins/events",
   "lib/utils/template",
-  "lib/page/viewport_helper"
+  "lib/page/viewport_helper",
+  "lib/core/feature_detect"
 ], function($, asFlyout, asEventEmitter, Template, withViewportHelper) {
 
   "use strict";
@@ -100,18 +101,27 @@ define([
           $("#js-card-holder").trigger(":controller/back");
         }
 
-        _this.$lightbox.on(window.lp.supports.transitionend, function() {
-          _this.$lightbox.off(window.lp.supports.transitionend);
+        if (window.lp.supports.transitionend){
 
           _this.$lightbox.on(window.lp.supports.transitionend, function() {
-            _this.$lightboxContent.empty();
-            _this.$lightbox.removeClass("is-visible");
             _this.$lightbox.off(window.lp.supports.transitionend);
+
+            _this.$lightbox.on(window.lp.supports.transitionend, function() {
+              _this.$lightboxContent.empty();
+              _this.$lightbox.removeClass("is-visible");
+              _this.$lightbox.off(window.lp.supports.transitionend);
+            });
+            setTimeout(function() {
+              _this.$lightbox.removeClass("is-active");
+            },1);
           });
+        }else {
+          _this.$lightboxContent.empty();
+          _this.$lightbox.removeClass("is-visible");
           setTimeout(function() {
             _this.$lightbox.removeClass("is-active");
           },1);
-        });
+        }
 
         setTimeout(function() {
           _this.$lightbox.removeClass("content-ready");
@@ -155,6 +165,7 @@ define([
       });
     }else {
       _this.$lightboxContent.html(content);
+      _this.$lightbox.addClass("content-ready");
       _this.trigger(":lightbox/contentReady");
     }
 
