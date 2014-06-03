@@ -284,6 +284,10 @@ module StyleguideHelper
               slug: "pagination"
             },
             {
+              name: "POI Maps",
+              slug: "poi-maps"
+            },
+            {
               name: "Social Buttons",
               slug: "social-buttons"
             },
