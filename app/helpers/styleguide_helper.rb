@@ -146,16 +146,16 @@ module StyleguideHelper
           title: "Utils",
           items: [
             {
-              name: "Toggle Active",
-              slug: "toggle-active"
-            },
-            {
-              name: "Proximity Loader",
-              slug: "proximity-loader"
-            },
-            {
               name: "Asset Reveal",
               slug: "asset-reveal"
+            },
+            {
+              name: "AutoComplete",
+              slug: "autocomplete"
+            },
+            {
+              name: "Debounce",
+              slug: "debounce"
             },
             {
               name: "Image Helper",
@@ -166,20 +166,24 @@ module StyleguideHelper
               path: "konami"
             },
             {
+              name: "Lightbox",
+              slug: "lightbox"
+            },
+            {
               name: "Link To",
               slug: "link-to"
             },
             {
-              name: "Lightbox",
-              slug: "lightbox"
+              name: "Proximity Loader",
+              slug: "proximity-loader"
             },
             {
               name: "Template",
               slug: "template"
             },
             {
-              name: "AutoComplete",
-              slug: "autocomplete"
+              name: "Toggle Active",
+              slug: "toggle-active"
             },
             {
               name: "Swipe",

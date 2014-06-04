@@ -98,28 +98,8 @@ class StyleguideController < GlobalController
     render '/styleguide/ui-components/tooltips'
   end
 
-  def toggle_active
-    render '/styleguide/js-components/toggle-active'
-  end
-
   def tags
     render '/styleguide/tags'
-  end
-
-  def proximity_loader
-    render '/styleguide/js-components/proximity-loader'
-  end
-
-  def asset_reveal
-    render '/styleguide/js-components/asset-reveal'
-  end
-
-  def image_helper
-    render '/styleguide/js-components/image-helper'
-  end
-
-  def autocomplete
-    render '/styleguide/js-components/autocomplete'
   end
 
   def alerts
@@ -182,32 +162,56 @@ class StyleguideController < GlobalController
     render '/styleguide/css-utilities/utility-mixins'
   end
 
-  def lightbox
-    render '/styleguide/js-components/lightbox'
+  def adUnits
+    render '/styleguide/ui-components/ad-units'
+  end
+  
+  def asset_reveal
+    render '/styleguide/js-components/asset-reveal'
+  end
+
+  def autocomplete
+    render '/styleguide/js-components/autocomplete'
+  end
+
+  def debounce
+    render '/styleguide/js-components/debounce'
+  end
+
+  def image_helper
+    render '/styleguide/js-components/image-helper'
   end
 
   def konami
     render '/styleguide/js-components/konami'
   end
 
-  def template
-    render '/styleguide/js-components/template'
+  def lightbox
+    render '/styleguide/js-components/lightbox'
+  end
+
+  def link_to
+    render '/styleguide/js-components/link-to'
+  end
+
+  def proximity_loader
+    render '/styleguide/js-components/proximity-loader'
   end
 
   def swipe
     render '/styleguide/js-components/swipe'
   end
 
+  def template
+    render '/styleguide/js-components/template'
+  end
+
+  def toggle_active
+    render '/styleguide/js-components/toggle-active'
+  end
+
   def hero_banner
     render '/styleguide/ui-components/hero_banner'
-  end
-
-  def adUnits
-    render '/styleguide/ui-components/ad-units'
-  end
-
-  def link_to
-    render '/styleguide/js-components/link-to'
   end
 
   def preloader
