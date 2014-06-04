@@ -8,7 +8,11 @@
         %p.hero-banner__lead-in
           = properties[:lead_in]
         %h1.hero-banner__header
-          = properties[:title]
+          - if properties[:slug]
+            %a.hero-banner__link{ href: "#{properties[:slug]}", title: properties[:title] }
+              = properties[:title]
+          - else
+            = properties[:title]
         - if properties[:strapline]
           %p.hero-banner__strapline
             = properties[:strapline]
