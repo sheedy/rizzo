@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 define [
   'jquery',
   'lib/page/swipe',
