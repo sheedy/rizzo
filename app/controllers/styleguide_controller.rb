@@ -198,6 +198,10 @@ class StyleguideController < GlobalController
     render '/styleguide/js-components/swipe'
   end
 
+  def hero_banner
+    render '/styleguide/ui-components/hero_banner'
+  end
+
   def adUnits
     render '/styleguide/ui-components/ad-units'
   end

@@ -8,6 +8,7 @@ require([ "jquery" ], function($) {
     "lib/page/scroll_perf",
     "lib/components/toggle_active",
     "lib/components/select_group_manager",
+    "lib/components/parallax",
     "lib/styleguide/svg",
     "lib/styleguide/copy",
     "lib/styleguide/swipe",

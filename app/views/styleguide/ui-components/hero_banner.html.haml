@@ -1,0 +1,17 @@
+= render 'styleguide/partials/shared'
+
+- banners = YAML.load(File.read(File.expand_path('../../../../data/styleguide/herobanner_stubs.yml', __FILE__)))
+.card.styleguide-intro.copy--body.context--content
+  .clearfix
+    %h1.copy--h1 Hero Banner
+
+  %p<
+    This is how the hero banner looks. It has a parallax effect.    
+
+  %p<
+    The position and movement of the parallax is calculated based on the height of the hero and image and also with the height of the viewport 
+
+.styleguide-block.styleguide-hero_banner
+
+- banners.each_with_index do | stub, i |
+  = sg_component('hero_banner', properties: stub)

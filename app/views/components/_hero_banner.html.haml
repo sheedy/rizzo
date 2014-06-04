@@ -1,4 +1,6 @@
-.hero-banner.js-bg-parallax.row{style: "background-image: url(#{properties[:image_url]})", class: properties[:image_info] ? 'hero-banner--flickr' : '' }
+.hero-banner.js-bg-parallax.row{ class: properties[:image_info] ? 'hero-banner--flickr' : '' }
+  %img.hero-banner__image{ src: properties[:image_url] }
+
   .hero-banner__content.row__inner
 
     - unless properties[:image_info]
