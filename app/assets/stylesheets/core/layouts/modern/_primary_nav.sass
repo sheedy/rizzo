@@ -81,9 +81,10 @@
   .nav__icon
     display: none
   &.btn--small
-    +font-size(13)
-    margin: 13px 6px 10px 0
-    padding: 9px 12px 8px 12px
+    &, .responsive &
+      +font-size(13)
+      margin: 13px 6px 10px 0
+      padding: 9px 12px 8px 12px
   .responsive &
     +font-size(18)
     padding: 17px 10px
