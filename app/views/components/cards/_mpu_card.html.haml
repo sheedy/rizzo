@@ -3,4 +3,4 @@
     Advertisement
   .card__content
     .ad-mpu
-      = ui_component('ads/mpu', properties: { size: { mapping: "mpu-double" }, extension: "stackMPU" })
+      = ui_component('ads/mpu', properties: { size: { mapping: properties[:double?] ? "mpu-double" : "mpu" }, extension: properties[:double?] ? "stackMPU" : nil, targeting: { position: properties[:position] } })
