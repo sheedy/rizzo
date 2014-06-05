@@ -145,9 +145,12 @@
       padding: 20px 4px
 
   &, & > .nav__item
+    font-weight: bold
     color: $nav-primary-type
-    &:hover
-      color: #fff
+    .responsive &
+      font-weight: normal
+      +respond-to(wide-view)
+        font-weight: bold
 
   .homepage &, .homepage & > .nav__item
     color: white
