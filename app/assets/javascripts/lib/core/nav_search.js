@@ -28,10 +28,8 @@ define([ "jquery", "autocomplete" ], function($, Autocomplete) {
 
       },
       fetch: function(searchTerm, cb) {
-        var userProtocol = window.location.protocol;
         $.ajax({
-          // url: userProtocol + "//localhost:7000/search.json?q=" + searchTerm,
-          url: userProtocol + "//www.lonelyplanet.com/search.json?q=" + searchTerm,
+          url: "//www.lonelyplanet.com/search.json?q=" + searchTerm,
           dataType: "json",
           success: function(data) {
             cb(data);
