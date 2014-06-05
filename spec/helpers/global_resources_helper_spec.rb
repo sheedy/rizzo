@@ -3,7 +3,7 @@ require 'global_resources_helper'
 
 describe GlobalResourcesHelper do
 
-  context "legacy global resources" do 
+  context "legacy global resources" do
 
     before do
       class << helper
@@ -13,8 +13,8 @@ describe GlobalResourcesHelper do
     end
 
     it "gets a list of navigation items" do
-      helper.primary_navigation_items.map{|n|n[:title]}.should ==
-        ['Home','Destinations','Themes','Thorn Tree forum','Shop','Hotels','Flights','Insurance']
+      helper.core_navigation_items.map{|n|n[:title]}.should ==
+        ['Destinations','Interests','Shop','Thorn Tree forum','Bookings','Insurance']
     end
 
     it "renders the cart tab item" do
@@ -40,12 +40,12 @@ describe GlobalResourcesHelper do
     it 'returns link elements' do
       helper.dns_prefetch_for(@args).should have_css('link[rel="dns-prefetch"]')
     end
-    
+
     it 'returns link elements' do
       helper.dns_prefetch_for(@args).should have_css('link[href="//test.com"]')
       helper.dns_prefetch_for(@args).should have_css('link[href="//test2.com"]')
     end
-    
+
   end
 
 end

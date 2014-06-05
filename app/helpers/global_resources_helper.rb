@@ -4,19 +4,6 @@ require 'host_support'
 module GlobalResourcesHelper
   include BrowserSupport, HostSupport, IpSupport
 
-  def primary_navigation_items
-    [
-      {style:'home', title:'Home', uri: www_url},
-      {style:'destinations', title:'Destinations', uri: www_url("destinations")},
-      {style:'themes', title:'Themes', uri: www_url("themes")},
-      {style:'forum', title:'Thorn Tree forum', uri: www_url("thorntree")},
-      {style:'shop', title:'Shop', uri: shop_url},
-      {style:'hotels', title:'Hotels', uri: www_url("hotels")},
-      {style:'flights', title:'Flights', uri: www_url("bookings/flights.do")},
-      {style:'insurance', title:'Insurance', uri: www_url("bookings/insurance.do")}
-    ]
-  end
-
   def core_navigation_items
     [
       {title:'Destinations',
@@ -55,7 +42,7 @@ module GlobalResourcesHelper
       {title:'Shop', uri: "http://shop.lonelyplanet.com", icon_class: "icon--shop-basket--line--before icon--white--before"},
       {title:'Thorn Tree Forum', uri: "http://www.lonelyplanet.com/thorntree", icon_class: "icon--comment--line--before icon--white--before"},
       {title:'Bookings',
-        uri: 'http://www.lonelyplanet.com/hotels/',
+        uri: 'http://www.lonelyplanet.com/bookings/',
         icon_class: 'icon--flights--line--before icon--white--before',
         submenu: [
           {title:'Hotels', uri:'http://www.lonelyplanet.com/hotels', style:'hotels', icon_class: 'icon--hotel--before'},
