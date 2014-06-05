@@ -30,8 +30,8 @@ define([ "jquery", "autocomplete" ], function($, Autocomplete) {
       },
       fetch: function(searchTerm, cb) {
         $.ajax({
-          url: "//localhost:9000/search.json?q=" + searchTerm,
-          // url: "//www.lonelyplanet.com/search.json?q=" + searchTerm,
+          // url: "//localhost:9000/search.json?q=" + searchTerm,
+          url: "//www.lonelyplanet.com/search.json?q=" + searchTerm,
           dataType: "json",
           success: function(data) {
             cb(data);
