@@ -55,19 +55,23 @@ define ['jquery', 'lib/mixins/events', 'lib/page/pushstate', 'lib/utils/deparam'
 
     # Page offset currently lives within search so we must check and update each time
     replace: (data, analytics) =>
+      @_updateGoogleAnalytics(data)
       @_updateOffset(data.pagination) if data.pagination and data.pagination.page_offsets
       @trigger(':cards/received', [data, @states[@currentState].state, analytics])
 
     append: (data, analytics) =>
+      @_updateGoogleAnalytics(data)
       @_updateOffset(data.pagination) if data.pagination and data.pagination.page_offsets
       @_removePageParam() # All other requests display the first page
       @trigger(':cards/append/received', [data, @states[@currentState].state, analytics])
 
     newPage: (data, analytics) =>
+      @_updateGoogleAnalytics(data)
       @_updateOffset(data.pagination) if data.pagination and data.pagination.page_offsets
       @trigger(':page/received', [data, @states[@currentState].state, analytics])
 
     htmlPage: (data, analytics) =>
+      @_updateGoogleAnalytics(data)
       @trigger(':layer/received', [data, @states[@currentState].state, analytics])
 
 
@@ -112,3 +116,8 @@ define ['jquery', 'lib/mixins/events', 'lib/page/pushstate', 'lib/utils/deparam'
       documentRoot = rootUrl or @getDocumentRoot()
       documentRoot = documentRoot.replace(/\/$/, '')
       documentRoot + "?" + @_serializeState()
+
+    _updateGoogleAnalytics: (data) ->
+      if (data.datalayer && window.lp.analytics.api)
+        window.lp.analytics.dataLayer = data.datalayer
+        window.lp.analytics.api.actions().trackPageView(window.lp.analytics.dataLayer)

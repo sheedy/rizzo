@@ -21,12 +21,12 @@ $discBoxSize: $discSize + ($discMargin * 2)
       visibility: hidden
 
   .results &
+    +z-layer(modal)
     box-shadow: 0 2px 1px 0 rgba(0,0,0,0.2)
     border-radius: 8px
     background-color: #fff
     padding: $discSize
     top: 200px
-    z-index: 10
 
 .preloader__disc
   background: #dbe6ec
