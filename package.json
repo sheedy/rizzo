@@ -6,7 +6,7 @@
         "grunt": "latest",
         "grunt-contrib-connect": "latest",
         "grunt-contrib-coffee": "latest",
-        "grunt-contrib-jasmine": "0.5.2",
+        "grunt-contrib-jasmine": "0.5.x",
         "grunt-contrib-watch": "latest",
         "grunt-contrib-copy": "latest",
         "grunt-contrib-jshint": "latest",
@@ -16,7 +16,7 @@
         "grunt-grunticon": "latest",
         "grunt-svgmin": "latest",
         "grunt-concurrent": "latest",
-        "grunt-template-jasmine-requirejs": "0.1.9",
+        "grunt-template-jasmine-requirejs": "0.1.x",
         "grunt-plato": "latest",
         "grunt-open": "latest",
         "matchdep": "latest"
