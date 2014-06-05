@@ -6,10 +6,11 @@ require([ "jquery" ], function($) {
     "lib/core/base",
     "lib/page/scroll_perf",
     "flamsteed",
+    "lib/components/toggle_active",
     "trackjs",
     "polyfills/function_bind",
     "polyfills/xdr"
-  ], function(Base, ScrollPerf, Flamsteed) {
+  ], function(Base, ScrollPerf, Flamsteed, ToggleActive) {
 
     $(function() {
 
@@ -17,6 +18,7 @@ require([ "jquery" ], function($) {
 
       new Base({ secure: secure });
       new ScrollPerf;
+      new ToggleActive;
 
       // Currently we can"t serve Flamsteed over https because of f.staticlp.com
       // https://trello.com/c/2RCd59vk/201-move-f-staticlp-com-off-cloudfront-and-on-to-fastly-so-we-can-serve-over-https
