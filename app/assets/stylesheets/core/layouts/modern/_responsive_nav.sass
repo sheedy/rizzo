@@ -75,10 +75,19 @@ $responsive-nav-width: 240px
 // On click..
 
 // Move the responsive nav onto the screen
-#nav--primary__trigger
-  &:checked + .nav--primary__trigger,
-  &:checked ~ .m-hidden-menu,
-  &:checked ~ .row--content,
-  &:checked ~ .logo--header,
-  &:checked ~ .wrapper--footer
+.no-js
+  #nav--primary__trigger
+    &:checked + .nav--primary__trigger,
+    &:checked ~ .m-hidden-menu,
+    &:checked ~ .row--content,
+    &:checked ~ .logo--header,
+    &:checked ~ .wrapper--footer
+      transform: translateX(-$responsive-nav-width)
+
+.js .show-nav
+  .nav--primary__trigger,
+  .m-hidden-menu,
+  .row--content,
+  .logo--header,
+  .wrapper--footer
     transform: translateX(-$responsive-nav-width)

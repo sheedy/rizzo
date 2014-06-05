@@ -6,8 +6,9 @@ define [
   'lib/core/ad_manager',
   'lib/core/cookie_compliance',
   'lib/components/select_group_manager',
+  'lib/core/nav_search',
   "lib/core/feature_detect"
-], ($, Swipe, Authenticator, ShoppingCart, AdManager, CookieCompliance, SelectGroupManager) ->
+], ($, Swipe, Authenticator, ShoppingCart, AdManager, CookieCompliance, SelectGroupManager, NavSearch) ->
 
   class Base
 
@@ -18,6 +19,7 @@ define [
       @initialiseSelectGroupManager()
       @addNavTracking()
       @initSwipe()
+      @addAutocomplete()
 
     initAds: ->
       if (window.lp && window.lp.ads)
@@ -39,9 +41,6 @@ define [
       $('#js-primary-nav').on 'click', '.js-nav-cart', ->
         window.s.linkstacker("shopping-cart")
 
-      $('#js-primary-nav').on 'submit', '.js-nav-search', ->
-        window.s.linkstacker("search")
-
       $('#js-secondary-nav').on 'click', '.js-nav-item', ->
         window.s.linkstacker($(@).text() + "-sub")
 
@@ -53,3 +52,6 @@ define [
 
     initSwipe: ->
       new Swipe()
+
+    addAutocomplete: ->
+      new NavSearch()

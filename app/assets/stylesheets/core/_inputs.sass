@@ -48,20 +48,17 @@ input[type="submit"]
 // ----------------------------------------------------------------------------
 
 .search--primary
-  border-radius: 16px
-  background-color: $row-primary--darker
-  overflow: hidden
-  margin: 12px 0 0
+  background-color: transparent
+  margin: 10px 0
+  position: relative
   @if $is-ie
     float: left
   .responsive &
-    background-color: white
     width: 75%
     margin: 12px auto 0
     +respond-to(wide-view)
-      background-color: $row-primary--darker
       width: auto
-      margin: 12px 0 0
+      margin: 10px 0
 
 .search--primary--mobile
   display: none
@@ -78,19 +75,22 @@ input[type="submit"]
       display: inline-block
 
 .search__input--primary
-  @extend %transition--base
-  background: transparent
+  transition: width 0.2s ease, background-color 0.2s ease
+  border-radius: 16px
+  background-color: $row-primary--darker
   color: $nav-primary-type
   display: inline-block
-  height: 30px
+  height: 35px
   padding: 0 10px
   vertical-align: top
   width: 170px
   &:focus
-    box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2) inset
-    background: white
     color: $body-copy
-    width: 210px
+    width: 245px
+    background-color: white
+    background-position: right 6px top -24px
+    +placeholder
+      color: $body-copy
   .responsive &
     width: 80%
     &:focus
@@ -100,36 +100,99 @@ input[type="submit"]
       width: 170px
       &:focus
         width: 210px
-        box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2) inset
+  +placeholder
+    color: $row-primary--darker
 
   .ie8 &
     line-height: 16px
     padding: 7px 10px
 
-.search__button
-  @extend %transition--base
+.search__input__icon
+  @extend %image-replacement
+  +size(22px)
+  display: block
+  padding: 0
+  opacity: 0.75
+  background-size: cover
+  position: absolute
+  right: 8px
+  top: 6px
   background-color: transparent
   border: 0
   cursor: pointer
-  height: 30px
-  padding: 0
-  vertical-align: top
-  &:hover
-    background-color: $header-blue
-  .responsive &
-    float: right
-    +respond-to(wide-view)
-      float: none
+  background-position: 0 -56px
+  @if $is-ie
+    +size(30px)
+    top: 2px
+    right: 2px
+    background-position: 0 -40px
+  &.active-search
+    opacity: 1
+    background-position: 0 -28px
+    @if $is-ie
+      background-position: 0 0
 
-.search__button--icon
-  @extend %image-replacement
-  display: block
-  height: 16px
-  margin: 0 8px
-  padding: 0
-  width: 16px
-  opacity: 0.7
-  background-size: 16px
+
+
+.primary-search-autocomplete
+  .autocomplete
+    position: relative
+    display: block
+    width: 100%
+    margin: 0
+    left: 0
+    top: 75%
+    .autocomplete__results
+      @extend %transition--base
+      @extend %fly-out-shadow
+      @extend %rounded-corners
+      list-style: none
+      top: 4px
+      left: 0px
+      width: 100%
+      margin: 0px
+      background-color: white
+      position: absolute
+      background-color: white
+      padding: 4px 0
+      +css-arrow-central(top, $size: 30px)
+      &:after
+        position: absolute
+        filter: drop-shadow(0 -1px 0px rgba(0,0,0,.3))
+      .backup-button
+        width: 90%
+        margin: 10px auto
+        display: block
+        text-transform: uppercase
+        +font-size(13)
+
+      .autocomplete__results__item
+        cursor: pointer
+        +font-size(14)
+        color: $titlegray
+        display: block
+        padding: 12px 12px 12px 39px
+        font-weight: normal
+        background-repeat: no-repeat
+        background-size: auto 100%
+        cursor: pointer
+        border-bottom: 1px solid $subduedgray
+        position: relative
+        text-decoration: none
+        &:last-child
+          border: 0px
+        &:before
+          width: 20px
+          height: 20px
+          position: absolute
+          top: 8px
+          left: 9px
+        &:hover
+          background: $body-background-offset
+        &.autocomplete__results__item--highlight
+          background: $body-background-offset
+        .autocomplete__search-term--highlight
+          font-weight: bold
 
 // -----------------------------------------------------------------------------
 //
