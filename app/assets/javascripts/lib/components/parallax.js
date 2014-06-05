@@ -51,15 +51,16 @@ define([
 
   HeroParallax.prototype.calculatePosition = function( i ) {
     var maxParallax = (_heroBanners[ i ].imageHeight - _heroBanners[ i ].heroHeight),
-        topPosition = _heroBanners[ i ].$el.offset().top - _pageYOffset + (_heroBanners[ i ].heroHeight / 2 ),
+        topPosition = _heroBanners[ i ].$el.offset().top - _pageYOffset + (_heroBanners[ i ].heroHeight ),
         midPosition;
 
     if ( topPosition > 0 ) {
-      midPosition = 1 - ( Math.abs(topPosition) / (this.viewport().height) );
+      midPosition = ( Math.abs(topPosition) / (this.viewport().height) );
     } else {
-      midPosition = 1;
+      midPosition = 0;
     }
-    return midPosition * maxParallax;
+
+    return (midPosition * maxParallax);
   };
 
   HeroParallax.prototype._updateBg = function( i ) {
