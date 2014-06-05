@@ -89,6 +89,8 @@ input[type="submit"]
     width: 245px
     background-color: white
     background-position: right 6px top -24px
+    +placeholder
+      color: $body-copy
   .responsive &
     width: 80%
     &:focus
@@ -98,6 +100,8 @@ input[type="submit"]
       width: 170px
       &:focus
         width: 210px
+  +placeholder
+    color: $row-primary--darker
 
   .ie8 &
     line-height: 16px
@@ -105,10 +109,9 @@ input[type="submit"]
 
 .search__input__icon
   @extend %image-replacement
+  +size(22px)
   display: block
-  height: 22px
   padding: 0
-  width: 22px
   opacity: 0.75
   background-size: cover
   position: absolute

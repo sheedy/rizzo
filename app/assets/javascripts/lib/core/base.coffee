@@ -54,4 +54,4 @@ define [
       new Swipe()
 
     addAutocomplete: ->
-      new NavSearch(".js-primary-search")
+      new NavSearch()
