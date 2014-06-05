@@ -23,7 +23,7 @@
   .responsive &
     display: inline-block
     +respond-to(wide-view)
-      display: none
+      display: none !important
 
 // [doc] Hide content on wide screens (shows with block properties). [/doc]
 .wv--hidden-block
@@ -31,7 +31,7 @@
   .responsive &
     display: block
     +respond-to(wide-view)
-      display: none
+      display: none !important
 
 // [doc] Hide content but show it on wider screens. [/doc]
 .wv--block
