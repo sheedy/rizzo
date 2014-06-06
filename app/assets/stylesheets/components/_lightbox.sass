@@ -20,6 +20,14 @@
 .lightbox__content
   @extend %large-shadow
   position: absolute
+  .lightbox__close
+    height: 25px
+    width: 25px
+    position: absolute
+    right: .5em
+    top: .5em
+    &:hover
+      +icon-color(body-grey)
   .lightbox--layer &
     @extend %rounded-corners
     width: 800px
