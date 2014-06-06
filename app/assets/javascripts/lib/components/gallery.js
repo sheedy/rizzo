@@ -54,16 +54,24 @@ define([
     this.galleryBreadcrumb.html(breadcrumb);
   };
 
-  Gallery.prototype._updateSlug = function() {
-    var partial = this.slider.$currentSlide.data("partial-slug");
+  Gallery.prototype._updateSlug = function(partial) {
     window.history.pushState && window.history.pushState({}, "", this.slug + "/" + partial);
   };
 
+  Gallery.prototype._updateAnalytics = function(partial, ga) {
+    if (ga.dataLayer.summaryTag && ga.api) {
+      ga.dataLayer.summaryTag.corecontent = ga.dataLayer.summaryTag.corecontent.replace(/:[^:]+$/, ":" + partial);
+      ga.api.actions().trackPageView(ga.dataLayer);
+    }
+  }
+
   Gallery.prototype._handleEvents = function() {
     var afterTransition = debounce(function() {
+      var partial = this.slider.$currentSlide.data("partial-slug");
       this.analytics.track();
       this._updateImageInfo();
-      this._updateSlug();
+      this._updateSlug(partial);
+      this._updateAnalytics(partial, window.lp.analytics);
       this.$listener.trigger(":ads/refresh");
     }.bind(this), 200);
 
