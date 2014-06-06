@@ -63,7 +63,7 @@ define([
       ga.dataLayer.summaryTag.corecontent = ga.dataLayer.summaryTag.corecontent.replace(/:[^:]+$/, ":" + partial);
       ga.api.actions().trackPageView(ga.dataLayer);
     }
-  }
+  };
 
   Gallery.prototype._handleEvents = function() {
     var afterTransition = debounce(function() {
