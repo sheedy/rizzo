@@ -59,9 +59,9 @@ define([
   };
 
   Gallery.prototype._updateAnalytics = function(partial, ga) {
-    if (ga.dataLayer.summaryTag && ga.api) {
+    if (ga.dataLayer.summaryTag) {
       ga.dataLayer.summaryTag.corecontent = ga.dataLayer.summaryTag.corecontent.replace(/:[^:]+$/, ":" + partial);
-      ga.api.actions().trackPageView(ga.dataLayer);
+      ga.api.trackPageView(ga.dataLayer);
     }
   };
 

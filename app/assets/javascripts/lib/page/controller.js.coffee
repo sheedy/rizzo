@@ -120,4 +120,4 @@ define ['jquery', 'lib/mixins/events', 'lib/page/pushstate', 'lib/utils/deparam'
     _updateGoogleAnalytics: (data) ->
       if (data.datalayer && window.lp.analytics.api)
         window.lp.analytics.dataLayer = data.datalayer
-        window.lp.analytics.api.actions().trackPageView(window.lp.analytics.dataLayer)
+        window.lp.analytics.api.trackPageView(window.lp.analytics.dataLayer)
