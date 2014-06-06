@@ -58,12 +58,17 @@ define([ "jquery", "lib/core/ad_sizes", "lib/core/ad_unit" ], function($, adSize
   };
 
   AdManager.prototype._adCallback = function($adunit) {
-    var unit = $adunit.data("adUnit");
+    var unit = $adunit.data("adUnit"), currentUnit;
 
     if (!unit) {
-      $.data($adunit, "adUnit", new AdUnit($adunit));
+      currentUnit = new AdUnit($adunit);
+      $.data($adunit, "adUnit", currentUnit);
     }
-    // TODO: analytics here
+
+    if (!currentUnit.isEmpty()) {
+      window.lp.analytics.api.actions().trackEvent("advertising", "page-load-impression", $adunit.data().sizeMapping);
+    }
+
   };
 
   AdManager.prototype.formatKeywords = function() {
