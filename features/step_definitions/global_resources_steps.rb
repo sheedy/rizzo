@@ -1,13 +1,11 @@
 Then(/^the Core layout should be displayed$/) do
   page.should have_selector 'html.no-freight'
   page.should_not have_selector 'body.responsive'
-  page.should_not have_selector 'body.homepage'
 end
 
 Then(/^the Modern layout should be displayed$/) do
   page.should have_selector 'body'
   page.should_not have_selector 'body.responsive'
-  page.should_not have_selector 'body.homepage'
 end
 
 Then(/^the Legacy layout should be displayed$/) do
@@ -17,10 +15,6 @@ end
 
 Then(/^the Responsive layout should be displayed$/) do
   page.should have_selector 'body.responsive'
-end
-
-Then(/^the Homepage layout should be displayed$/) do
-  page.should have_selector 'body.responsive.homepage'
 end
 
 Then /^the base global\-head content should be displayed$/ do

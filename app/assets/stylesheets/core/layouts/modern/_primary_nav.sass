@@ -9,8 +9,6 @@
   position: relative
   .responsive &
     position: static
-  .homepage &
-    background: none
 
 // ----------------------------------------------------------------------------
 //
@@ -24,15 +22,6 @@
   position: absolute
   top: 0
   left: 20px
-
-  .homepage &
-    left: 20px
-    background-color: #1d508d
-    padding: 10px 15px
-    +respond-to(medium-view)
-      padding: 20px
-    .media--lp-logo
-      margin: 0
 
 .media--lp-logo
   +z-layer(top)
@@ -70,9 +59,6 @@
     margin-left: 0
     +respond-to(wide-view)
       margin-left: 117px
-  .homepage &
-    +respond-to(wide-view)
-      margin-left: 157px
 
 .nav__item--primary
   +font-size(13)
@@ -141,10 +127,6 @@
       +respond-to(wide-view)
         display: none
 
-  .homepage &
-    +respond-to(wide-view)
-      padding: 20px 4px
-
   &, & > .nav__item
     font-weight: bold
     color: $nav-primary-type
@@ -152,9 +134,6 @@
       font-weight: normal
       +respond-to(wide-view)
         font-weight: bold
-
-  .homepage &, .homepage & > .nav__item
-    color: white
 
   .nav__item--primary--signout--mobile
     +respond-to(wide-view)
