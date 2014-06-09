@@ -2,7 +2,7 @@ require([ "jquery", "lib/components/lightbox" ], function($, LightBox) {
 
   "use strict";
 
-  var $el = $("#js-row--content"),
+  var $el = $("body"),
       linkClass = "js-page-hopper-opener",
       $link = $("<a class='" + linkClass + "' />"),
       lightbox, isOpen;
@@ -18,11 +18,9 @@ require([ "jquery", "lib/components/lightbox" ], function($, LightBox) {
       }
     })
     .on(":lightbox/open", function(event, data) {
-      if (data.opener == $link) {
+      if (data.opener == $link[0]) {
         isOpen = true;
-        $el.trigger(":lightbox/renderContent", "");
-
-        lightbox.$lightboxContent.addClass("card");
+        $el.trigger(":lightbox/renderContent", "<div class='card--layer__content'></div>");
       }
     })
     .on(":flyout/close", function() {
@@ -31,6 +29,7 @@ require([ "jquery", "lib/components/lightbox" ], function($, LightBox) {
     .append($link);
 
   lightbox = new LightBox({
+    $el: "body",
     $opener: "." + linkClass
   });
 });
