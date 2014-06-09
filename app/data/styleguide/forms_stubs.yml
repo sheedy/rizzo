@@ -147,6 +147,7 @@ dropdown_components:
       -
         :name: "select_name"
         :placeholder: "Item One"
+        :dropdown__width: "32.3"
         :options:
           - :title: 'one'
           - :title: 'two'
@@ -154,6 +155,7 @@ dropdown_components:
       -
         :name: "select_name"
         :placeholder: "Item Two"
+        :dropdown__width: "32.3"
         :options:
           - :title: 'a'
           - :title: 'b'
@@ -162,6 +164,7 @@ dropdown_components:
       -
         :name: "select_name"
         :placeholder: "Item Three"
+        :dropdown__width: "35.3"
         :options:
           - :title: 'a1'
           - :title: 'b2'

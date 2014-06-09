@@ -10,7 +10,7 @@
     - unless no_options
       = selected_title || properties[:placeholder] || properties[:options].first[:title] || ""
 
-  %select.dropdown__select.js-select{ id: properties[:id], name: properties[:name], data: properties[:data], class: properties[:dropdown_class], disabled: no_options }
+  %select.dropdown__select.js-select{ id: properties[:id], name: properties[:name], data: properties[:data], class: properties[:dropdown_class], disabled: no_options, width: properties[:width] }
 
     - if no_options
       %option{ value: "" }<
@@ -20,7 +20,7 @@
         = properties[:placeholder]
 
     - properties[:options].each do |option|
-      %option{value: option[:value] || option[:title], selected: (properties[:selected] == option[:value] || properties[:selected] == option[:title]) ? 'selected' : false}<
+      %option{value: option[:value] || option[:title], selected: (properties[:selected] && (properties[:selected] == option[:value] || properties[:selected] == option[:title])) ? 'selected' : false}<
         = option[:title]
 
   = render :partial => 'components/forms/partials/tooltip', :locals => { tooltip: tooltip }
