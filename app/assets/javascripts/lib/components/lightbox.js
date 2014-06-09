@@ -84,7 +84,6 @@ define([
       setTimeout(function() {
         _this.listenToFlyout(event, data);
       }, 20);
-
     });
 
     this.$el.on(":lightbox/fetchContent", function(event, url) {
@@ -115,12 +114,12 @@ define([
               _this.$lightbox.removeClass("is-active");
             },1);
           });
-        }else {
+        } else {
           _this.$lightboxContent.empty();
           _this.$lightbox.removeClass("is-visible");
           setTimeout(function() {
             _this.$lightbox.removeClass("is-active");
-          },1);
+          }, 1);
         }
 
         setTimeout(function() {
