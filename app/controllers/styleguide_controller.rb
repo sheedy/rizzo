@@ -226,6 +226,10 @@ class StyleguideController < GlobalController
     render '/styleguide/ui-components/poi-maps'
   end
 
+  def poiList
+    render '/styleguide/ui-components/poi-list'
+  end
+
   #===== yeoman hook =====#
   # NB! The above line is required for our yeoman generator and should not be changed.
 end

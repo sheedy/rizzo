@@ -284,6 +284,10 @@ module StyleguideHelper
               slug: "pagination"
             },
             {
+              name: "POI List",
+              slug: "poi-list"
+            },
+            {
               name: "POI Maps",
               slug: "poi-maps"
             },
