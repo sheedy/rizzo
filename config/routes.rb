@@ -38,7 +38,6 @@ Rizzo::Application.routes.draw do
   get 'legacy'                           => 'global_resources#legacy'
   get 'modern'                           => 'global_resources#modern'
   get 'responsive'                       => 'global_resources#responsive'
-  get 'homepage'                         => 'global_resources#homepage'
 
   # Styleguide
   root                              to: redirect('/styleguide/design-elements/colours')

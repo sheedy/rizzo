@@ -25,8 +25,4 @@ class GlobalResourcesController < GlobalController
     render '/global-nav/responsive', :layout=> 'responsive'
   end
 
-  def homepage
-    render '/global-nav/homepage', :layout=> 'homepage'
-  end
-
 end

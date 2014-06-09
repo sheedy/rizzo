@@ -57,8 +57,6 @@ This will add Rizzo's Components, Javascript and Sass into your applications loa
 
 - Core (Fixed width) - [http://rizzo.lonelyplanet.com/global](http://rizzo.lonelyplanet.com/global)
 - Responsive - [http://rizzo.lonelyplanet.com/responsive](http://rizzo.lonelyplanet.com/responsive)
-- Homepage (Transparent header) - [http://rizzo.lonelyplanet.com/homepage](http://rizzo.lonelyplanet.com/homepage)
-
 
 -----
 ## Rizzo as a service
