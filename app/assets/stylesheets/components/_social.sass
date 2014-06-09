@@ -60,6 +60,8 @@
 
 .social
   @extend %inline-block
+  .sharing__label + &
+    margin-left: 10px
 
 .social__item
   +size(30px)
@@ -69,6 +71,8 @@
   padding: 4px
   margin-left: 10px
   border-radius: 20px
+  &:first-of-type
+    margin-left: 0
 
 .social__icon
   +size(22px)
