@@ -2,7 +2,7 @@ badges:
   -
     :styleguide_title: "Green Badge"
     :type: "green"
-    :text: "New Product"
+    :text: "New"
 
   -
     :styleguide_title: "Blue Badge"
@@ -10,6 +10,16 @@ badges:
     :text: "Staff"
 
   -
+    :styleguide_title: "Pink Badge"
+    :type: "pink"
+    :text: "Fabulous"
+
+  -
+    :styleguide_title: "Small Badge"
+    :type: "blue badge--small"
+    :text: "Small"
+
+  -
     :styleguide_title: "Large Badge"
     :type: "blue badge--large"
-    :text: "Staff"
+    :text: "Big"
