@@ -268,6 +268,10 @@ module StyleguideHelper
               slug: "buttons"
             },
             {
+              name: "Hero Banner",
+              slug: "hero-banner"
+            },
+            {
               name: "Preloader",
               slug: "preloader"
             },
@@ -296,8 +300,8 @@ module StyleguideHelper
               slug: "tooltips"
             },
             {
-              name: "Hero Banner",
-              slug: "hero_banner"
+              name: "Unsocial Buttons",
+              slug: "unsocial-buttons"
             }
           ]
         },

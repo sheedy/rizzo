@@ -102,6 +102,10 @@ class StyleguideController < GlobalController
     render '/styleguide/tags'
   end
 
+  def unsocial_buttons
+    render '/styleguide/ui-components/unsocial_buttons'
+  end
+
   def alerts
     render '/styleguide/ui-components/alerts'
   end
@@ -165,7 +169,7 @@ class StyleguideController < GlobalController
   def adUnits
     render '/styleguide/ui-components/ad-units'
   end
-  
+
   def asset_reveal
     render '/styleguide/js-components/asset-reveal'
   end
