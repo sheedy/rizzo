@@ -269,7 +269,7 @@ module StyleguideHelper
             },
             {
               name: "Hero Banner",
-              slug: "hero_banner"
+              slug: "hero-banner"
             },
             {
               name: "Preloader",
