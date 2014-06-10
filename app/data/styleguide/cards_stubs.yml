@@ -233,6 +233,8 @@ cards:
   -
     :styleguide_title: "Mpu Card"
     :kind: "mpu"
+    :double?: false
+    :position: "content"
 
   -
     :styleguide_title: "Traffic driver Card"
