@@ -146,7 +146,8 @@
   height: 120px
 
 .hero-banner__image
+  +hardware-acceleration()
   position: absolute
   width: 100%
   &.hero-banner__image-first-position
-    -webkit-transition: -webkit-transform 0.5s
+    transition: all 2s ease
