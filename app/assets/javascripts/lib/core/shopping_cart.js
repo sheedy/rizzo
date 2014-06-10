@@ -1,17 +1,19 @@
-define([
-  "jquery",
-  "jplugs/jquery-cookies.2.2.0"
-], function($) {
+define([ "jquery" ], function($) {
 
   "use strict";
 
   return function ShoppingCart() {
-    var itemCount;
 
-    this.cartData = $.cookies.get("shopCartCookie");
-    itemCount = this.cartData && this.cartData.A && this.cartData.A.length;
-    if (itemCount) {
-      $(".js-user-basket").append("<span class='notification-badge notification-badge--basket-items wv--inline-block js-basket-items'>" + itemCount + "</span>");
+    var cartData = window.lp.getCookie && window.lp.getCookie("shopCartCookie");
+
+    if (!cartData) {
+      return;
+    }
+
+    cartData = $.parseJSON(cartData);
+
+    if (cartData.A && cartData.A.length) {
+      $(".js-user-basket").append("<span class='notification-badge notification-badge--basket-items wv--inline-block js-basket-items'>" + cartData.A.length + "</span>");
     }
   };
 
