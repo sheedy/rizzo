@@ -10,7 +10,7 @@
     - unless no_options
       = selected_title || properties[:placeholder] || properties[:options].first[:title] || ""
 
-  %select.dropdown__select.js-select{ id: properties[:id], name: properties[:name], data: properties[:data], class: properties[:dropdown_class], disabled: no_options, width: properties[:width] }
+  %select.dropdown__select.js-select{ id: properties[:id], name: properties[:name], data: properties[:data], class: properties[:dropdown_class], disabled: no_options}
 
     - if no_options
       %option{ value: "" }<

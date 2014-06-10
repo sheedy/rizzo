@@ -4,10 +4,11 @@
     - field_id = i==0 ? properties[:id] : "#{properties[:id]}-#{i}"
 
     - dropdown_class = ""
+    - container_class = "single-select"
     - input_class = ""
-    - inline_width = "width: #{dropdown[:dropdown__width]}%;"
 
     - if properties[:fields].length > 1
+      - container_class = "multi-select-#{i}"
 
       - if properties[:fields].length == 2
         - input_class = "dropdown--half"
@@ -24,8 +25,9 @@
     - if dropdown[:error] || dropdown[:has_error]
       - input_class += " field__input--error"
 
-    .input__container.js-input{ class: input_class, style: inline_width }
-      = ui_component('forms/dropdown', properties: { id: field_id, name: dropdown[:name], placeholder: dropdown[:placeholder], options: dropdown[:options], class: dropdown_class, selected: dropdown[:selected], tooltip: properties[:tooltip], data: dropdown[:data] , width: dropdown[:dropdown__width]})
+    .input__container.js-input{ class: [input_class, container_class] }
+
+      = ui_component('forms/dropdown', properties: { id: field_id, name: dropdown[:name], placeholder: dropdown[:placeholder], options: dropdown[:options], class: dropdown_class, selected: dropdown[:selected], tooltip: properties[:tooltip], data: dropdown[:data]})
 
     - if dropdown[:error]
       .field__error.js-error
