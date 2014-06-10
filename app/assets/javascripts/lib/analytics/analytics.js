@@ -4,14 +4,14 @@
 //
 // ------------------------------------------------------------------------------
 
-define([ "jquery", "lib/analytics/analytics_auth", "sCode" ], function($, AnalyticsAuth) {
+define([ "jquery", "sCode" ], function($) {
 
   "use strict";
 
   // @data = {}
   function Analytics(data) {
     this.LISTENER = "#js-card-holder";
-    this.config = $.extend({}, data || window.lp.tracking, this._userAuth());
+    this.config = $.extend({}, data || window.lp.tracking);
   }
 
   // -------------------------------------------------------------------------
@@ -136,11 +136,6 @@ define([ "jquery", "lib/analytics/analytics_auth", "sCode" ], function($, Analyt
     this.prevConfig = null;
 
     return true;
-  };
-
-  Analytics.prototype._userAuth = function() {
-    var params = new AnalyticsAuth();
-    return params.get();
   };
 
   return Analytics;
