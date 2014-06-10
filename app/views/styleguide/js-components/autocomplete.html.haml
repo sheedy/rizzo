@@ -20,10 +20,11 @@
 
     %pre.styleguide.copy--body.language-markup
       %code
-        :escaped
-          <input class="js-autocomplete-all-users" type="text">
+        = preserve do
+          :escaped
+            <input class="js-autocomplete-all-users" type="text">
 
-    %p 
+    %p
       %strong Note:
     %p
       If using
@@ -96,12 +97,12 @@
     %h2.copy--h2.styleguide-block__heading
       2.3 Set Options & Template
 
-    %p< 
+    %p<
       Template in this example is based on rizzo's&nbsp;
       %code.language-markup> _nav_flyout.sass
-      \. Some styles had to be overwritten, hence the custom 
+      \. Some styles had to be overwritten, hence the custom
       %code.language-markup _autocomplete.sass
-      
+
 
     %pre.styleguide.copy--body.language-javascript
       %code

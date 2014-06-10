@@ -24,7 +24,9 @@
 
   %pre.styleguide.copy--body.language-markup.media__body
     %code
-      &lt;div class="alert alert--success icon--tick--before">Congratulations, that was a success.&lt;/div>
+      = preserve do
+        :escaped
+          <div class="alert alert--success icon--tick--before">Congratulations, that was a success.</div>
 
 .card.styleguide-block__description.card.context--content
   %h2.copy--h2.styleguide-block__heading
@@ -36,7 +38,9 @@
 
   %pre.styleguide.copy--body.language-markup.media__body
     %code
-      &lt;div class="alert alert--error icon--cross--before">Oops, there was an error.&lt;/div>
+      = preserve do
+        :escaped
+          <div class="alert alert--error icon--cross--before">Oops, there was an error.</div>
 
 .card.styleguide-block__description.card.context--content
   %h2.copy--h2.styleguide-block__heading
@@ -48,7 +52,9 @@
 
   %pre.styleguide.copy--body.language-markup.media__body
     %code
-      &lt;div class="alert alert--warning icon--caution--before">There are currently travel issues with this destination.&lt;/div>
+      = preserve do
+        :escaped
+          <div class="alert alert--warning icon--caution--before">There are currently travel issues with this destination.</div>
 
 .card.styleguide-block__description.card.context--content
   %h2.copy--h2.styleguide-block__heading
@@ -60,7 +66,9 @@
 
   %pre.styleguide.copy--body.language-markup.media__body
     %code
-      &lt;div class="alert alert--announcement icon--loudspeaker--before">Hear ye, hear ye!&lt;/div>
+      = preserve do
+        :escaped
+          <div class="alert alert--announcement icon--loudspeaker--before">Hear ye, hear ye!</div>
 
 .card.styleguide-block__description.card.context--content
   %h2.copy--h2.styleguide-block__heading

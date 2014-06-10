@@ -31,7 +31,9 @@
 
         %pre.styleguide.copy--body.language-markup
           %code
-            &lt;a class='btn' href='#'>Submit&lt;/a>
+            = preserve do
+              :escaped
+                <a class='btn' href='#'>Submit</a>
 
       - count = 1
       - buttons.each_with_index do | button, i |

@@ -20,8 +20,8 @@
   %pre.styleguide.copy--body.language-markup
     %code
       = preserve do
-        :plain
-          &lt;div data-link-to="/foo">&lt;/div>
+        :escaped
+          <div data-link-to="/foo"></div>
 
   %pre.styleguide.copy--body.language-javascript
     %code
@@ -67,10 +67,10 @@
   %pre.styleguide.copy--body.language-markup
     %code
       = preserve do
-        :plain
-          &lt;div class="js-lightbox">
-            &lt;div data-link-to="/foo">&lt;/div>
-          &lt;/div>
+        :escaped
+          <div class="js-lightbox">
+            <div data-link-to="/foo"></div>
+          </div>
 
   %pre.styleguide.copy--body.language-javascript
     %code
