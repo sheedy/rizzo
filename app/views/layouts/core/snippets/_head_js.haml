@@ -13,18 +13,20 @@
 
 :javascript
   // Setup our namespace
-  window.lp = {
-    tracking: {},
-    analytics: {
-      dataLayer: {},
-      eventBuffer: [],
-      api: {
-        trackEvent: function(data){
-          window.lp.analytics.eventBuffer.push(data);
-        }
+  window.lp = window.lp || {};
+
+  // Allow legacy apps to add their own properties
+  window.lp.tracking = window.lp.tracking || {};
+  window.lp.supports = window.lp.supports || {};
+
+  window.lp.analytics = window.lp.analytics || {
+    dataLayer: {},
+    eventBuffer: [],
+    api: {
+      trackEvent: function(data){
+        window.lp.analytics.eventBuffer.push(data);
       }
-    },
-    supports: {}
+    }
   };
 
   // Utility cookie retrieval function
