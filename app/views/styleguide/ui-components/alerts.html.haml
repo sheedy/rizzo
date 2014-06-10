@@ -73,4 +73,9 @@
 
   %pre.styleguide.copy--body.language-markup.media__body
     %code
-      &lt;div class="alert alert--success icon--tick--before">Congratulations, that was a success.&lt;/div>
+      = preserve do
+        :escaped
+          <div class="alert alert--success icon--tick--before">
+            <div class="alert__title">Congratulations, that was a success.</div>
+            <p class="alert__content">Pass go, collect £200. Do not go to jail.</p>
+          </div>
