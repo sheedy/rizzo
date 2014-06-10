@@ -53,8 +53,9 @@
 
     %pre.styleguide.copy--body.language-markup
       %code
-        :escaped
-          <a href="#" class="js-toggle-active" data-toggle-target=".foo">toggle it</a>
+        = preserve do
+          :escaped
+            <a href="#" class="js-toggle-active" data-toggle-target=".foo">toggle it</a>
 
     %p
       This will toggle the
@@ -72,8 +73,9 @@
 
     %pre.styleguide.copy--body.language-markup
       %code
-        :escaped
-          <a href="#" class="js-toggle-active" data-toggle-target=".foo" data-toggle-class="custom-class">toggle it</a>
+        = preserve do
+          :escaped
+            <a href="#" class="js-toggle-active" data-toggle-target=".foo" data-toggle-class="custom-class">toggle it</a>
 
     %p
       This will toggle the
@@ -91,8 +93,9 @@
 
     %pre.styleguide.copy--body.language-markup
       %code
-        :escaped
-          <a href="#" class="js-toggle-active" data-toggle-me="true" data-toggle-target=".foo">toggle it</a>
+        = preserve do
+          :escaped
+            <a href="#" class="js-toggle-active" data-toggle-me="true" data-toggle-target=".foo">toggle it</a>
 
     %p
       This will toggle the
