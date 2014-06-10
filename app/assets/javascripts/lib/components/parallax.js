@@ -2,7 +2,7 @@ define([
   "jquery",
   "lib/page/viewport_helper",
   "lib/core/feature_detect"
-], function($, withViewportHelper) {
+], function($, withViewportHelper, features) {
 
   "use strict";
 
@@ -11,7 +11,8 @@ define([
       _stopScroll,
       _frame,
       _started = false,
-      _heroBanners = [];
+      _heroBanners = [],
+      _transform = features.transform().js;
 
   HeroParallax = function( args ) {
     if (this.viewport().width <= 1024) { return; }
@@ -38,9 +39,7 @@ define([
           });
       }
 
-      $animEl.css({
-        "-webkit-transform": "translate3d(0px, " + this.calculatePosition(i).toFixed(2) + "px, 0px) scale(1) rotate(0deg)"
-      });
+      $animEl.css(_transform, "translate3d(0, " + this.calculatePosition(i).toFixed(2) + "px, 0) scale(1) rotate(0deg)");
 
     }.bind(this));
 
@@ -65,9 +64,7 @@ define([
         $animEl = _heroBanners[ i ].$animEl;
 
     if (this.withinViewport($el)) {
-      $animEl.css({
-        "-webkit-transform": "translate3d(0px, " + this.calculatePosition(i).toFixed(2) + "px, 0px) scale(1) rotate(0deg)"
-      });
+      $animEl.css(_transform, "translate3d(0, " + this.calculatePosition(i).toFixed(2) + "px, 0) scale(1) rotate(0deg)");
     }
   };
 
