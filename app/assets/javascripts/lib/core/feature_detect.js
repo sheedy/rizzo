@@ -6,7 +6,7 @@
 // The corresponding function should return true or false.
 //
 // ------------------------------------------------------------------------------
-require([ "jquery" ], function($) {
+define([ "jquery" ], function($) {
 
   "use strict";
 
@@ -135,5 +135,7 @@ require([ "jquery" ], function($) {
     window.lp.supportsAvailable = true;
     $(document).trigger(":featureDetect/available");
   }
+
+  return features;
 
 });

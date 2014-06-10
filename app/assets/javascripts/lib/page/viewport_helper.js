@@ -24,13 +24,23 @@ define([ "jquery" ], function($) {
     };
 
     this.withinViewport = function($el) {
-      var bounds,
+      var bounds = $el.offset(),
           viewport = this.viewport();
 
-      bounds = $el.offset();
       bounds.right = bounds.left + $el.outerWidth();
       bounds.bottom = bounds.top + $el.outerHeight();
       return !(viewport.right < bounds.left || viewport.left > bounds.right || viewport.bottom < bounds.top || viewport.top > bounds.bottom);
+    };
+
+    this.positionInViewport = function($el) {
+      var bounds = $el.offset(),
+          viewport = this.viewport();
+
+      return {
+        left: bounds.left - viewport.left,
+        top: bounds.top - viewport.top,
+        contentTop: bounds.top - viewport.top - viewport.contentTop
+      };
     };
 
     // -------------------------------------------------------------------------

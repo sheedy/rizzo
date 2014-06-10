@@ -2,28 +2,29 @@ define([
   "jquery",
   "lib/page/viewport_helper",
   "lib/core/feature_detect"
-], function($, withViewportHelper) {
+], function($, withViewportHelper, features) {
 
   "use strict";
 
   var HeroParallax,
       _autoInit,
-      _pageYOffset,
       _stopScroll,
       _frame,
       _started = false,
-      _heroBanners = [];
+      _heroBanners = [],
+      _transform = features.transform().js;
 
   HeroParallax = function( args ) {
+    if (this.viewport().width <= 1024) { return; }
+
     this.$els = args.$els || $(".js-bg-parallax");
-    _pageYOffset = this.viewport().top;
 
     $.each(this.$els, function(i) {
 
       var $el = this.$els.eq(i),
           $animEl = $el.find(".hero-banner__image");
 
-      _heroBanners[ i ] = {
+      _heroBanners[i] = {
         $el: $el,
         $animEl: $animEl,
         imageHeight: $animEl.height(),
@@ -38,9 +39,7 @@ define([
           });
       }
 
-      $animEl.css({
-        "-webkit-transform": "translate3d(0px, -" + this.calculatePosition( i ).toFixed(2) + "px, 0px) scale(1) rotate(0deg)"
-      });
+      $animEl.css(_transform, "translate3d(0, " + this.calculatePosition(i).toFixed(2) + "px, 0) scale(1) rotate(0deg)");
 
     }.bind(this));
 
@@ -49,17 +48,15 @@ define([
 
   withViewportHelper.call(HeroParallax.prototype);
 
-  HeroParallax.prototype.calculatePosition = function( i ) {
-    var maxParallax = (_heroBanners[ i ].imageHeight - _heroBanners[ i ].heroHeight),
-        topPosition = _heroBanners[ i ].$el.offset().top - _pageYOffset + (_heroBanners[ i ].heroHeight / 2 ),
-        midPosition;
+  HeroParallax.prototype.calculatePosition = function(i) {
+    var banner = _heroBanners[i],
+        viewport = this.viewport(),
+        positionInViewport = this.positionInViewport(banner.$el),
+        lengthOnPage = viewport.height + banner.heroHeight,
+        maxParallax = (banner.imageHeight - banner.heroHeight),
+        scrolledPercentage = (positionInViewport.top + banner.heroHeight) / lengthOnPage;
 
-    if ( topPosition > 0 ) {
-      midPosition = 1 - ( Math.abs(topPosition) / (this.viewport().height) );
-    } else {
-      midPosition = 1;
-    }
-    return midPosition * maxParallax;
+    return -1 * maxParallax * scrolledPercentage;
   };
 
   HeroParallax.prototype._updateBg = function( i ) {
@@ -67,9 +64,7 @@ define([
         $animEl = _heroBanners[ i ].$animEl;
 
     if (this.withinViewport($el)) {
-      $animEl.css({
-        "-webkit-transform": "translate3d(0px, -" + this.calculatePosition( i ).toFixed(2) + "px, 0px) scale(1) rotate(0deg)"
-      });
+      $animEl.css(_transform, "translate3d(0, " + this.calculatePosition(i).toFixed(2) + "px, 0) scale(1) rotate(0deg)");
     }
   };
 
@@ -91,7 +86,6 @@ define([
   };
 
   HeroParallax.prototype._onScroll = function() {
-    _pageYOffset = this.viewport().top;
     clearTimeout(_stopScroll);
     _stopScroll = setTimeout(this._stopRAF.bind(this), 100);
     this._startRAF();
