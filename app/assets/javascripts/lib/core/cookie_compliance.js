@@ -11,7 +11,7 @@ define([ "jquery" ], function($) {
   CookieCompliance.prototype.init = function() {
     var $element = this.$element;
 
-    if (!this.mustShow()) { return; }
+    if (!this.mustShow()) return;
 
     $element.addClass("is-open").removeClass("is-closed");
 
