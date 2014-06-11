@@ -1,6 +1,7 @@
 -
   :styleguide_title: "Basic slider"
   :aspectRatio: "16x9"
+  :lazyLoad: true
   :images:
     -
       :src: "http://images-resrc.staticlp.com/C=AR16x9/S=W1000/http://media.lonelyplanet.com/assets/b4f64ac2a73e69023794511d1de2a03ee4d21ce9483961915003c3878d3bda41/d6bff15e21af0874df3ba713a589ec42659d63cf288b5ee125c3fee732036e06.jpg"

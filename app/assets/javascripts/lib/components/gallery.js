@@ -29,6 +29,7 @@ define([
       el: this.$gallery,
       $listener: this.$listener,
       assetBalance: 4,
+      assetReveal: true,
       createControls: false,
       keyboardControl: true
     }, this.config.sliderConfig));

@@ -6,7 +6,7 @@
 define([
   "jquery",
   "lib/utils/asset_reveal"
-], function($) {
+], function($, AssetReveal) {
 
   "use strict";
 
@@ -15,7 +15,8 @@ define([
     slidesContainer: ".js-slider-container",
     slidesViewport: ".js-slider-viewport",
     // the number of images to load on either side of is-current
-    assetBalance: null,
+    assetBalance: 2,
+    assetReveal: false,
     createControls: true,
     keyboardControl: false
   };
@@ -46,6 +47,10 @@ define([
 
     this.config.assetBalance && this._loadHiddenContent();
     this.$slidesViewport.removeClass("is-loading");
+
+    if (this.config.assetReveal) {
+      this.assetReveal = new AssetReveal({ el: this.$el });
+    }
 
     // TODO: Move this into the map/media-gallery js when it exists
     this.$el.find(".js-resizer").on("click", function() {
@@ -176,8 +181,10 @@ define([
       slides = this.$slides.slice(left, right);
     }
 
-    this.$el.trigger(":asset/uncomment", [ slides, "[data-uncomment]" ]);
-    this.$el.trigger(":asset/loadDataSrc", [ slides, "[data-src]" ]);
+    if (this.assetReveal) {
+      this.$el.trigger(":asset/uncomment", [ slides, "[data-uncomment]" ]);
+      this.$el.trigger(":asset/loadDataSrc", [ slides, "[data-src]" ]);
+    }
   };
 
   Slider.prototype._nextSlide = function() {

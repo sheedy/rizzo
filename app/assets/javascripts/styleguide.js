@@ -34,7 +34,7 @@ require([ "jquery" ], function($) {
     new Swipe();
     new POIMap();
     new POIList();
-    new Slider({ el: ".js-slider" });
+    new Slider({ el: ".js-slider", assetReveal: true });
     new SelectGroupManager();
     new SelectGroupManager();
 
