@@ -74,6 +74,20 @@
   &:first-of-type
     margin-left: 0
 
+  .gallery__slide &,
+  .stack__article__image-container &
+    left: 10px
+    opacity: 0
+    margin: 0
+    position: absolute
+    transition: opacity 0.2s ease
+    top: 10px
+  .stack__article__image-container &
+    top: 30px
+  .gallery__slide:hover &,
+  .stack__article__image-container:hover &
+    opacity: 1
+
 .social__icon
   +size(22px)
   display: block
@@ -82,11 +96,14 @@
   background-color: $facebook
   padding: 4px 5px 4px 3px
 
-.social__item--twitter
-  background-color: $twitter
-
 .social__item--google-plus
   background-color: $google-plus
 
+.social__item--pinterest
+  background-color: $pinterest
+
 .social__item--stumbleupon
   background-color: $stumbleupon
+
+.social__item--twitter
+  background-color: $twitter
