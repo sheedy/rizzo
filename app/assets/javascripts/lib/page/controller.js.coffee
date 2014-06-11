@@ -7,7 +7,6 @@ define ['jquery', 'lib/mixins/events', 'lib/page/pushstate', 'lib/mixins/page_st
 
     LISTENER = '#js-card-holder'
     states: null
-    pushstate: null,
 
     constructor: (args = {}) ->
       $.extend @config, args

@@ -63,7 +63,7 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
 
       it("should have css classes", function() {
         expect($("#js-lightbox")).toHaveClass("is-active is-visible");
-        expect($("html, body")).toHaveClass("lightbox--noscroll");
+        expect($("html")).toHaveClass("lightbox--open");
       });
 
       it("should close and clean the lightbox", function() {
@@ -75,7 +75,7 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
 
         expect($("#js-lightbox")).not.toHaveClass("content-ready");
         expect($("#js-lightbox")).not.toHaveClass("is-active");
-        expect($("html, body")).not.toHaveClass("lightbox--noscroll");
+        expect($("html")).not.toHaveClass("lightbox--open");
       });
 
       afterEach(function() {

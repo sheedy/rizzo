@@ -66,7 +66,7 @@ define([
 
   LightBox.prototype.listen = function() {
 
-    this.$lightbox.on("click", ".card--layer__close", function(event) {
+    this.$lightbox.on("click", ".js-lightbox-close", function(event) {
       event.preventDefault();
       _this._closeFlyout();
     });
@@ -78,7 +78,7 @@ define([
 
     this.$el.on(":lightbox/open", function(event, data) {
       _this.$lightbox.addClass("is-active is-visible");
-      $("html, body").addClass("lightbox--noscroll");
+      $("html").addClass("lightbox--open");
       _this._centerLightbox();
 
       setTimeout(function() {
@@ -93,7 +93,7 @@ define([
 
     this.$el.on(":flyout/close", function() {
       if (_this.$lightbox.hasClass("is-active")){
-        $("html, body").removeClass("lightbox--noscroll");
+        $("html").removeClass("lightbox--open");
 
         if (_this.requestMade){
           _this.requestMade = false;
@@ -102,29 +102,23 @@ define([
 
         if (window.lp.supports.transitionend){
 
-          _this.$lightbox.on(window.lp.supports.transitionend, function() {
-            _this.$lightbox.off(window.lp.supports.transitionend);
+          _this.$lightbox.one(window.lp.supports.transitionend, function() {
 
-            _this.$lightbox.on(window.lp.supports.transitionend, function() {
+            _this.$lightbox.one(window.lp.supports.transitionend, function() {
               _this.$lightboxContent.empty();
               _this.$lightbox.removeClass("is-visible");
-              _this.$lightbox.off(window.lp.supports.transitionend);
-            });
-            setTimeout(function() {
               _this.$lightbox.removeClass("is-active");
-            },1);
+            });
+
           });
         } else {
           _this.$lightboxContent.empty();
           _this.$lightbox.removeClass("is-visible");
-          setTimeout(function() {
-            _this.$lightbox.removeClass("is-active");
-          }, 1);
+          _this.$lightbox.removeClass("is-active");
+
         }
 
-        setTimeout(function() {
-          _this.$lightbox.removeClass("content-ready");
-        }, 1);
+        _this.$lightbox.removeClass("content-ready");
 
       }
 
@@ -149,14 +143,12 @@ define([
   LightBox.prototype._renderContent = function(content) {
 
     if (window.lp.supports.transitionend){
-      _this.$lightbox.on(window.lp.supports.transitionend, function() {
-        _this.$lightbox.off(window.lp.supports.transitionend);
+      _this.$lightbox.one(window.lp.supports.transitionend, function() {
 
         _this.$lightboxContent.html(content);
 
-        _this.$lightbox.on(window.lp.supports.transitionend, function() {
+        _this.$lightbox.one(window.lp.supports.transitionend, function() {
           _this.trigger(":lightbox/contentReady");
-          _this.$lightbox.off(window.lp.supports.transitionend);
         });
 
         _this.$lightbox.addClass("content-ready");
@@ -175,7 +167,7 @@ define([
     var viewport = _this.viewport();
     _this.$lightbox.css({
       left: 0,
-      height: viewport.height, // that 55 is to cover the header
+      height: viewport.height,
       width: viewport.width + 15 //this 15 is to cover the scroll bar
     });
   };

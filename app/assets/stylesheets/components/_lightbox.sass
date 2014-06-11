@@ -5,8 +5,8 @@
   left: 0
   opacity: 0
   position: fixed
-  transition: 300ms opacity ease-out
-  top: 0px
+  transition: 0.3s opacity ease-out
+  top: 0
   visibility: hidden
 
   &.is-visible
@@ -30,8 +30,8 @@
 .lightbox__content
   margin: auto
   position: relative
-  transition: transform 300ms ease-out, opacity 100ms
-  transform: translate3d(0px, 1000px, 0px)
+  transition: transform 0.3s ease-out, opacity 0.1s
+  transform: translate3d(0, 1000px, 0)
   opacity: 0
   width: 600px
   .lightbox__close
@@ -50,8 +50,8 @@
     visibility: hidden
 
   .content-ready &
-    transition: transform 300ms ease-out, opacity 500ms
-    transform: translate3d(0px, 0px, 0px)
+    transition: transform 0.3s ease-out, opacity 0.5s
+    transform: translate3d(0, 0, 0)
     opacity: 1
     padding-bottom: 50px
 
@@ -62,8 +62,8 @@
     @extend %rounded-corners
     @extend %large-shadow
     width: 90px
-    transform: translate3d(0px, 0px, 0px)
-    transition: transform 300ms ease-out, opacity 500ms
+    transform: translate3d(0, 0, 0)
+    transition: transform 0.3s ease-out, opacity 0.5s
     top: 45%
     height: 50px
     background-color: #FFF
@@ -78,6 +78,6 @@
     height: 100%
     width: 100%
 
-.lightbox--noscroll
+.lightbox--open
   overflow: hidden
   -webkit-overflow-scrolling: touch
