@@ -25,40 +25,30 @@
   width: 100%
   height: 450px
 
-@mixin map-show-pois
-  ~ .map
-    .map__poi-list
-      +z-layer
-      opacity: 1
-      visibility: visible
-      transform: rotateY(0deg) translateX(0px) translateZ(0px)
-      transition: all 1s cubic-bezier(0.075, 0.820, 0.165, 1.000)
-      right: 12px
-    .infobox__interesting-places
-      display: none
-
-.map--show-pois
-  @extend %visually-hide
-  // .is-checked is an ie7/8 fallback
-  &:checked
-    +map-show-pois()
-  &.is-checked
-    +map-show-pois()
-
 .map__poi-list
   +z-layer(below)
   @extend %rounded-corners
   @extend %transition--slower
-  transform: rotateY(70deg) translateX(100px) translateZ(-250px)
   background: #fff
   height: 360px
+  max-height: 85%
   position: absolute
   right: -420px
   top: 12px
   width: 294px
+  max-width: 50%
   opacity: 0
   visibility: hidden
   padding-bottom: 20px
+
+  .is-open &
+    +z-layer
+    opacity: 1
+    visibility: visible
+    transition: all 1s cubic-bezier(0.075, 0.820, 0.165, 1.000)
+    right: 12px
+    .infobox__interesting-places
+      display: none
 
   .nearby-pois
     height: 100%
