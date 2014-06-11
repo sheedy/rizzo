@@ -9,7 +9,8 @@ define([
   "lib/mixins/events",
   "lib/utils/template",
   "lib/page/viewport_helper",
-  "lib/core/feature_detect"
+  "lib/core/feature_detect",
+  "polyfills/function_bind"
 ], function($, asFlyout, asEventEmitter, Template, withViewportHelper) {
 
   "use strict";
@@ -28,14 +29,12 @@ define([
     this.requestMade = false;
 
     this.init();
-  },
-  _this;
+  };
 
   // -------------------------------------------------------------------------
   // Mixins
   // -------------------------------------------------------------------------
-  // The argument with the facet is required at the moment and is soon to be
-  // removed from the flyout mixin.
+
   asFlyout.call(LightBox.prototype);
   asEventEmitter.call(LightBox.prototype);
   withViewportHelper.call(LightBox.prototype);
@@ -45,7 +44,6 @@ define([
   // -------------------------------------------------------------------------
 
   LightBox.prototype.init = function() {
-    _this = this;
 
     this.customClass && this.$lightbox.addClass(this.customClass);
 
@@ -54,7 +52,7 @@ define([
 
     if (this.showPreloader) {
       this.preloaderTmpl = Template.render($("#tmpl-preloader").text(), {});
-      _this.$lightboxContent.parent().append( this.preloaderTmpl );
+      this.$lightboxContent.parent().append( this.preloaderTmpl );
     }
 
     this.listen();
@@ -68,65 +66,67 @@ define([
 
     this.$lightbox.on("click", ".js-lightbox-close", function(event) {
       event.preventDefault();
-      _this._closeFlyout();
-    });
+      this._closeFlyout(this.$el);
+    }.bind(this));
 
     this.$opener.on("click", function(event) {
       event.preventDefault();
-      _this.trigger(":lightbox/open", { opener: event.currentTarget,  target: _this.$lightboxContent });
-    });
+      this.trigger(":lightbox/open", { opener: event.currentTarget,  target: this.$lightboxContent, listener: this.$el });
+    }.bind(this));
 
     this.$el.on(":lightbox/open", function(event, data) {
-      _this.$lightbox.addClass("is-active is-visible");
+      this.$lightbox.addClass("is-active is-visible");
       $("html").addClass("lightbox--open");
-      _this._centerLightbox();
+      this._centerLightbox();
 
       setTimeout(function() {
-        _this.listenToFlyout(event, data);
-      }, 20);
-    });
+        this.listenToFlyout(event, data);
+      }.bind(this), 20);
+    }.bind(this));
 
     this.$el.on(":lightbox/fetchContent", function(event, url) {
-      _this.requestMade = true;
-      _this._fetchContent(url);
-    });
+      this.requestMade = true;
+      this._fetchContent(url);
+    }.bind(this));
 
     this.$el.on(":flyout/close", function() {
-      if (_this.$lightbox.hasClass("is-active")){
+      if (this.$lightbox.hasClass("is-active")){
         $("html").removeClass("lightbox--open");
 
-        if (_this.requestMade){
-          _this.requestMade = false;
+        if (this.requestMade){
+          this.requestMade = false;
           $("#js-card-holder").trigger(":controller/back");
         }
 
         if (window.lp.supports.transitionend){
+          this.$lightbox.one(window.lp.supports.transitionend, function() {
+            this.$lightbox.one(window.lp.supports.transitionend, function() {
+              this.$lightboxContent.empty();
+              this.$lightbox.removeClass("is-visible");
+              this.$lightbox.removeClass("is-active");
+            }.bind(this));
 
-          _this.$lightbox.one(window.lp.supports.transitionend, function() {
-
-            _this.$lightbox.one(window.lp.supports.transitionend, function() {
-              _this.$lightboxContent.empty();
-              _this.$lightbox.removeClass("is-visible");
-              _this.$lightbox.removeClass("is-active");
-            });
-
-          });
+          }.bind(this));
         } else {
-          _this.$lightboxContent.empty();
-          _this.$lightbox.removeClass("is-visible");
-          _this.$lightbox.removeClass("is-active");
+          this.$lightboxContent.empty();
+          this.$lightbox.removeClass("is-visible");
+          this.$lightbox.removeClass("is-active");
 
         }
 
-        _this.$lightbox.removeClass("content-ready");
+        this.$lightbox.removeClass("content-ready");
 
       }
 
-    });
+    }.bind(this));
 
-    this.$el.on(":layer/received :lightbox/renderContent", function(event, content) {
-      _this._renderContent(content);
-    });
+    this.$el.on(":lightbox/renderContent", function(event, content) {
+      this._renderContent(content);
+    }.bind(this));
+
+    $("#js-card-holder").on(":layer/received", function(event, content) {
+      this._renderContent(content);
+    }.bind(this));
   };
 
   // -------------------------------------------------------------------------
@@ -134,7 +134,7 @@ define([
   // -------------------------------------------------------------------------
 
   LightBox.prototype._fetchContent = function(url) {
-    _this.$lightbox.addClass("is-loading");
+    this.$lightbox.addClass("is-loading");
 
     $("#js-card-holder").trigger(":layer/request", { url: url });
   };
@@ -143,29 +143,29 @@ define([
   LightBox.prototype._renderContent = function(content) {
 
     if (window.lp.supports.transitionend){
-      _this.$lightbox.one(window.lp.supports.transitionend, function() {
+      this.$lightbox.one(window.lp.supports.transitionend, function() {
 
-        _this.$lightboxContent.html(content);
+        this.$lightboxContent.html(content);
 
-        _this.$lightbox.one(window.lp.supports.transitionend, function() {
-          _this.trigger(":lightbox/contentReady");
-        });
+        this.$lightbox.one(window.lp.supports.transitionend, function() {
+          this.trigger(":lightbox/contentReady");
+        }.bind(this));
 
-        _this.$lightbox.addClass("content-ready");
+        this.$lightbox.addClass("content-ready");
 
-      });
+      }.bind(this));
     }else {
-      _this.$lightboxContent.html(content);
-      _this.$lightbox.addClass("content-ready");
-      _this.trigger(":lightbox/contentReady");
+      this.$lightboxContent.html(content);
+      this.$lightbox.addClass("content-ready");
+      this.trigger(":lightbox/contentReady");
     }
 
-    _this.$lightbox.removeClass("is-loading");
+    this.$lightbox.removeClass("is-loading");
   };
 
   LightBox.prototype._centerLightbox = function() {
-    var viewport = _this.viewport();
-    _this.$lightbox.css({
+    var viewport = this.viewport();
+    this.$lightbox.css({
       left: 0,
       height: viewport.height,
       width: viewport.width + 15 //this 15 is to cover the scroll bar

@@ -71,7 +71,6 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
         $("#js-row--content").trigger(":flyout/close");
         $("#js-lightbox").trigger("webkitTransitionEnd");
         $("#js-lightbox").trigger("webkitTransitionEnd");
-        jasmine.Clock.tick(1);
 
         expect($("#js-lightbox")).not.toHaveClass("content-ready");
         expect($("#js-lightbox")).not.toHaveClass("is-active");
