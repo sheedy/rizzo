@@ -1,12 +1,12 @@
 -
   :styleguide_title: "Dynamic map"
-  :alt: "A map showing the centre of London"
+  :alt: "A map showing Budapest"
   :zoom: 15
   :scale: 2
   :width: 800
   :height: 400
-  :latitude: 47.5204612612298
-  :longitude: 19.0831553936005
+  :latitude: 47.5213612612
+  :longitude: 19.0781553936
   :pois:
     -
       :description: 'This Luna Park on 2.5 hectares dates back to the mid-19th century. A total 38 rides include the heart-stopping Ikarus Space Needle, a...'

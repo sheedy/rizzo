@@ -1,6 +1,7 @@
 define([], function() {
 
   "use strict";
+
   var markerStyles = {
     dot: {
       size: {

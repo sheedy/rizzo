@@ -65,23 +65,35 @@ define([
     var options = this.$container.data();
 
     return {
-      zoom: options.zoom,
       center: new window.google.maps.LatLng(options.latitude, options.longitude),
       mapTypeId: window.google.maps.MapTypeId.ROADMAP,
+      styles: mapStyles.mapStyles,
       streetViewControl: false,
       mapTypeControl: false,
-      panControl: false,
-      styles: mapStyles
+      zoom: options.zoom,
+      panControl: false
+    };
+  };
+
+  POIMap.prototype._googleMapsMarker = function() {
+    var maps = window.google.maps,
+        markerStyle = mapStyles.markerStyles("mark", "small");
+
+    return {
+      url: mapStyles.markerBackgroundImage,
+      size: new maps.Size(markerStyle.size.width, markerStyle.size.height),
+      origin: new maps.Point( -markerStyle.position.x, -markerStyle.position.y )
     };
   };
 
   POIMap.prototype._build = function() {
+    var maps = window.google.maps,
+        options = this._googleMapsOptions();
 
-    var options = this._googleMapsOptions();
+    this.gmap = new maps.Map(this.$container.get(0), options);
 
-    this.gmap = new window.google.maps.Map(this.$container.get(0), options);
-
-    this.marker = new window.google.maps.Marker({
+    this.marker = new maps.Marker({
+      icon: this._googleMapsMarker(),
       position: options.center,
       map: this.gmap
     });
@@ -129,7 +141,7 @@ define([
     this.$el.removeClass("is-open is-closed is-loading");
     this.$placeholder.off(".poi .preload");
 
-    delete this.isLoaded;
+    this.isLoaded = undefined;
   };
 
   return POIMap;

@@ -55,7 +55,7 @@ require([ "jquery", "public/assets/javascripts/lib/components/poi_list.js" ], fu
 
     });
 
-    describe("POI Hightligt", function() {
+    describe("POI Highlight", function() {
       beforeEach(function() {
         jasmine.Clock.useMock();
 
