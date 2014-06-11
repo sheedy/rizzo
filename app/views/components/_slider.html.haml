@@ -1,0 +1,11 @@
+.slider.js-slider{ class: "slider--#{properties[:aspectRatio]}", role: "widget" }
+
+  .gallery__controls-container.js-slider-controls-container
+
+  .slider__viewport.js-slider-viewport.is-loading
+    .slider__container.js-slider-container
+      - properties[:images].each_with_index do |image, i|
+        .slider__slide.js-slide
+          %img{src: i == 0 ? image[:src] : "", alt: i == 0 ? image[:alt] : "", data: { src: image[:src], alt: image[:alt] } }
+    
+    = render :partial => "/components/preloader"
