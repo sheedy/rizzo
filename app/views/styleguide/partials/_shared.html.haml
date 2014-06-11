@@ -3,6 +3,9 @@
   = ui_component("place_title", properties: @app.page_title)
   = ui_component("navigation/secondary", properties: @app.secondary_nav_items)
 
+%script#tmpl-preloader{ type: 'text-mustache' }
+  = ui_component('preloader')
+
 :ruby
   def ad_config
     {hints: "", channels: ""}
