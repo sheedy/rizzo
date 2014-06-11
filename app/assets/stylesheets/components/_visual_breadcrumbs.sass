@@ -14,13 +14,15 @@
 .stack__breadcrumb
   @extend %rounded-corners
   @extend %transition--base
-  background: linear-gradient(to bottom, rgb(255,255,255), rgb(239,239,239))
   color: $disabled
   display: block
   padding: 20px 15px 10px 25px
   position: relative
   text-decoration: none
   margin-bottom: 0
+
+  .enhanced &
+    background: linear-gradient(to bottom, rgb(255,255,255), rgb(239,239,239))
 
   .row__inner--full-width &
     border-radius: 0

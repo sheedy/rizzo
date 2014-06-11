@@ -123,11 +123,12 @@
   .card--extended-content &
     &:after
       @extend %empty-abs-generated-content
-      background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.9))
       height: $card-content-vertical-padding
       left: 0
       right: 0
       top: -$card-content-vertical-padding
+      .enhanced &
+        background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.9))
 
   // line above some footers, needs to push fade up a smidge
   .card--poi--article &,
@@ -294,7 +295,8 @@
       right: 0
       left: 0
       height: 25px
-      background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.9))
+      .enhanced &
+        background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.9))
 
   .card__source
     +font-size(14)

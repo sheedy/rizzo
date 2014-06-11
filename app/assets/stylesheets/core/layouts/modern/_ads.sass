@@ -139,7 +139,9 @@
     top: 1150px
     height: 150px
     width: 100%
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), $body-background)
+
+    .enhanced &
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0), $body-background)
 
   .row__inner--content,
   .row__inner--secondary
@@ -174,7 +176,8 @@
   padding: 25px 10px
   border: 1px solid $subduedgray
   background: white
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, .5)
+  .enhanced &
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, .5)
 
   iframe
     border: none
