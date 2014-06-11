@@ -25,10 +25,12 @@ require([ "jquery" ], function($) {
       new Base({ secure: secure });
 
       if (!secure) {
-        window.lp.fs = new Flamsteed({
-          events: window.lp.fs.buffer,
-          u: $.cookies.get("lpUid")
-        });
+        if (window.lp.getCookie) {
+          window.lp.fs = new Flamsteed({
+            events: window.lp.fs.buffer,
+            u: window.lp.getCookie("lpUid")
+          });
+        }
       }
 
     });

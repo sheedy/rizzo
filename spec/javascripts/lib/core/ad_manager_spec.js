@@ -23,6 +23,7 @@ require([ "public/assets/javascripts/lib/core/ad_manager" ], function(AdManager)
 
     afterEach(function() {
       $(".adunit").removeData("googleAdUnit adUnit");
+      window.lp.getCookie = undefined;
     });
 
     describe("._init()", function() {
