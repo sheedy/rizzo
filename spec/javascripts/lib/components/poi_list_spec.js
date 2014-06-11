@@ -13,8 +13,6 @@ require([ "jquery", "public/assets/javascripts/lib/components/poi_list.js" ], fu
 
       markerAPI = jasmine.createSpyObj("Google Maps Marker", [ "setIcon" ]);
       mockAPI = jasmine.createSpyObj("Google Maps", [ "Map", "LatLng", "Marker", "Point", "Size", "Animation" ]);
-
-      // spyOn(instance, "_googleMapsOptions").andReturn(null);
     });
 
     afterEach(function() {
@@ -24,7 +22,7 @@ require([ "jquery", "public/assets/javascripts/lib/components/poi_list.js" ], fu
     describe("Initialisation", function() {
 
       beforeEach(function() {
-        spyOn(instance, "_addPois");
+        spyOn(instance, "_addPOIs");
       });
 
       it("should wait until POIMap is initialized", function() {
@@ -33,7 +31,7 @@ require([ "jquery", "public/assets/javascripts/lib/components/poi_list.js" ], fu
         $(".js-poi-map").trigger(":map/open");
 
         expect(instance.$el.length).toBe(1);
-        expect(instance._addPois).toHaveBeenCalled();
+        expect(instance._addPOIs).toHaveBeenCalled();
       });
 
     });

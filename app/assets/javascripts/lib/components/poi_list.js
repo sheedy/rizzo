@@ -7,36 +7,32 @@ define([
 
   "use strict";
 
-  var poiMap,
-      poisData,
-      poisMarkers,
-      iterator;
-
-  function POIList( args ) {
-    poisMarkers = poisData = [];
-
-    var defaults = {
-      poiMap: null,
+  var
+    poisData,
+    poisMarkers,
+    defaults = {
       el: ".js-poi-list",
       pois: ".js-poi"
     };
 
+  function POIList( args ) {
+    poisMarkers = poisData = [];
+
     this.config = $.extend({}, defaults, args);
 
     if (!this.poiMap){
-      poiMap = new POIMap();
-      poiMap.$el.on(":map/open", this._build.bind(this));
+      this.poiMap = new POIMap();
+      this.poiMap.$el.on(":map/open", this._build.bind(this));
     } else {
       this._build();
     }
-
   }
 
   POIList.prototype._build = function() {
     this.markerImages = {};
 
-    if ( poiMap.$container.data().pois ){
-      this._addPois();
+    if ( this.poiMap.$container.data().pois ){
+      this._addPOIs();
     }
 
     this.$el = $(this.config.el);
@@ -68,27 +64,25 @@ define([
 
   };
 
-  POIList.prototype._addPois = function( event, pois ) {
-    iterator = 0;
-    poisData = pois || poiMap.$container.data().pois;
+  POIList.prototype._addPOIs = function( event, pois ) {
+    poisData = pois || this.poiMap.$container.data().pois;
 
     for ( var i = 0, len = poisData.length; i < len; i++ ){
-      setTimeout(this._createMarker.bind(this), ((i + 1) * 150));
+      setTimeout(this._createMarker.bind(this, i), (i + 1) * 150);
     }
   };
 
-  POIList.prototype._createMarker = function() {
+  POIList.prototype._createMarker = function(iterator) {
     var marker = new window.google.maps.Marker({
       icon: this._getIcon( poisData[ iterator ].topic, "small" ),
       animation: window.google.maps.Animation.DROP,
       position: new window.google.maps.LatLng(
                   poisData[ iterator ]["location-latitude"],
                   poisData[ iterator ]["location-longitude"] ),
-      map: poiMap.gmap
+      map: this.poiMap.gmap
     });
 
     poisMarkers.push( marker );
-    iterator += 1;
   };
 
   POIList.prototype._listen = function() {
@@ -119,8 +113,8 @@ define([
 
     $poiItem.addClass("is-selected");
     poiMarker.setIcon( this._getIcon( poiData.topic, "large" ) );
-    poiMap.gmap.setCenter( poiMarker.getPosition() );
-    poiMap.gmap.panBy( poiMap.$container.width() / 6, 0 );
+    this.poiMap.gmap.setCenter( poiMarker.getPosition() );
+    this.poiMap.gmap.panBy( this.poiMap.$container.width() / 6, 0 );
   };
 
   return POIList;

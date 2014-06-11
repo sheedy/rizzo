@@ -7,16 +7,15 @@ define([
 
   "use strict";
 
-  var API_KEY = "AIzaSyBQxopw4OR08VaLVtHaY4XEXWk3dvLSj5k";
-
-  function POIMap(args) {
-
-    var defaults = {
+  var
+    defaults = {
       el: ".js-poi-map",
       container: ".js-poi-map-container",
       placeholder: ".js-poi-map-placeholder"
-    };
+    },
+    API_KEY = "AIzaSyBQxopw4OR08VaLVtHaY4XEXWk3dvLSj5k";
 
+  function POIMap(args) {
     this.config = $.extend({}, defaults, args);
 
     this.$el = $(this.config.el);
