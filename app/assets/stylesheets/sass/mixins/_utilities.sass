@@ -26,7 +26,6 @@
 
 // [doc] Gradient Background overlay (for images). [/doc]
 @mixin image-overlay--gradient( $color-start: $darkgray, $opacity-start: 0.5, $color-end: #FFF, $opacity-end: 0, $start: 0, $stop: 35% )
-  background: $color-start
   .enhanced &
     background: linear-gradient(to top, rgba($color-start, $opacity-start) $start, rgba($color-end, $opacity-end) $stop)
 
