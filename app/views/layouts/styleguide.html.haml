@@ -16,11 +16,12 @@
               %h1.title--primary.title--styleguide Style Guide
 
       .row.row--content#js-row--content
-        .row__inner.row__inner--content
 
-          .row.row--secondary#js-secondary-nav
-            .row__inner.row__inner--secondary
-              = yield :secondary
+        .row.row--secondary#js-secondary-nav
+          .row__inner.row__inner--secondary
+            = yield :secondary
+            
+        .row__inner.row__inner--content
 
           .grid-wrapper--10
             = ui_component('navigation/left', properties: left_nav_items)

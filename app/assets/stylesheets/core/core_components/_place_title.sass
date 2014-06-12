@@ -7,10 +7,11 @@
 .place-title
   @extend %truncate-text
   @extend %left-icon
-  +font-size(18)
+  +font-size(20)
   text-overflow: ellipsis
   overflow: hidden
   white-space: nowrap
+  line-height: 1em
   margin-right: 20px
   // Fix the text-overflow bug in firefox to avoid the final letter being clipped
   padding-right: 6px
@@ -49,3 +50,7 @@
   color: $dark-blue-gray
   &:hover
     text-decoration: none
+
+.place-title__separator
+  display: inline-block
+  margin: 0 5px
