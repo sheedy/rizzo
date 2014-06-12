@@ -84,7 +84,8 @@
     +media-gallery-full()
 
 .media-gallery__resizer
-  +z-layer(top)
+  // +z-layer(top)
+  z-index: 30
   @extend %transition--base
   background: rgba(0,0,0,0.6)
   bottom: 0
