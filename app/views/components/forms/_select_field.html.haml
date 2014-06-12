@@ -2,13 +2,12 @@
   - properties[:fields].each_with_index do |dropdown, i|
 
     - field_id = i==0 ? properties[:id] : "#{properties[:id]}-#{i}"
+    - container_class = properties[:fields].length == 1 ? "single-select" : "multi-select-#{i}"
 
     - dropdown_class = ""
-    - container_class = "single-select"
     - input_class = ""
 
     - if properties[:fields].length > 1
-      - container_class = "multi-select-#{i}"
 
       - if properties[:fields].length == 2
         - input_class = "dropdown--half"
