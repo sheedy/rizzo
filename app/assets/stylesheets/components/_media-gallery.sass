@@ -5,70 +5,44 @@
   @extend %clearfix
   @extend %transition--base
   margin-bottom: 20px
-  position: relative
-  &.has-tabs ~ .card--page__aside
-    @extend %transition--slower
-    top: -302px
+
   ~ .card--page__aside
     @extend %transition--slower
     top: -262px
     margin-bottom: -232px
 
-  .media-gallery__container,
-  .tab__content,
-  .slider__viewport,
-  .slider__slides
-    height: 241px
-    width: 427px
-  .media-gallery__container,
-  .tab__content,
-  .slider__viewport
-    +z-layer(middle)
+  .media-gallery__container
     @extend %clearfix
     @extend %transition--slower
-    &.is-active
-      +z-layer(top)
-  .slider__controls
-    @extend %transition--slower
-    top: 95px
-  .slider__pagination
-    display: none
-  .slider__viewport,
-  .slider__slide
-    overflow: hidden
-  .slider__viewport
-    @extend %transition--slower
+    position: relative
+    height: 241px
     width: 427px
-  .slider__slider,
-  .slider__container
-    @extend %transition--slower
     background: $body-background
-  .slider__slide
-    background: $body-background
-    text-align: center
 
-.media-gallery--lodging
+  .tab__content
+    width: 100%
+    height: 100%
+    overflow: hidden
 
-  .media-gallery__container,
-  .tab__content,
-  .slider__viewport
-    width: 548px
-    height: 308px
+.media-gallery__img
+  display: block
+  min-width: 100%
+  max-width: 100%
+  height: auto
+  margin: 0 auto
 
-  .slider__controls
-    top: 132px
+  &.is-wider,
+  &.is-portrait
+    min-height: 100%
+    max-height: 100%
+    width: auto
 
 // This is all in a mixin because IE7/8 don't work when the :checked, and .is-checked selectors
 // are on the same line below (because IE7/8 don't understand :checked, they discard the entire rule)
 @mixin media-gallery-full
-  ~ .media-gallery
-    .media-gallery__container,
-    .tab__content,
-    .slider__viewport
-      height: 422px
-      width: 748px
-    .slider__controls
-      top: 186px
+  ~ .media-gallery .media-gallery__container
+    height: 422px
+    width: 748px
     .infobox__interesting-places
       display: none
   ~ .card--page__aside
@@ -109,34 +83,6 @@
   top: 30%
   left: 30%
   margin: 15%
-
-.media-gallery__container
-  perspective: 1000
-  background-color: $body-background
-  overflow: hidden
-  position: relative
-  .is-loading
-    height: 100%
-    &:after
-      top: 50%
-  &.is-loading:after
-    top: 50%
-
-.media-gallery__img
-  +z-layer
-  @extend %transition--base
-  opacity: 1
-  position: relative
-  min-height: 100%
-  max-width: 100%
-  &.is-portrait, &.is-wider
-    height: 100%
-    width: auto
-    margin: 0 auto
-    display: block
-
-  .is-loading &
-    opacity: 0
 
 .media-gallery__map
   height: 100%

@@ -292,6 +292,10 @@ module StyleguideHelper
               slug: "poi-maps"
             },
             {
+              name: "Slider",
+              slug: "slider"
+            },
+            {
               name: "Social Buttons",
               slug: "social-buttons"
             },

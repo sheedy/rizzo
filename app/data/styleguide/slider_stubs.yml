@@ -1,0 +1,23 @@
+-
+  :styleguide_title: "Basic slider"
+  :aspectRatio: "16x9"
+  :lazyLoad: true
+  :images:
+    -
+      :src: "http://images-resrc.staticlp.com/C=AR16x9/S=W1000/http://media.lonelyplanet.com/assets/b4f64ac2a73e69023794511d1de2a03ee4d21ce9483961915003c3878d3bda41/d6bff15e21af0874df3ba713a589ec42659d63cf288b5ee125c3fee732036e06.jpg"
+      :alt: "Perfume boutique on Vaci utca, Inner Town"
+    -
+      :src: "http://images-resrc.staticlp.com/C=AR16x9/S=W1000/http://media.lonelyplanet.com/assets/624a285f47df52742ea1c695510ad16a697ceadb2fc9714a9d54410f4775c413/33e5a86bf5d611864cb518ce05d971c5472c5135065702d0fbff601e3b7fd26d.jpg"
+      :alt: "Communist-era sculptures, Statue Park"
+    -
+      :src: "http://images-resrc.staticlp.com/C=AR16x9/S=W1000/http://media.lonelyplanet.com/assets/aac3412b82fcdac46b7c6d5463667cf89cdcf40c3f54051b434bae71e05a8a4b/07074d902543e314dcaee4074465de8ebda5dd68414d3abd28e83567014de79d.jpg"
+      :alt: "Facade of Palace of Art, City Park"
+    -
+      :src: "http://images-resrc.staticlp.com/C=AR16x9/S=W1000/http://media.lonelyplanet.com/assets/a5d955a46e904deff73042ac8a34d1ae4ffaa99654eb7efc31e9ee2920f1bcad/660569f9bbaaff90fa1b182cf97d4eebebb33962a448728c47a3984870bcad44.jpg"
+      :alt: "Parliament building at night"
+    -
+      :src: "http://images-resrc.staticlp.com/C=AR16x9/S=W1000/http://media.lonelyplanet.com/assets/5e1918d5b442e794939022b4d2a3ace4e430aded4361d38f838c59c75f3c0627/b91f54984fed042155790fc8d8d785889433de7a5b93d5981d2e3fb7b005e9e6.jpg"
+      :alt: "Miksa Roth stained glass window"
+    -
+      :src: "http://images-resrc.staticlp.com/C=AR16x9/S=W1000/http://media.lonelyplanet.com/assets/2fda58ac51c2a18ce4d5c4ac5cc68ad734d8a1b76948efb4b786b85d5f32e565/489c62351cae694a28bfe3d2f2f0d143314b6d70e7d2731c341f42b0f7b35df1.jpg"
+      :alt: "Detail of facade decoration on Great Synagogue"

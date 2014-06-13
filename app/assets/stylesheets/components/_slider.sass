@@ -1,7 +1,5 @@
 // -----------------------------------------------------------------------------
-// Slider Style Gallery
-// Note: the height/width for the slider, and the position of the controls needs
-//       to be defined wherever it's implemented.
+// Slider
 // -----------------------------------------------------------------------------
 
 $chevronOffset: 0.35em
@@ -24,10 +22,17 @@ $slideHoverArrowSpacing: 0.357em
   height: 100%
   position: relative
 
+  .slider--16x9 &
+    padding: 0 0 56.25%
+
+  .slider--4x3 &
+    padding: 0 0 75%
+
 .slider__slide
   +hardware-acceleration()
   display: none
   position: absolute
+  top: 0
   transition: transform .2s ease-in-out, left .2s ease-in-out
   width: 100%
   &.is-previous-previous,
@@ -62,20 +67,30 @@ $slideHoverArrowSpacing: 0.357em
       left: 200%
 
 .slider__img
+  display: block
   min-width: 100%
+  max-width: 100%
+  height: auto
+  margin: 0 auto
 
-.slider__controls-container
-  position: relative
-  &:hover
-    .slider__controls
-      opacity: 1
+  &.is-wider,
+  &.is-portrait
+    min-height: 100%
+    max-height: 100%
+    width: auto
 
 .slider__controls
   @extend %clearfix
   @extend %transition--base
   +z-layer(top)
   position: absolute
+  overflow: hidden
   width: 100%
+  height: 100%
+  opacity: 0
+
+  .slider:hover &
+    opacity: 1
 
 .slider__control
   +font-size(14)
@@ -87,7 +102,9 @@ $slideHoverArrowSpacing: 0.357em
   line-height: 1.66em
   opacity: 0.5
   padding: 0.643em 2.286em 0.643em
+  margin-top: -1.15em
   position: absolute
+  top: 50%
   &:hover
     opacity: 1
     text-decoration: none
@@ -110,10 +127,7 @@ $slideHoverArrowSpacing: 0.357em
     left: $slideHoverOffset
     padding-right: $slideHoverPadding
   .at-beginning &
-    cursor: normal
-    pointer-events: none
-    opacity: 0
-
+    display: none
 
 .slider__control--next
   right: $slideOffset
@@ -124,13 +138,11 @@ $slideHoverArrowSpacing: 0.357em
     right: $slideHoverOffset
     padding-left: $slideHoverPadding
   .at-end &
-    cursor: normal
-    pointer-events: none
-    opacity: 0
+    display: none
 
 .slider__pagination
-  bottom: 0
-  display: inline-block
+  position: absolute
+  bottom: 16px
   margin: 25px auto 0
   text-align: center
   width: 100%

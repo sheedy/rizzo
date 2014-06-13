@@ -1,0 +1,15 @@
+.slider.js-slider{ class: "slider--#{properties[:aspectRatio]}", role: "widget" }
+
+  .slider__controls-container.js-slider-controls-container
+
+  .slider__viewport.js-slider-viewport.js-onswipe.is-loading
+    .slider__container.js-slider-container
+      - properties[:images].each_with_index do |image, i|
+        - if i == 0 || !properties[:lazyLoad]
+          .slider__slide.js-slide.is-loaded{ class: i == 0 ? "is-current" : "" }
+            %img.slider__img{ src: image[:src], alt: image[:alt] }
+        - else
+          .slider__slide.js-slide.is-hidden
+            %img{ data: { class: 'slider__img', src: image[:src], alt: image[:alt] } }
+    
+    = render :partial => "/components/preloader"
