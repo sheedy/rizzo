@@ -9,7 +9,6 @@
   @extend %prevent-text-breakouts
   @extend %lp-font-stack
   margin: 0
-  color: #fff
   float: left
   font-size: 28px
   line-height: 32px
@@ -37,17 +36,4 @@
   text-align: right
 
 .nav__item--secondary
-  +font-size(12)
-  @extend %inline-block
-  padding: 7px 8px 7px
-  line-height: 18px
-  color: #b0bac5
-  &:hover
-    color: #fff
-    text-decoration: none
-  &:active
-    color: #b0bac5
-  &.current
-    @extend %rounded-corners
-    background-color: $active
-    color: #fff
+  +font-size(14)
