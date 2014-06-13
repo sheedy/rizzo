@@ -4,6 +4,7 @@ require([ "public/assets/javascripts/lib/components/slider.js" ], function(Slide
 
     var config = {
         animateDelay: 0,
+        assetReveal: true,
         createControls: true,
         el: "#js-slider"
       };
