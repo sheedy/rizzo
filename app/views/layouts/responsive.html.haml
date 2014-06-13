@@ -17,6 +17,10 @@
         .row.row--secondary#js-secondary-nav
           .row__inner.row__inner--secondary
             = yield :secondary
+      - if (yield :alerts).present?
+        .row.row--alerts
+          .row__inner
+            = yield :alerts
 
       = yield
 
