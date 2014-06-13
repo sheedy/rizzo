@@ -12,11 +12,11 @@
   = render 'layouts/core/snippets/leaderboard'
   .wrapper.js-wrapper
     = render 'layouts/core/snippets/primary_navigation_bar', user_nav: true, responsive: true, no_scripts: false
-    - if (yield :secondary).present?
-      .row.row--secondary#js-secondary-nav
-        .row__inner.row__inner--secondary
-          = yield :secondary
     .row.row--content{id: @no_wallpaper ? "" : "js-row--content"}
+      - if (yield :secondary).present?
+        .row.row--secondary#js-secondary-nav
+          .row__inner.row__inner--secondary
+            = yield :secondary
 
       = yield
 
