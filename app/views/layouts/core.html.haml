@@ -15,8 +15,12 @@
         .row.row--secondary#js-secondary-nav
           = yield :secondary
 
+      - if (yield :alerts).present?
+        .row__inner.row--alerts
+          = yield :alerts
+
       = yield
-      
+
       = ui_component('lightbox')
       %script#tmpl-preloader{ type: 'text-mustache' }
         = ui_component('preloader')

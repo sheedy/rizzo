@@ -5,24 +5,29 @@
 // ----------------------------------------------------------------------------
 
 .row--secondary
+  background: #fff
+  margin-bottom: 15px
   .wv--split--right
     .responsive &
       +respond-to(400)
         float: right
         text-align: right
+  .responsive &
+    background: none
+    +respond-to(wide-view)
+      background: #fff
 
 .row__inner--secondary
-  padding-top: 40px
-  padding-bottom: 18px
+  padding-top: 32px
   .responsive &
-    padding-top: 20px
+    padding-top: 15px
     +respond-to(wide-view)
       width: $fixed-layout-width
       margin: 0 auto
-      padding-top: 40px
+      padding-top: 32px
 
 .row__title--secondary
-  background: $body-background
+  margin-bottom: 15px
   max-width: 340px
   .responsive &
     max-width: 100%
@@ -66,14 +71,11 @@
     +font-size(16)
 
 .nav__item--secondary
-  padding: 6px 8px
-  &, &:active
-    color: $body-copy
-  &:hover
-    color: $dark-blue-gray
+  +font-size(14)
+  color: $titlegray
+  padding: 6px 8px 18px
+  text-transform: uppercase
+  &:active, &:hover, &.current
+    color: $lpblue
   &.current
-    @extend %active-background
-    @extend %rounded-corners
-    &:hover
-      color: white
-
+    border-bottom: 2px solid $lpblue

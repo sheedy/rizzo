@@ -11,4 +11,6 @@
         %a.place-title-heading{href: "/#{properties[:slug].sub(/^\//, '')}"}<> #{properties[:title]}
 
       - if properties[:parent]
-        %a.place-title__parent{href: "/#{properties[:parent_slug].sub(/^\//, '')}"}<> , #{properties[:parent]}
+        %span.place-title__separator<> /
+        %a.place-title__parent{href: "/#{properties[:parent_slug].sub(/^\//, '')}"}<>
+          = properties[:parent]
