@@ -8,20 +8,21 @@
 %body
   = render 'layouts/legacy/snippets/body_header', user_nav: user_nav
 
-  -# Secondary navigation bar
-  .row.row--secondary#js-secondary-nav
-    .row__inner.row__inner--secondary
-      .row__title--secondary
-        Buenos Aires
-
-      .nav--secondary
-        - ['Hotels', 'Things to do', 'Overview'].each_with_index do |n, v|
-          %a.nav__item--secondary.js-nav-item{:class=>(v == 0 ? 'current' : ''), :href=> "#"}
-            = n
-
   .row.row--content
+
+    -# Secondary navigation bar
+    .row.row--secondary#js-secondary-nav
+      .row__inner.row__inner--secondary
+        .split--left.row__title--secondary.place-title-heading
+          Buenos Aires
+
+        .nav--secondary(role="navigation" aria-label="Secondary navigation")
+          - ['Hotels', 'Things to do', 'Overview'].each_with_index do |n, v|
+            %a.nav__item--secondary.js-nav-item{:class=>(v == 0 ? 'current' : ''), :href=> "#"}
+              = n
+
     .row__inner.row__inner--content
-      
+
   -# Breadcrumbs navigation
   .wrapper--footer
     .row.row--footer.row--breadcrumbs#js-breadcrumbs
