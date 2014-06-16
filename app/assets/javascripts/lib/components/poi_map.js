@@ -43,13 +43,11 @@ define([
 
     this.$placeholder.off(".preload");
 
-    function mapsCallback() {
+    window.mapsCallback = function mapsCallback() {
       this._build();
       window.mapsCallback = undefined;
       callback && callback.call(this);
-    }
-
-    window.mapsCallback = mapsCallback.bind(this);
+    }.bind(this);
 
     this._loadGoogleMaps();
   };

@@ -32,8 +32,7 @@ require([ "jquery" ], function($) {
     new ToggleActive();
     new Konami();
     new Swipe();
-    new POIMap();
-    new POIList();
+    new POIList(null, new POIMap);
     new Slider({ el: ".js-slider", assetReveal: true });
     new SelectGroupManager();
     new SelectGroupManager();
