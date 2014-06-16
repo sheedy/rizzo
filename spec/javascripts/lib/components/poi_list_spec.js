@@ -26,11 +26,10 @@ require([ "jquery", "public/assets/javascripts/lib/components/poi_list.js" ], fu
       });
 
       it("should wait until POIMap is initialized", function() {
-        expect(instance.$el).toBe(undefined);
+        expect(instance._addPOIs).not.toHaveBeenCalled();
 
         $(".js-poi-map").trigger(":map/open");
 
-        expect(instance.$el.length).toBe(1);
         expect(instance._addPOIs).toHaveBeenCalled();
       });
 

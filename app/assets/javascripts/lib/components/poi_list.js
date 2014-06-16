@@ -11,20 +11,23 @@ define([
     poisData,
     poisMarkers,
     defaults = {
-      el: ".js-poi-list",
-      pois: ".js-poi"
+      pois: ".js-poi",
+      el: ".js-poi-list"
     };
 
-  function POIList( args ) {
+  function POIList(args, poiMap) {
     poisMarkers = poisData = [];
 
+    this.poiMap = poiMap || new POIMap;
     this.config = $.extend({}, defaults, args);
 
-    if (!this.poiMap){
-      this.poiMap = new POIMap();
-      this.poiMap.$el.on(":map/open", this._build.bind(this));
-    } else {
+    this.$el = $(this.config.el);
+    this.$pois = this.$el.find(this.config.pois);
+
+    if (this.poiMap.isOpen) {
       this._build();
+    } else {
+      this.poiMap.$el.on(":map/open", this._build.bind(this));
     }
   }
 
@@ -35,10 +38,7 @@ define([
       this._addPOIs();
     }
 
-    this.$el = $(this.config.el);
-    this.$pois = this.$el.find( this.config.pois );
     setTimeout(this._listen.bind(this), 200);
-
   };
 
   POIList.prototype._getIcon = function( topic, size ) {
