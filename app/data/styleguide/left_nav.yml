@@ -121,13 +121,13 @@
       :items:
         -
           :name: "Interface"
-          :slug: "icons/interface"
+          :slug: "interface-icons"
         -
           :name: "Destination"
-          :slug: "icons/destination"
+          :slug: "destination-icons"
         -
           :name: "Interests"
-          :slug: "icons/interests"
+          :slug: "interests-icons"
   :ui_components:
     -
       :title: "Components"
@@ -188,7 +188,7 @@
       :items:
         -
           :name: "Dropdown"
-          :slug: "navigational_dropdown"
+          :slug: "navigational-dropdown"
         -
           :name: "Left Nav"
           :slug: "left-nav"
