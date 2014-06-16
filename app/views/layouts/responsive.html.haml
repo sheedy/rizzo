@@ -8,6 +8,9 @@
   = render 'layouts/core/head', responsive: true, suppress_tynt: (defined?(suppress_tynt) ? suppress_tynt : false)
 
 %body.responsive
+  = ui_component('lightbox')
+  %script#tmpl-preloader{ type: 'text-mustache' }
+    = ui_component('preloader')
   = render 'layouts/core/snippets/accessibility'
   = render 'layouts/core/snippets/leaderboard'
   .wrapper.js-wrapper
@@ -22,11 +25,7 @@
           .row__inner
             = yield :alerts
 
-      = yield
-
-      = ui_component('lightbox')
-      %script#tmpl-preloader{ type: 'text-mustache' }
-        = ui_component('preloader')
+      = yield      
 
     .wrapper.wrapper--footer
       = yield :breadcrumbs

@@ -12,9 +12,13 @@ define([ "jquery" ], function($) {
       var target = event.target,
           $document = $(document);
 
+      if (data.listener){
+        _this.$listener = data.listener;
+      }
+
       $document.on("click.flyout", function(event) {
         if (!$(event.target).closest(data.target).length) {
-          _this._closeFlyout(target);
+          _this._closeFlyout(_this.$listener, target);
         }
       });
       $document.on("keyup.flyout", function(event) {

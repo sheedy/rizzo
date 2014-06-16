@@ -9,6 +9,7 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
     beforeEach(function() {
       loadFixtures("lightbox.html");
       lightbox = new LightBox({ customClass: "lightbox-foo" });
+
     });
 
     describe("Initialisation", function() {
@@ -45,23 +46,66 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
         expect(lightbox._fetchContent).toBeDefined();
       });
 
-      it("sets up the container to be the full height and width of the document", function() {
-        expect($("#js-lightbox").height()).toBe($("body").height());
-        expect($("#js-lightbox").width()).toBe($("body").width());
+    });
+
+    describe("Open/Close", function() {
+      beforeEach(function() {
+        loadFixtures("lightbox.html");
+        jasmine.Clock.useMock();
+        window.lp.supports = {
+          transitionend: "webkitTransitionEnd"
+        };
+        lightbox = new LightBox({ showPreloader: true });
+
+        $("#js-row--content").trigger(":lightbox/open");
+        $("#js-lightbox").trigger("webkitTransitionEnd");
+      });
+
+      it("should have css classes", function() {
+        expect($("#js-lightbox")).toHaveClass("is-active is-visible");
+        expect($("html")).toHaveClass("lightbox--open");
+      });
+
+      it("should close and clean the lightbox", function() {
+
+        $("#js-row--content").trigger(":flyout/close");
+        $("#js-lightbox").trigger("webkitTransitionEnd");
+        $("#js-lightbox").trigger("webkitTransitionEnd");
+
+        expect($("#js-lightbox")).not.toHaveClass("content-ready");
+        expect($("#js-lightbox")).not.toHaveClass("is-active");
+        expect($("html")).not.toHaveClass("lightbox--open");
+      });
+
+      afterEach(function() {
+        window.lp.supports = {};
       });
 
     });
 
     describe("Functionality", function() {
+      beforeEach(function() {
+        window.lp.supports = {
+          transitionend: "webkitTransitionEnd"
+        };
+      });
 
       it("can update the lightbox contents", function() {
         $("#js-row--content").trigger(":lightbox/renderContent", "Test content here.");
+        $("#js-lightbox").trigger("webkitTransitionEnd");
+        $("#js-lightbox").trigger("webkitTransitionEnd");
 
         expect($(".js-lightbox-content").html()).toBe("Test content here.");
+        expect($("#js-lightbox")).toHaveClass("content-ready");
+
       });
 
       it("can add a custom class to the lightbox", function() {
         expect($("#js-lightbox")).toHaveClass("lightbox-foo");
+      });
+
+      afterEach(function() {
+        window.lp.supports = {};
       });
 
     });
@@ -78,47 +122,17 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
 
     describe("Lightbox centering", function() {
 
-      beforeEach(function() {
-        $(".lightbox__content").height(600).width(800);
-      });
+      it("sets up the container to be the full height and width of the viewport", function() {
 
-      it("when the viewport has sufficient space", function() {
         spyOn(lightbox, "viewport").andReturn({
-          left: 0,
           height: 800,
-          top: 0,
           width: 1000
         });
 
         lightbox._centerLightbox();
 
-        expect(lightbox._centeredLeftPosition()).toBe(100);
-        expect(lightbox._centeredTopPosition()).toBe(100);
-      });
-
-      it("when the viewport isn't tall enough", function() {
-        spyOn(lightbox, "viewport").andReturn({
-          left: 0,
-          height: 400,
-          top: 0,
-          width: 1000
-        });
-
-        lightbox._centerLightbox();
-
-        expect(lightbox._centeredTopPosition()).toBe(0);
-      });
-
-      it("when the viewport isn't wide enough", function() {
-        spyOn(lightbox, "viewport").andReturn({
-          left: 0,
-          height: 800,
-          top: 0,
-          width: 600
-        });
-        lightbox._centerLightbox();
-
-        expect(lightbox._centeredLeftPosition()).toBe(0);
+        expect($("#js-lightbox").height()).toBe(800);
+        expect($("#js-lightbox").width()).toBe(1000 + 15); // 15 to cover the body scroll
       });
 
     });

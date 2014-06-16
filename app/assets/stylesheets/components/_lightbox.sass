@@ -4,35 +4,74 @@
   background: rgba($body-background, 0.95)
   left: 0
   opacity: 0
-  position: absolute
-  transition: .5s all
+  position: fixed
+  transition: 0.3s opacity ease-out
   top: 0
   visibility: hidden
 
+  &.is-visible
+    visibility: visible
+
   &.is-active
     opacity: 1
-    visibility: visible
+
 
     .lightbox__content
       > iframe
         display: block
 
+.lightbox__wrapper
+  -webkit-overflow-scrolling: touch
+  overflow-y: scroll
+  overflow-x: hidden
+  height: 100%
+  width: 100%
+
 .lightbox__content
-  @extend %large-shadow
-  position: absolute
+  margin: auto
+  position: relative
+  transition: transform 0.3s ease-out, opacity 0.1s
+  transform: translate3d(0, 1000px, 0)
+  opacity: 0
+  width: 600px
   .lightbox__close
+    +z-layer
     height: 25px
     width: 25px
     position: absolute
     right: .5em
     top: .5em
+    cursor: pointer
     &:hover
       +icon-color(body-grey)
+
+    .lightbox--layer &, .is-loading &
+      display: none
+
+  .preloader
+    visibility: hidden
+
+  .content-ready &
+    transition: transform 0.3s ease-out, opacity 0.5s
+    transform: translate3d(0, 0, 0)
+    opacity: 1
+    padding-bottom: 50px
+
   .lightbox--layer &
-    @extend %rounded-corners
     width: 800px
-    padding: 30px
-    background-color: white
+
+  .is-loading &
+    @extend %rounded-corners
+    @extend %large-shadow
+    width: 90px
+    transform: translate3d(0, 0, 0)
+    transition: transform 0.3s ease-out, opacity 0.5s
+    top: 45%
+    height: 50px
+    background-color: #FFF
+    opacity: 1
+    .preloader
+      visibility: visible
 
   > iframe
     background: black
@@ -40,3 +79,7 @@
     display: none
     height: 100%
     width: 100%
+
+.lightbox--open
+  overflow: hidden
+  -webkit-overflow-scrolling: touch

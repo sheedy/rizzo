@@ -136,7 +136,7 @@ require ['public/assets/javascripts/lib/page/controller.js'], (Controller) ->
         window.controller = new Controller()
         spyOn(controller, "_callServer")
         spyOn(controller, "_createRequestUrl").andReturn("http://www.lonelyplanet.com/foo.json?foo=bar")
-        spyOn(controller, "navigate").andReturn(false)
+        spyOn(controller.pushstate, "navigate").andReturn(false)
         $(LISTENER).trigger(':cards/request', newParams, analytics)
 
       it 'updates the internal state', ->
