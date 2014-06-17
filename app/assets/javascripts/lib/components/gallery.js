@@ -31,7 +31,7 @@ define([
       assetBalance: 4,
       assetReveal: true,
       createControls: false,
-      keyboardControl: true
+      keyboardControls: true
     }, this.config.sliderConfig));
 
     if (!(this.slider && this.slider.$currentSlide)) return;
