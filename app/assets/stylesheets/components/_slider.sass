@@ -85,9 +85,12 @@ $slideHoverArrowSpacing: 0.357em
   +z-layer(top)
   position: absolute
   overflow: hidden
+  display: none
   width: 100%
   height: 100%
   opacity: 0
+  .slider__show-controls &
+    display: initial
 
   .slider:hover &
     opacity: 1
@@ -105,6 +108,7 @@ $slideHoverArrowSpacing: 0.357em
   margin-top: -1.15em
   position: absolute
   top: 50%
+
   &:hover
     opacity: 1
     text-decoration: none
@@ -141,12 +145,15 @@ $slideHoverArrowSpacing: 0.357em
     display: none
 
 .slider__pagination
+  +z-layer(top)
   position: absolute
+  display: none
   bottom: 16px
   margin: 25px auto 0
   text-align: center
   width: 100%
-  +z-layer(top)
+  .slider__show-pagination
+    display: initial
 
 .slider__pagination--link
   @extend %image-replacement
