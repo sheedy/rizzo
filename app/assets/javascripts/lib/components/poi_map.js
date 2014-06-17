@@ -134,6 +134,13 @@ define([
     this.isOpen = false;
   };
 
+  POIMap.prototype.refocus = function() {
+    if (!this.gmap) return;
+
+    window.google.maps.event.trigger(this.gmap, "resize");
+    this.gmap.panTo(this.marker.getPosition());
+  };
+
   POIMap.prototype.teardown = function() {
     this.$el.removeClass("is-open is-closed is-loading");
     this.$placeholder.off(".poi .preload");
