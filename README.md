@@ -124,15 +124,17 @@ Currently a work in progress. Eventually to be run on the styleguide as a pre-pu
 
 A write-up of our Icon solution is available at: [http://ianfeather.co.uk/ten-reasons-we-switched-from-an-icon-font-to-svg/](http://ianfeather.co.uk/ten-reasons-we-switched-from-an-icon-font-to-svg/).
 
-The icons are built by a grunt task, `grunt icon`, which uses the Filament Group's [grunticon plugin](https://github.com/filamentgroup/grunticon). To add a new icon to the build step, simply copy the svg file into `rizzo/app/assets/images/icons/active`.
+The icons are built by a grunt task, `grunt icon`, which uses the Filament Group's [grunticon plugin](https://github.com/filamentgroup/grunticon). 
 
-The easiest way to copy multiple files into the `active` directory (supposing you have access to this folder in Dropbox) is by modifying and using the following rsync command:
+We split our icons out into two categories: critical and active. Icons in active are considered complenentary and will not be served to browsers that don't support svg. Icons in critical will be served to older browsers as a png fallback. 
 
-````
-$ rsync -vr --delete ~/Dropbox/LP\ Patterns/Icons/svg/*.svg ~/projects/rizzo/app/assets/images/icons/active/
-````
+To add a new icon to the active section, simply copy the svg file into `rizzo/app/assets/images/icons/active`.
+
+To add a new icon to the critial section, add it to the above directory as normal and then create a symlink to this file within `rizzo/app/assets/images/icons/active/critical` by running `ln -s ../[icon-name].svg [icon-name].svg` within the critical folder.
 
 You only need to run `grunt icon` if you are building new icons. All current icons are already checked into git.
+
+Running `grunt icon` can sometimes produce a lot of noise in the diff as we svgmin will run on all the svg files - transforming them but not saving them. For this reason it's often better to only add the files you want into git and checkout the rest.
 
 
 -----
