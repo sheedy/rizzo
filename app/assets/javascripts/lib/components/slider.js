@@ -53,11 +53,6 @@ define([
     if (this.config.assetReveal) {
       this.assetReveal = new AssetReveal({ el: this.$el });
     }
-
-    // TODO: Move this into the map/media-gallery js when it exists
-    this.$el.find(".js-resizer").on("click", function() {
-      return $("input[name='" + $(this).attr("for") + "']").toggleClass("is-checked");
-    });
   };
 
   Slider.prototype._gatherElements = function() {
