@@ -69,7 +69,11 @@ define([
   };
 
   Gallery.prototype._handleEvents = function() {
-    var afterTransition = debounce(function() {
+    var afterTransition = debounce(function(e) {
+
+      // Hack around paraphernalia interfering
+      if (e.originalEvent.propertyName !== window.lp.supports.transform.css) return;
+
       var partial = this.slider.$currentSlide.data("partial-slug");
       this.analytics.track();
       this._updateImageInfo();
