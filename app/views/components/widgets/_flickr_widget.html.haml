@@ -1,7 +1,7 @@
 =# THIS TEMPLATE IS NOT ACTUALLY USED YET - JUST FOR THE FILE TO EXIST FOR NOW
 - @details = data
 .row__inner.flickr-competition
-  - if @details.any?
+  - if @details && @details.any?
     .competition-title
       %h1
         Leaderboard for
