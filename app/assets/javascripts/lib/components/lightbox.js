@@ -168,7 +168,7 @@ define([
     this.$lightbox.css({
       left: 0,
       height: viewport.height,
-      width: viewport.width + 15 //this 15 is to cover the scroll bar
+      width: viewport.width
     });
   };
 

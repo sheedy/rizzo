@@ -7,6 +7,9 @@
 .icon--cc--before:before, .icon--cc--after:after,
 .icon--cc { background-image: url('png/cc.png'); background-repeat: no-repeat; }
 
+.icon--cross--before:before, .icon--cross--after:after,
+.icon--cross { background-image: url('png/cross.png'); background-repeat: no-repeat; }
+
 .icon--entertainment--before:before, .icon--entertainment--after:after,
 .icon--entertainment { background-image: url('png/entertainment.png'); background-repeat: no-repeat; }
 

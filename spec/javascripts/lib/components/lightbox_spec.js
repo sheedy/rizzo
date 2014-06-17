@@ -132,7 +132,7 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
         lightbox._centerLightbox();
 
         expect($("#js-lightbox").height()).toBe(800);
-        expect($("#js-lightbox").width()).toBe(1000 + 15); // 15 to cover the body scroll
+        expect($("#js-lightbox").width()).toBe(1000);
       });
 
     });
