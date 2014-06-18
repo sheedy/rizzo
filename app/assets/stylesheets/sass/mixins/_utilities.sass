@@ -31,7 +31,8 @@
 
 // [doc] Flat Background overlay (for images). 35% percent. [/doc]
 @mixin image-overlay--flat( $percent: 0.35, $color: $darkgray )
-  background-color: rgba($darkgray, $percent)
+  .enhanced &
+    background-color: rgba($darkgray, $percent)
 
 // [doc] A mixin to help clean up z-index madness. Options are: `below`, `default`, `middle`, `top`, and `modal` [/doc]
 @mixin z-layer( $layer: default )
