@@ -119,6 +119,7 @@ define([
 
     $poiItem.addClass("is-selected");
     poiMarker.setIcon( this._getIcon( poiData.topic, "large" ) );
+    poiMarker.setZIndex(1000);
 
     // Take into account the list overlay
     this.poiMap.map.setCenter( poiMarker.getPosition() );
