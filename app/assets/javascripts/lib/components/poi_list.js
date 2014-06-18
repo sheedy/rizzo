@@ -87,7 +87,7 @@ define([
       position: new window.google.maps.LatLng(
                   this.poisData[ i ].latitude,
                   this.poisData[ i ].longitude ),
-      map: this.poiMap.gmap
+      map: this.poiMap.map
     });
 
     this.poisMarkers.push( marker );
@@ -95,11 +95,11 @@ define([
 
   POIList.prototype._listen = function() {
     this.$pois.on("click", function(event) {
-      this._selectPOI( $(event.target).closest("li").index() );
+      this.selectPOI( $(event.target).closest("li").index() );
     }.bind(this));
 
     for (var i = 0, len = this.poisMarkers.length; i < len; i++){
-      window.google.maps.event.addListener(this.poisMarkers[i], "click", this._selectPOI.bind(this, i));
+      window.google.maps.event.addListener(this.poisMarkers[i], "click", this.selectPOI.bind(this, i));
     }
   };
 
@@ -110,7 +110,7 @@ define([
     }
   };
 
-  POIList.prototype._selectPOI = function(i) {
+  POIList.prototype.selectPOI = function(i) {
     var $poiItem = this.$pois.eq(i),
         poiData = this.poisData[ i ],
         poiMarker = this.poisMarkers[ i ];
@@ -119,8 +119,10 @@ define([
 
     $poiItem.addClass("is-selected");
     poiMarker.setIcon( this._getIcon( poiData.topic, "large" ) );
-    this.poiMap.gmap.setCenter( poiMarker.getPosition() );
-    this.poiMap.gmap.panBy( this.poiMap.$container.width() / 6, 0 );
+
+    // Take into account the list overlay
+    this.poiMap.map.setCenter( poiMarker.getPosition() );
+    this.poiMap.map.panBy( this.poiMap.$container.width() / 6, 0 );
   };
 
   return POIList;
