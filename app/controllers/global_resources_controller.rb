@@ -13,4 +13,8 @@ class GlobalResourcesController < GlobalController
     render '/global-nav/legacy', :layout=> false, locals: get_layout_config("legacy")
   end
 
+  def component
+    render "components/_#{params[:component]}", :locals => { :properties => params }
+  end
+
 end
