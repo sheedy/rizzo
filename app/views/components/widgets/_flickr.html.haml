@@ -1,0 +1,4 @@
+.widget__flickr  
+  .grid-wrapper--10
+    - properties[:data][:comments].take(4).each do |entry|
+      = ui_component("cards/image_card", { properties: entry })              

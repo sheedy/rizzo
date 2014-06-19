@@ -1,0 +1,106 @@
+-
+  :tag: "Flickr"
+  :date_updated: "01/01/20014"
+  :data:
+    :comments:
+      -
+        :kind: "competition"
+        :size: "double"
+        :image_description: "Salamanca"
+        :position: 1
+        :resized_image_url: "https://farm6.staticflickr.com/5453/10136465065_3a3fb51f10_b.jpg"
+        :image_date: "2 Oct 2014"
+        :view_count: 20
+        :comment_count: 152
+        :user:
+          :image: "http://img2.wikia.nocookie.net/__cb20111018235020/muppet/images/thumb/1/14/Rizzo11.png/300px-Rizzo11.png"
+          :name: "Rizzo"
+          :style: "light"
+        :valid_votes:
+          -
+            :author_name: "Pepe"
+            :author_url: "http://www.google.com"
+          -
+            :author_name: "Jose"
+            :author_url: "http://www.google.com"
+          -
+            :author_name: "Francisco"
+            :author_url: "http://www.google.com"
+          -
+            :author_name: "Fran"
+            :author_url: "http://www.google.com"
+      -
+        :kind: "competition"
+        :size: "single"
+        :image_description: "Long title to test the truncate"
+        :position: 2
+        :resized_image_url: "http://assets.staticlp.com/assets/stubs/article.jpg"
+        :image_date: "2 Oct 2014"
+        :view_count: 20
+        :comment_count: 152
+        :user:
+          :name: "Rizzo"
+          :style: "light"
+        :valid_votes:
+          -
+            :author_name: "Pepe"
+            :author_url: "http://www.google.com"
+          -
+            :author_name: "Jose"
+            :author_url: "http://www.google.com"
+          -
+            :author_name: "Francisco"
+            :author_url: "http://www.google.com"
+          -
+            :author_name: "Fran"
+            :author_url: "http://www.google.com"
+      -
+        :kind: "competition"
+        :size: "mini"
+        :image_description: "Long title to test the truncate"
+        :position: 3
+        :resized_image_url: "https://farm3.staticflickr.com/2934/14156674567_7f8a016069_c.jpg"
+        :image_date: "2 Oct 2014"
+        :view_count: 20
+        :comment_count: 152
+        :user:
+          :name: "Rizzo"
+          :style: "light"
+        :valid_votes:
+          -
+            :author_name: "Pepe"
+            :author_url: "http://www.google.com"
+          -
+            :author_name: "Jose"
+            :author_url: "http://www.google.com"
+          -
+            :author_name: "Francisco"
+            :author_url: "http://www.google.com"
+          -
+            :author_name: "Fran"
+            :author_url: "http://www.google.com"
+      -
+        :kind: "competition"
+        :size: "mini"
+        :image_description: "Long title to test the truncate"
+        :position: 4
+        :resized_image_url: "https://farm6.staticflickr.com/5085/5234272389_1be78dfeea_b.jpg"
+        :image_date: "2 Oct 2014"
+        :view_count: 20
+        :comment_count: 152
+        :user:
+          :name: "Rizzo"
+          :style: "light"
+        :valid_votes:
+          -
+            :author_name: "Pepe"
+            :author_url: "http://www.google.com"
+          -
+            :author_name: "Jose"
+            :author_url: "http://www.google.com"
+          -
+            :author_name: "Francisco"
+            :author_url: "http://www.google.com"
+          -
+            :author_name: "Fran"
+            :author_url: "http://www.google.com"
