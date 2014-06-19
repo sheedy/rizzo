@@ -87,12 +87,12 @@ define([
     var maps = window.google.maps,
         options = this._googleMapsOptions();
 
-    this.gmap = new maps.Map(this.$container.get(0), options);
+    this.map = new maps.Map(this.$container.get(0), options);
 
     this.marker = new maps.Marker({
       icon: this._googleMapsMarker(),
       position: options.center,
-      map: this.gmap
+      map: this.map
     });
 
     this.$el.removeClass("is-loading");
@@ -132,6 +132,13 @@ define([
     this.$el.removeClass("is-open").addClass("is-closed");
     this.trigger(":map/close");
     this.isOpen = false;
+  };
+
+  POIMap.prototype.refocus = function() {
+    if (!this.map) return;
+
+    window.google.maps.event.trigger(this.map, "resize");
+    this.map.panTo(this.marker.getPosition());
   };
 
   POIMap.prototype.teardown = function() {

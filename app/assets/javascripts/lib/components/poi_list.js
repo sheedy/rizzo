@@ -1,44 +1,50 @@
 define([
   "jquery",
-  "lib/components/poi_map",
   "lib/components/map_styles",
   "polyfills/function_bind"
-], function($, POIMap, MapStyles) {
+], function($, MapStyles) {
 
   "use strict";
 
-  var
-    poisData,
-    poisMarkers,
-    defaults = {
-      pois: ".js-poi",
-      el: ".js-poi-list"
-    };
+  var defaults = {
+    pois: ".js-poi",
+    el: ".js-poi-list"
+  };
 
   function POIList(args, poiMap) {
-    poisMarkers = poisData = [];
-
-    this.poiMap = poiMap || new POIMap;
+    this.poiMap = poiMap;
     this.config = $.extend({}, defaults, args);
 
     this.$el = $(this.config.el);
     this.$pois = this.$el.find(this.config.pois);
+
+    if (this.$pois.length) {
+      this._init();
+    }
+  }
+
+  POIList.prototype._init = function() {
+    this.poiData = [];
+    this.poiMarkers = [];
+    this.markerImages = {};
 
     if (this.poiMap.isOpen) {
       this._build();
     } else {
       this.poiMap.$el.on(":map/open", this._build.bind(this));
     }
-  }
+  };
 
   POIList.prototype._build = function() {
-    this.markerImages = {};
-
-    if ( this.poiMap.$container.data().pois ){
-      this._addPOIs();
+    for (var i = 0, len = this.$pois.length; i < len; i++) {
+      this.poiData.push(this.$pois.eq(i).data());
     }
 
-    setTimeout(this._listen.bind(this), 200);
+    if (this.poiMap.marker) {
+      this.poiMap.marker.setIcon(this._createMarkerImage(null, "dot"));
+    }
+
+    this._addPOIs();
   };
 
   POIList.prototype._getIcon = function( topic, size ) {
@@ -61,60 +67,65 @@ define([
       size: new window.google.maps.Size(markerStyle.size.width, markerStyle.size.height),
       origin: new window.google.maps.Point( -markerStyle.position.x, -markerStyle.position.y )
     };
-
   };
 
-  POIList.prototype._addPOIs = function( event, pois ) {
-    poisData = pois || this.poiMap.$container.data().pois;
+  POIList.prototype._addPOIs = function(data) {
+    data = data || this.poiData;
 
-    for ( var i = 0, len = poisData.length; i < len; i++ ){
-      setTimeout(this._createMarker.bind(this, i), (i + 1) * 150);
+    for (var i = 0, len = data.length; i < len; i++){
+      this._createMarker(i);
     }
+
+    this._listen();
   };
 
-  POIList.prototype._createMarker = function(iterator) {
+  POIList.prototype._createMarker = function(i) {
     var marker = new window.google.maps.Marker({
-      icon: this._getIcon( poisData[ iterator ].topic, "small" ),
+      icon: this._getIcon( this.poiData[ i ].topic, "small" ),
       animation: window.google.maps.Animation.DROP,
       position: new window.google.maps.LatLng(
-                  poisData[ iterator ]["location-latitude"],
-                  poisData[ iterator ]["location-longitude"] ),
-      map: this.poiMap.gmap
+                  this.poiData[ i ].latitude,
+                  this.poiData[ i ].longitude ),
+      map: this.poiMap.map,
+      visible: false
     });
 
-    poisMarkers.push( marker );
+    setTimeout(marker.setVisible.bind(marker, true), (i + 1) * 100);
+
+    this.poiMarkers.push( marker );
   };
 
   POIList.prototype._listen = function() {
-
     this.$pois.on("click", function(event) {
-      this._selectPOI( $(event.target).closest("li").index() );
+      this.selectPOI( $(event.target).closest("li").index() );
     }.bind(this));
 
-    for (var i = 0, len = poisMarkers.length; i < len; i++){
-      window.google.maps.event.addListener(poisMarkers[i], "click", this._selectPOI.bind(this, i));
+    for (var i = 0, len = this.poiMarkers.length; i < len; i++){
+      window.google.maps.event.addListener(this.poiMarkers[i], "click", this.selectPOI.bind(this, i));
     }
-
   };
 
-  POIList.prototype._resetSelectedPOI = function() {
+  POIList.prototype.resetSelectedPOI = function() {
     this.$el.find(".is-selected").removeClass("is-selected");
-    for (var i = 0, len = poisMarkers.length; i < len; i++){
-      poisMarkers[ i ].setIcon(this._getIcon( poisData[ i ].topic, "small" ));
+    for (var i = 0, len = this.poiMarkers.length; i < len; i++){
+      this.poiMarkers[ i ].setIcon(this._getIcon( this.poiData[ i ].topic, "small" ));
     }
   };
 
-  POIList.prototype._selectPOI = function( poiIndex ) {
-    var $poiItem = this.$el.find("[data-slug='" + poisData[ poiIndex ].slug + "']"),
-        poiData = poisData[ poiIndex ],
-        poiMarker = poisMarkers[ poiIndex ];
+  POIList.prototype.selectPOI = function(i) {
+    var $poiItem = this.$pois.eq(i),
+        poiData = this.poiData[ i ],
+        poiMarker = this.poiMarkers[ i ];
 
-    this._resetSelectedPOI();
+    this.resetSelectedPOI();
 
     $poiItem.addClass("is-selected");
     poiMarker.setIcon( this._getIcon( poiData.topic, "large" ) );
-    this.poiMap.gmap.setCenter( poiMarker.getPosition() );
-    this.poiMap.gmap.panBy( this.poiMap.$container.width() / 6, 0 );
+    poiMarker.setZIndex(10000);
+
+    // Take into account the list overlay
+    this.poiMap.map.setCenter( poiMarker.getPosition() );
+    this.poiMap.map.panBy( this.poiMap.$container.width() / 6, 0 );
   };
 
   return POIList;

@@ -1,11 +1,8 @@
-.map__poi-list.js-poi-list
-  .nearby-pois
-    %ul.nearby-pois__list
-      - pois[0,5].each do |poi|
-        %li.obj-list__item.nearby-pois__poi.js-poi{:class => "icon--#{poi[:topic]}--pin--before", :data => poi}
-          %a.copy--h4{:href => "/#{poi[:slug]}"}
-            = poi[:name]
-          .nearby-pois__poi__description
-            %p
-              = poi[:description]
-
+.nearby-pois.js-poi-list
+  %ul.nearby-pois__list
+    - pois[0,5].each do |poi|
+      %li.nearby-pois__poi.js-poi{ class: "icon--#{poi[:topic]}--pin--before", data: { longitude: poi[:longitude], latitude: poi[:latitude], topic: poi[:topic] } }
+        %a.copy--h4{ href: "/#{poi[:slug]}" }
+          = poi[:name]
+        %p.nearby-pois__description
+          = poi[:description]

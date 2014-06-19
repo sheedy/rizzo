@@ -13,6 +13,14 @@ require([ "jquery", "public/assets/javascripts/lib/components/poi_map.js" ], fun
 
       mockAPI = jasmine.createSpyObj("Google Maps", [ "Map", "LatLng", "Marker", "Size", "Point" ]);
 
+      mockAPI.Map.andCallFake(function() {
+        return jasmine.createSpyObj("Google Map Instance", [ "setCenter", "panBy" ]);
+      });
+
+      mockAPI.Marker.andCallFake(function() {
+        return jasmine.createSpyObj("Google Maps Marker", [ "setIcon", "getPosition" ]);;
+      });
+
       spyOn(instance, "_googleMapsOptions").andReturn({
         center: null
       });
@@ -71,7 +79,7 @@ require([ "jquery", "public/assets/javascripts/lib/components/poi_map.js" ], fun
             size: { width: 100, height: 100 }
           },
           position: null,
-          map: instance.gmap
+          map: instance.map
         });
       });
 

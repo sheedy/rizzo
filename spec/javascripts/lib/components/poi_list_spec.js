@@ -4,15 +4,38 @@ require([ "jquery", "public/assets/javascripts/lib/components/poi_list.js" ], fu
 
   describe("POI List", function() {
 
-    var instance, mockAPI, markerAPI;
+    var instance, mockAPI;
 
     beforeEach(function() {
       loadFixtures("poi_list.html");
 
-      instance = new POIList();
+      jasmine.Clock.useMock();
 
-      markerAPI = jasmine.createSpyObj("Google Maps Marker", [ "setIcon" ]);
       mockAPI = jasmine.createSpyObj("Google Maps", [ "Map", "LatLng", "Marker", "Point", "Size", "Animation" ]);
+
+      mockAPI.Map.andCallFake(function() {
+        return jasmine.createSpyObj("Google Map Instance", [ "setCenter", "panBy" ]);
+      });
+
+      mockAPI.Marker.andCallFake(function() {
+        return jasmine.createSpyObj("Google Maps Marker", [ "setIcon", "getPosition", "setVisible", "setZIndex" ]);
+      });
+
+      instance = new POIList(null, {
+        $container: $("div.js-poi-map-container"),
+        $el: $("div.js-poi-map"),
+        marker: mockAPI.Marker(),
+        map: mockAPI.Map(),
+        isOpen: false
+      });
+
+      window.google = {
+        maps: mockAPI
+      };
+
+      window.google.maps.event = {
+        addListener: jasmine.createSpy()
+      };
     });
 
     afterEach(function() {
@@ -20,9 +43,8 @@ require([ "jquery", "public/assets/javascripts/lib/components/poi_list.js" ], fu
     });
 
     describe("Initialisation", function() {
-
       beforeEach(function() {
-        spyOn(instance, "_addPOIs");
+        spyOn(instance, "_addPOIs").andCallThrough();
       });
 
       it("should wait until POIMap is initialized", function() {
@@ -33,52 +55,47 @@ require([ "jquery", "public/assets/javascripts/lib/components/poi_list.js" ], fu
         expect(instance._addPOIs).toHaveBeenCalled();
       });
 
+      it("should collect POI data", function() {
+        $(".js-poi-map").trigger(":map/open");
+        jasmine.Clock.tick(1000);
+
+        expect(instance.poiData.length).toBe(4);
+      });
     });
 
     describe("Markers", function() {
       beforeEach(function() {
-        jasmine.Clock.useMock();
-        window.google = {
-          maps: mockAPI
-        };
+        $(".js-poi-map").trigger(":map/open");
+        jasmine.Clock.tick(1000);
       });
 
       it("should create all the markers", function() {
-        $(".js-poi-map").trigger(":map/open");
-        jasmine.Clock.tick(1000);
-
-        expect(window.google.maps.Marker.callCount).toBe(4);
+        // Parent POI maps component will also call Marker
+        expect(window.google.maps.Marker.callCount - 1).toBe(4);
+        expect(instance.poiMarkers.length).toBe(4);
       });
-
     });
 
     describe("POI Highlight", function() {
       beforeEach(function() {
-        jasmine.Clock.useMock();
-
-        mockAPI.Marker = markerAPI;
-        window.google = {
-          maps: mockAPI
-        };
-
-        spyOn(instance, "_selectPOI");
         $(".js-poi-map").trigger(":map/open");
         jasmine.Clock.tick(1000);
+
+        spyOn(instance, "_getIcon").andCallThrough();
       });
 
       it("should select poi on click", function() {
-        $(".js-poi").first().trigger("click");
+        instance.selectPOI(0);
 
-        expect(instance._selectPOI).toHaveBeenCalled();
-        expect($(".js-poi").first()).toHaveClass("is-selected");
+        expect(instance._getIcon.mostRecentCall.args[1]).toBe("large");
+        expect(instance.$pois.eq(0)).toHaveClass("is-selected");
       });
 
       it("should reset the selected poi", function() {
-        $(".js-poi").first().trigger("click");
-        instance._resetSelectedPOI();
+        instance.resetSelectedPOI();
 
-        expect($(".js-poi").first()).not.toHaveClass("is-selected");
-
+        expect(instance._getIcon.mostRecentCall.args[1]).toBe("small");
+        expect(instance.$pois.eq(0)).not.toHaveClass("is-selected");
       });
     });
 
