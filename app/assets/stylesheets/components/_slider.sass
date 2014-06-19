@@ -143,27 +143,3 @@ $slideHoverArrowSpacing: 0.357em
     padding-left: $slideHoverPadding
   .at-end &
     display: none
-
-.slider__pagination
-  +z-layer(top)
-  position: absolute
-  display: none
-  bottom: 16px
-  margin: 25px auto 0
-  text-align: center
-  width: 100%
-  .slider__show-pagination
-    display: initial
-
-.slider__pagination--link
-  @extend %image-replacement
-  border-radius: 3px
-  background: $details-panel-border
-  display: inline-block
-  height: 7px
-  margin: 0 3px
-  width: 7px
-  color: $lpblue
-
-  &:hover, &.is-active
-    background: $linkblue

@@ -5,12 +5,7 @@
       %a.slider__control.slider__control--next.js-slider-next.icon--chevron-right--before.icon--white--before{ href: "#" }<
         = "2 of #{properties[:images].length}"
       %a.slider__control.slider__control--prev.js-slider-previous.icon--chevron-left--after.icon--white--after{ href: "#" }
-        = "#{properties[:images].length} of #{properties[:images].length}"
-
-    .slider__pagination.js-slider-pagination.no-print
-      - properties[:images].each_with_index do |image, i|
-        .slider__pagination--link
-          = i + 1
+        = "#{properties[:images].length} of #{properties[:images].length}"    
 
   .slider__viewport.js-slider-viewport.js-onswipe.is-loading
     .slider__container.js-slider-container

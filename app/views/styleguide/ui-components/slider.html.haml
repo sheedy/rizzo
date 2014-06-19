@@ -8,5 +8,16 @@
   %p
     Responsive image slider component
 
+  %h2.copy--h2 Javascript Parameters
+  %p
+    %code
+      showSliderControls:
+    true by default. You can hide the controls in the slider with this parameter when the slider is created.
+
+  %pre.styleguide.copy--body.language-javascript
+    %code
+      :escaped
+        new Slider({ el: ".js-slider", showSliderControls: false });
+
 - sliders.each_with_index do |slider, i|
   = sg_component("slider", properties: slider, count: i, card_style: true, full_width: true)
