@@ -9,7 +9,6 @@ define([
   "lib/mixins/events",
   "lib/utils/template",
   "lib/page/viewport_helper",
-  "lib/core/feature_detect",
   "polyfills/function_bind"
 ], function($, asFlyout, asEventEmitter, Template, withViewportHelper) {
 
@@ -75,8 +74,9 @@ define([
     }.bind(this));
 
     this.$el.on(":lightbox/open", function(event, data) {
-      this.$lightbox.addClass("is-active is-visible");
+
       $("html").addClass("lightbox--open");
+      this.$lightbox.addClass("is-active is-visible");
       this._centerLightbox();
 
       setTimeout(function() {
@@ -98,21 +98,11 @@ define([
           $("#js-card-holder").trigger(":controller/back");
         }
 
-        if (window.lp.supports.transitionend){
-          this.$lightbox.one(window.lp.supports.transitionend, function() {
-            this.$lightbox.one(window.lp.supports.transitionend, function() {
-              this.$lightboxContent.empty();
-              this.$lightbox.removeClass("is-visible");
-              this.$lightbox.removeClass("is-active");
-            }.bind(this));
-
-          }.bind(this));
-        } else {
+        // Waits for the end of the transition.
+        setTimeout(function() {
           this.$lightboxContent.empty();
-          this.$lightbox.removeClass("is-visible");
-          this.$lightbox.removeClass("is-active");
-
-        }
+          this.$lightbox.removeClass("is-active is-visible");
+        }.bind(this), 300);
 
         this.$lightbox.removeClass("content-ready");
 
@@ -142,23 +132,12 @@ define([
   // @content: {string} the content to dump into the lightbox.
   LightBox.prototype._renderContent = function(content) {
 
-    if (window.lp.supports.transitionend){
-      this.$lightbox.one(window.lp.supports.transitionend, function() {
-
-        this.$lightboxContent.html(content);
-
-        this.$lightbox.one(window.lp.supports.transitionend, function() {
-          this.trigger(":lightbox/contentReady");
-        }.bind(this));
-
-        this.$lightbox.addClass("content-ready");
-
-      }.bind(this));
-    }else {
+    // Waits for the end of the transition.
+    setTimeout(function() {
       this.$lightboxContent.html(content);
       this.$lightbox.addClass("content-ready");
       this.trigger(":lightbox/contentReady");
-    }
+    }.bind(this), 300);
 
     this.$lightbox.removeClass("is-loading");
   };

@@ -1,5 +1,5 @@
 .lightbox
-  +z-layer(top)
+  +z-layer(modal)
   background: $body-background
   background: rgba($body-background, 0.95)
   left: 0
@@ -52,7 +52,6 @@
     visibility: hidden
 
   .content-ready &
-    transition: transform 0.3s ease-out, opacity 0.5s
     transform: translate3d(0, 0, 0)
     opacity: 1
     padding-bottom: 50px

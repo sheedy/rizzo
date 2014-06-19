@@ -52,16 +52,13 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
       beforeEach(function() {
         loadFixtures("lightbox.html");
         jasmine.Clock.useMock();
-        window.lp.supports = {
-          transitionend: "webkitTransitionEnd"
-        };
         lightbox = new LightBox({ showPreloader: true });
 
         $("#js-row--content").trigger(":lightbox/open");
-        $("#js-lightbox").trigger("webkitTransitionEnd");
       });
 
       it("should have css classes", function() {
+        jasmine.Clock.tick(301);
         expect($("#js-lightbox")).toHaveClass("is-active is-visible");
         expect($("html")).toHaveClass("lightbox--open");
       });
@@ -69,31 +66,23 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
       it("should close and clean the lightbox", function() {
 
         $("#js-row--content").trigger(":flyout/close");
-        $("#js-lightbox").trigger("webkitTransitionEnd");
-        $("#js-lightbox").trigger("webkitTransitionEnd");
+        jasmine.Clock.tick(301);
 
         expect($("#js-lightbox")).not.toHaveClass("content-ready");
         expect($("#js-lightbox")).not.toHaveClass("is-active");
         expect($("html")).not.toHaveClass("lightbox--open");
       });
 
-      afterEach(function() {
-        window.lp.supports = {};
-      });
-
     });
 
     describe("Functionality", function() {
       beforeEach(function() {
-        window.lp.supports = {
-          transitionend: "webkitTransitionEnd"
-        };
+        jasmine.Clock.useMock();
       });
 
       it("can update the lightbox contents", function() {
         $("#js-row--content").trigger(":lightbox/renderContent", "Test content here.");
-        $("#js-lightbox").trigger("webkitTransitionEnd");
-        $("#js-lightbox").trigger("webkitTransitionEnd");
+        jasmine.Clock.tick(301);
 
         expect($(".js-lightbox-content").html()).toBe("Test content here.");
         expect($("#js-lightbox")).toHaveClass("content-ready");
@@ -102,10 +91,6 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
 
       it("can add a custom class to the lightbox", function() {
         expect($("#js-lightbox")).toHaveClass("lightbox-foo");
-      });
-
-      afterEach(function() {
-        window.lp.supports = {};
       });
 
     });
