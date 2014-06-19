@@ -17,8 +17,8 @@ define([
     // the number of images to load on either side of is-current
     assetBalance: 2,
     assetReveal: false,
-    createControls: true,
-    keyboardControl: false
+    keyboardControl: false,
+    showSliderControls: true
   };
 
   function Slider(args) {
@@ -39,7 +39,9 @@ define([
       this._goToSlide(this.$slides.index(this.$currentSlide) + 1);
     }
 
-    this.config.createControls && this._createControls();
+    if (this.config.showSliderControls){
+      this._showControls();
+    }
 
     this._updateSlideClasses();
     this._updateCount();
@@ -65,8 +67,6 @@ define([
     this.$slidesViewport = this.$el.find(this.config.slidesViewport);
     this.$sliderControlsContainer = $(".js-slider-controls-container");
     this.$images = this.$slides.find("img");
-    this.$next = this.$sliderControlsContainer.find(".js-slider-next").attr("href", "");
-    this.$prev = this.$sliderControlsContainer.find(".js-slider-previous").attr("href", "");
   };
 
   Slider.prototype._handleEvents = function() {
@@ -77,20 +77,6 @@ define([
 
     this.$el.on(":swipe/left", this._nextSlide.bind(this));
     this.$el.on(":swipe/right", this._previousSlide.bind(this));
-
-    this.$next.on("click", function() {
-      _this._nextSlide();
-      return false;
-    });
-
-    this.$prev.on("click", function() {
-      _this._previousSlide();
-      return false;
-    });
-
-    this.$next.add(this.$prev).on("mouseenter click", function() {
-      _this._loadHiddenContent();
-    });
 
     this.config.keyboardControls && $(document).on("keydown", function(event) {
       if (event.metaKey || event.ctrlKey) return;
@@ -126,47 +112,30 @@ define([
     }
   };
 
-  Slider.prototype._createControls = function() {
+  Slider.prototype._showControls = function() {
     var _this = this,
-        pagination = "",
-        $slideLinks;
+        $next, $prev;
 
-    this.$sliderControls = $("<div class='slider__controls no-print'></div>");
-    this.$sliderPagination = $("<div class='slider__pagination no-print'></div>");
-    this.$next = $("<a href='#' class='slider__control slider__control--next js-slider-next icon--chevron-right--before icon--white--before'>2 of " + this.numSlides + "</a>");
-    this.$prev = $("<a href='#' class='slider__control slider__control--prev js-slider-previous icon--chevron-left--after icon--white--after'>" + this.numSlides + " of " + this.numSlides + "</a>");
-    this.$sliderControls.append(this.$next, this.$prev);
-    this.$sliderControlsContainer.append(this.$sliderControls);
-    $slideLinks = this.$sliderPagination.find(".slider__pagination--link");
-
-    this.$slides.each(function(i) {
-      return pagination += "<a href='#' class='slider__pagination--link'>" + (i + 1) + "</a>";
-    });
-
-    this.$sliderPagination.append(pagination);
-    this.$sliderControlsContainer.append(this.$sliderPagination);
     this._fadeControls();
+    this.$sliderControlsContainer.addClass("slider__show-controls");
 
-    $slideLinks.on({
-      click: function(e) {
-        var index = parseInt(e.target.innerHTML, 10);
-        _this.$slides.removeClass("is-potentially-next");
-        _this._goToSlide(index);
-        return false;
-      },
+    $next = this.$sliderControlsContainer.find(".js-slider-next").attr("href", "");
+    $prev = this.$sliderControlsContainer.find(".js-slider-previous").attr("href", "");
 
-      mouseenter: function(e) {
-        var index = parseInt(e.target.innerHTML, 10);
-        _this.$el.removeClass("is-animating");
-        _this.$slides.removeClass("is-potentially-next");
-        _this.$slides.eq(index - 1).addClass("is-potentially-next");
-        _this._loadHiddenContent();
-      },
-
-      mouseleave:  function() {
-        return _this.$slides.removeClass("is-potentially-next");
-      }
+    $next.on("click", function() {
+      _this._nextSlide();
+      return false;
     });
+
+    $prev.on("click", function() {
+      _this._previousSlide();
+      return false;
+    });
+
+    $next.add(this.$prev).on("mouseenter click", function() {
+      _this._loadHiddenContent();
+    });
+
   };
 
   Slider.prototype._loadHiddenContent = function() {
@@ -181,7 +150,7 @@ define([
       slides = this.$slides.slice(left, right);
     }
 
-    if (this.assetReveal) {
+    if (this.config.assetReveal) {
       this.$el.trigger(":asset/uncomment", [ slides, "[data-uncomment]" ]);
       this.$el.trigger(":asset/loadDataSrc", [ slides, "[data-src]" ]);
     }
@@ -232,15 +201,13 @@ define([
 
     next.html(currentHTML.replace(/([0-9]+)/, nextIndex));
     previous.html(currentHTML.replace(/([0-9]+)/, prevIndex));
-    this.$sliderControlsContainer.find(".slider__pagination--link.is-active").removeClass("is-active");
-    this.$sliderControlsContainer.find(".slider__pagination--link").eq(this.currentSlide - 1).addClass("is-active");
   };
 
   Slider.prototype._fadeControls = function() {
     var _this = this;
 
     setTimeout(function() {
-      _this.$sliderControls.addClass("is-faded-out");
+      _this.$sliderControlsContainer.find(".js-slider-controls").addClass("is-faded-out");
     }, 1000);
   };
 

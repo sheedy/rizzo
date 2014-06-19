@@ -37,14 +37,6 @@ require([ "public/assets/javascripts/lib/components/slider.js" ], function(Slide
         expect($(".slider__control--prev").length).toBeGreaterThan(0);
       });
 
-      it("adds pagination links for the slides", function() {
-        expect($(".slider__pagination").length).toBeGreaterThan(0);
-      });
-
-      it("adds a pagination link for each slide", function() {
-        expect($(".slider__pagination--link").length).toEqual($(".slider__slide").length);
-      });
-
       it("has the correct slides state", function() {
         expect($(".slider__control--next").html()).toBe("2 of 5");
       });
@@ -61,12 +53,6 @@ require([ "public/assets/javascripts/lib/components/slider.js" ], function(Slide
         window.slider._nextSlide();
         expect($(".slider__control--next").html()).toBe("3 of 5");
         expect($(".slider__control--prev").html()).toBe("1 of 5");
-      });
-
-      it("updates the pagination after navigating", function() {
-        window.slider._nextSlide();
-        expect($(".slider__pagination--link").eq(0)).not.toHaveClass("is-active");
-        expect($(".slider__pagination--link").eq(1)).toHaveClass("is-active");
       });
 
       it("goes to the next slide (first -> second)", function() {
@@ -87,12 +73,12 @@ require([ "public/assets/javascripts/lib/components/slider.js" ], function(Slide
       });
 
       it("knows when at the beginning", function() {
-        expect($(".slider__viewport")).toHaveClass("at-beginning");
+        expect($(".js-slider-controls-container")).toHaveClass("at-beginning");
       });
 
       it("knows when at the end", function() {
         slider._goToSlide($(".slider__slide").length);
-        expect($(".slider__viewport")).toHaveClass("at-end");
+        expect($(".js-slider-controls-container")).toHaveClass("at-end");
       });
     });
 

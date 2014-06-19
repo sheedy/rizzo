@@ -9,27 +9,31 @@
 		width: 427px;
 	}
 </style>
-<div class="slider__viewport js-slider-viewport" id="js-slider">
-	<ul class="slider__container js-slider-container">
-		<li class="slider__slide js-slide">
-			1
-			<img src="http://placehold.it/427x290&text=photo+1" alt="">
-		</li>
-		<li class="slider__slide js-slide">
-			2
-			<img src="http://placehold.it/427x290&text=photo+2" alt="">
-		</li>
-		<li class="slider__slide js-slide">
-			3
-			<img src="http://placehold.it/427x290&text=photo+3" alt="">
-		</li>
-		<li class="slider__slide js-slide">
-			4
-			<img src="http://placehold.it/427x290&text=photo+4" alt="">
-		</li>
-		<li class="slider__slide js-slide">
-			5
-			<img src="http://placehold.it/427x290&text=photo+5" alt="">
-		</li>
-	</ul>
+<div id="js-slider" class="js-slider slider slider--16x9" role="widget">
+  <div class="slider__controls-container js-slider-controls-container">
+    <div class="slider__controls js-slider-controls no-print">
+      <a class="slider__control slider__control--next js-slider-next icon--chevron-right--before icon--white--before" href="">2 of 5</a>
+      <a class="slider__control slider__control--prev js-slider-previous icon--chevron-left--after icon--white--after" href="">1 of 5</a>
+    </div>
+  </div>
+  <div class="slider__viewport js-slider-viewport js-onswipe is-loading">
+    <div class="slider__container js-slider-container">
+      <div class="is-loaded js-slide slider__slide">
+        <img src="http://placehold.it/427x290&text=photo+1" alt="">
+      </div>
+      <div class="slider__slide js-slide is-hidden">
+        <img src="http://placehold.it/427x290&text=photo+2" alt="">
+      </div>
+      <div class="slider__slide js-slide is-hidden">
+        <img src="http://placehold.it/427x290&text=photo+3" alt="">
+      </div>
+      <div class="slider__slide js-slide is-hidden">
+        <img src="http://placehold.it/427x290&text=photo+4" alt="">
+      </div>
+      <div class="slider__slide js-slide is-hidden">
+        <img src="http://placehold.it/427x290&text=photo+5" alt="">
+      </div>
+    </div>
+
+  </div>
 </div>
