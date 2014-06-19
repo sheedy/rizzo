@@ -19,7 +19,7 @@ module CSSAnalysis
 
   def dates
     {
-      today: Time.now.strftime("%Y-%m-%d"),
+      today: 61.minutes.ago.strftime("%Y-%m-%d"),
       yesterday: Time.now.yesterday.strftime("%Y-%m-%d"),
       last_week: Time.now.weeks_ago(1).strftime("%Y-%m-%d")
     }
@@ -27,11 +27,16 @@ module CSSAnalysis
 
   def fetchStats(stylesheet)
     @stats = {}
+
     ["today", "yesterday", "last_week"].each do |file|
       suffix = dates[:"#{file}"]
-      @stats[file] = JSON.parse(open("http://assets.staticlp.com/perf/css-analysis/result-#{suffix}.json").read).map do |stat|
-        removeCruft(stat)
-        processStats(stat)
+      begin
+        @stats[file] = JSON.parse(open("http://assets.staticlp.com/perf/css-analysis/result-#{suffix}.json").read).map do |stat|
+          removeCruft(stat)
+          processStats(stat)
+        end
+      rescue
+        @stats[file] = []
       end
     end
     @stats
