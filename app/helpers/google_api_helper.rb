@@ -10,8 +10,9 @@ module GoogleApiHelper
 
   def google_static_map_src(properties, use_stylers=true)
     src = "https://maps.googleapis.com/maps/api/staticmap"
-    src+= "?size=#{properties[:width]}x#{properties[:height]}"
-    src+= "&zoom=#{properties[:zoom]}&scale=#{properties[:scale]}"
+    src += "?key=AIzaSyDbrk3TRuBye8K33U23ixYzmOpiLKZ58JY"
+    src += "&size=#{properties[:width]}x#{properties[:height]}"
+    src += "&zoom=#{properties[:zoom]}&scale=#{properties[:scale]}"
 
     if properties[:marker]
       src+= "&markers=icon:#{CGI.escape(properties[:icon])}|#{properties[:latitude]},#{properties[:longitude]}"
