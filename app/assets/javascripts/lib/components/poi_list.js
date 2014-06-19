@@ -73,10 +73,10 @@ define([
     data = data || this.poiData;
 
     for (var i = 0, len = data.length; i < len; i++){
-      setTimeout(this._createMarker.bind(this, i), (i + 1) * 150);
+      this._createMarker(i);
     }
 
-    setTimeout(this._listen.bind(this), 200);
+    this._listen();
   };
 
   POIList.prototype._createMarker = function(i) {
@@ -86,8 +86,11 @@ define([
       position: new window.google.maps.LatLng(
                   this.poiData[ i ].latitude,
                   this.poiData[ i ].longitude ),
-      map: this.poiMap.map
+      map: this.poiMap.map,
+      visible: false
     });
+
+    setTimeout(marker.setVisible.bind(marker, true), (i + 1) * 100);
 
     this.poiMarkers.push( marker );
   };
@@ -118,7 +121,7 @@ define([
 
     $poiItem.addClass("is-selected");
     poiMarker.setIcon( this._getIcon( poiData.topic, "large" ) );
-    poiMarker.setZIndex(1000);
+    poiMarker.setZIndex(10000);
 
     // Take into account the list overlay
     this.poiMap.map.setCenter( poiMarker.getPosition() );

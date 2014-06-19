@@ -18,7 +18,7 @@ require([ "jquery", "public/assets/javascripts/lib/components/poi_list.js" ], fu
       });
 
       mockAPI.Marker.andCallFake(function() {
-        return jasmine.createSpyObj("Google Maps Marker", [ "setIcon", "getPosition", "setZIndex" ]);
+        return jasmine.createSpyObj("Google Maps Marker", [ "setIcon", "getPosition", "setVisible", "setZIndex" ]);
       });
 
       instance = new POIList(null, {
@@ -31,6 +31,10 @@ require([ "jquery", "public/assets/javascripts/lib/components/poi_list.js" ], fu
 
       window.google = {
         maps: mockAPI
+      };
+
+      window.google.maps.event = {
+        addListener: jasmine.createSpy()
       };
     });
 
