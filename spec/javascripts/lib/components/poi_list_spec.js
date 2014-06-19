@@ -9,8 +9,6 @@ require([ "jquery", "public/assets/javascripts/lib/components/poi_list.js" ], fu
     beforeEach(function() {
       loadFixtures("poi_list.html");
 
-      instance = new POIList();
-
       jasmine.Clock.useMock();
 
       mockAPI = jasmine.createSpyObj("Google Maps", [ "Map", "LatLng", "Marker", "Point", "Size", "Animation" ]);
@@ -23,8 +21,13 @@ require([ "jquery", "public/assets/javascripts/lib/components/poi_list.js" ], fu
         return jasmine.createSpyObj("Google Maps Marker", [ "setIcon", "getPosition", "setZIndex" ]);
       });
 
-      instance.poiMap.marker = mockAPI.Marker();
-      instance.poiMap.map = mockAPI.Map();
+      instance = new POIList(null, {
+        $container: $("div.js-poi-map-container"),
+        $el: $("div.js-poi-map"),
+        marker: mockAPI.Marker(),
+        map: mockAPI.Map(),
+        isOpen: false
+      });
 
       window.google = {
         maps: mockAPI
@@ -52,7 +55,7 @@ require([ "jquery", "public/assets/javascripts/lib/components/poi_list.js" ], fu
         $(".js-poi-map").trigger(":map/open");
         jasmine.Clock.tick(1000);
 
-        expect(instance.poisData.length).toBe(4);
+        expect(instance.poiData.length).toBe(4);
       });
     });
 
@@ -65,7 +68,7 @@ require([ "jquery", "public/assets/javascripts/lib/components/poi_list.js" ], fu
       it("should create all the markers", function() {
         // Parent POI maps component will also call Marker
         expect(window.google.maps.Marker.callCount - 1).toBe(4);
-        expect(instance.poisMarkers.length).toBe(4);
+        expect(instance.poiMarkers.length).toBe(4);
       });
     });
 

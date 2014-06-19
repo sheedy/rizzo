@@ -1,9 +1,8 @@
 define([
   "jquery",
-  "lib/components/poi_map",
   "lib/components/map_styles",
   "polyfills/function_bind"
-], function($, POIMap, MapStyles) {
+], function($, MapStyles) {
 
   "use strict";
 
@@ -13,15 +12,11 @@ define([
   };
 
   function POIList(args, poiMap) {
-    this.poiMap = poiMap || new POIMap;
+    this.poiMap = poiMap;
     this.config = $.extend({}, defaults, args);
 
     this.$el = $(this.config.el);
     this.$pois = this.$el.find(this.config.pois);
-
-    this.poisData = [];
-    this.poisMarkers = [];
-    this.markerImages = {};
 
     if (this.$pois.length) {
       this._init();
@@ -29,6 +24,10 @@ define([
   }
 
   POIList.prototype._init = function() {
+    this.poiData = [];
+    this.poiMarkers = [];
+    this.markerImages = {};
+
     if (this.poiMap.isOpen) {
       this._build();
     } else {
@@ -38,7 +37,7 @@ define([
 
   POIList.prototype._build = function() {
     for (var i = 0, len = this.$pois.length; i < len; i++) {
-      this.poisData.push(this.$pois.eq(i).data());
+      this.poiData.push(this.$pois.eq(i).data());
     }
 
     if (this.poiMap.marker) {
@@ -71,7 +70,7 @@ define([
   };
 
   POIList.prototype._addPOIs = function(data) {
-    data = data || this.poisData;
+    data = data || this.poiData;
 
     for (var i = 0, len = data.length; i < len; i++){
       setTimeout(this._createMarker.bind(this, i), (i + 1) * 150);
@@ -82,15 +81,15 @@ define([
 
   POIList.prototype._createMarker = function(i) {
     var marker = new window.google.maps.Marker({
-      icon: this._getIcon( this.poisData[ i ].topic, "small" ),
+      icon: this._getIcon( this.poiData[ i ].topic, "small" ),
       animation: window.google.maps.Animation.DROP,
       position: new window.google.maps.LatLng(
-                  this.poisData[ i ].latitude,
-                  this.poisData[ i ].longitude ),
+                  this.poiData[ i ].latitude,
+                  this.poiData[ i ].longitude ),
       map: this.poiMap.map
     });
 
-    this.poisMarkers.push( marker );
+    this.poiMarkers.push( marker );
   };
 
   POIList.prototype._listen = function() {
@@ -98,22 +97,22 @@ define([
       this.selectPOI( $(event.target).closest("li").index() );
     }.bind(this));
 
-    for (var i = 0, len = this.poisMarkers.length; i < len; i++){
-      window.google.maps.event.addListener(this.poisMarkers[i], "click", this.selectPOI.bind(this, i));
+    for (var i = 0, len = this.poiMarkers.length; i < len; i++){
+      window.google.maps.event.addListener(this.poiMarkers[i], "click", this.selectPOI.bind(this, i));
     }
   };
 
   POIList.prototype.resetSelectedPOI = function() {
     this.$el.find(".is-selected").removeClass("is-selected");
-    for (var i = 0, len = this.poisMarkers.length; i < len; i++){
-      this.poisMarkers[ i ].setIcon(this._getIcon( this.poisData[ i ].topic, "small" ));
+    for (var i = 0, len = this.poiMarkers.length; i < len; i++){
+      this.poiMarkers[ i ].setIcon(this._getIcon( this.poiData[ i ].topic, "small" ));
     }
   };
 
   POIList.prototype.selectPOI = function(i) {
     var $poiItem = this.$pois.eq(i),
-        poiData = this.poisData[ i ],
-        poiMarker = this.poisMarkers[ i ];
+        poiData = this.poiData[ i ],
+        poiMarker = this.poiMarkers[ i ];
 
     this.resetSelectedPOI();
 
