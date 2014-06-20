@@ -66,7 +66,11 @@ define([ "jquery", "lib/core/ad_sizes", "lib/core/ad_unit" ], function($, adSize
     }
 
     if (!currentUnit.isEmpty()) {
-      window.lp.analytics.api.trackEvent("advertising", "page-load-impression", $adunit.data().sizeMapping);
+      window.lp.analytics.api.trackEvent({
+        category: "advertising",
+        action: "page-load-impression",
+        label: $adunit.data().sizeMapping
+      });
     }
 
   };
