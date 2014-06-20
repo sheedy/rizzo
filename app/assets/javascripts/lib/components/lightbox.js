@@ -114,8 +114,9 @@ define([
       this._renderContent(content);
     }.bind(this));
 
-    $("#js-card-holder").on(":layer/received", function(event, content) {
-      this._renderContent(content);
+    $("#js-card-holder").on(":layer/received", function(event, data) {
+      // TODO render pagination
+      this._renderContent(data.content);
     }.bind(this));
   };
 
