@@ -12,25 +12,29 @@
         float: right
         text-align: right
   .responsive &
+    +z-layer(modal)
     background: none
+    position: relative
     +respond-to(wide-view)
       background: #fff
+      position: static
 
 .row__inner--secondary
-  padding-top: 32px
+  padding-top: 28px
   .responsive &
     padding-top: 15px
     +respond-to(wide-view)
       width: $fixed-layout-width
       margin: 0 auto
-      padding-top: 32px
+      padding-top: 28px
 
 .row__title--secondary
-  margin-bottom: 15px
+  margin-bottom: 8px
   max-width: 340px
   .responsive &
     max-width: 100%
     margin-bottom: 20px
+    margin-top: 40px
     padding: 4px 0
     +respond-to(400)
       max-width: 70%
@@ -40,6 +44,7 @@
       max-width: 340px
     +respond-to(wide-view)
       +vertically-center(30)
+      margin-top: 0
       padding: 0
   &:hover
     max-width: none
@@ -54,28 +59,54 @@
 // ----------------------------------------------------------------------------
 
 .nav--secondary
-  +font-size(13)
   @extend %subpixel-text
   +font-size(14)
+  margin-top: 6px
 
-.nav--secondary__dropdown
-  box-sizing: border-box
-  width: 100%
-  +respond-to(400)
-    width: auto
-  +respond-to(wide-view)
-    margin-left: 10px
-  .dropdown__value
-    background-color: white
-    +font-size(16)
+  .responsive &
+    left: -5.5%
+    margin-top: 0
+    position: absolute
+    top: 46px
+    width: 111%
+    &.is-active
+      display: block
+    &.nav__tabs
+      top: 0
+    +respond-to(wide-view)
+      position: static
+      width: auto
 
 .nav__item--secondary
   +font-size(14)
-  color: $titlegray
-  padding: 6px 8px 18px
+  background: white
+  box-sizing: border-box
+  letter-spacing: 0.02em
+  padding: 6px 8px 12px
   text-transform: uppercase
-  &:active, &:hover, &.current
+  &, & > .nav__item
+    color: $titlegray
+  &:active, &:hover, &.current,
+  &.nav__submenu__trigger:hover > .nav__item
     color: $lpblue
   &.current
     border-bottom: 2px solid $lpblue
     font-weight: bold
+  > .nav__item--submenu
+    display: block
+    margin: -18px 0
+    padding: 18px 0
+  .responsive &
+    border-bottom: 1px solid $body-background
+    display: block
+    padding: 18px 20px
+    text-align: left
+    width: 100%
+    +respond-to(wide-view)
+      background: none
+      border-bottom: none
+      display: inline-block
+      padding: 6px 8px 12px
+      width: auto
+      &.current
+        border-bottom: 2px solid $lpblue
