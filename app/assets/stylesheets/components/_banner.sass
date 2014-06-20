@@ -7,7 +7,7 @@
   background-position: center 30%
 
   &:before
-    +z-layer
+    +z-layer(middle)
     +image-overlay--gradient($color-end: $darkgray, $opacity-end: 0.1, $stop: 100%)
     content: ''
     position: absolute
@@ -34,7 +34,7 @@
     height: 450px
 
 .hero-banner__content
-  +z-layer(middle)
+  +z-layer(top)
   position: relative
   height: 100%
   color: white
