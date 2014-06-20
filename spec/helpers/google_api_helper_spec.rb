@@ -40,7 +40,7 @@ describe GoogleApiHelper do
     end
 
     it "should return static map SRC" do
-      helper.google_static_map_src(properties, false).should eq "https://maps.googleapis.com/maps/api/staticmap?size=320x240&zoom=15&scale=2&center=51.5073,-0.1277"
+      helper.google_static_map_src(properties, false).should eq "https://maps.googleapis.com/maps/api/staticmap?key=AIzaSyDbrk3TRuBye8K33U23ixYzmOpiLKZ58JY&size=320x240&zoom=15&scale=2&center=51.5073,-0.1277"
     end
 
   end
