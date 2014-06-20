@@ -26,7 +26,6 @@ bin
 test/tmp
 test/version_tmp
 tmp
-tags
 log/*
 public/
 node_modules/

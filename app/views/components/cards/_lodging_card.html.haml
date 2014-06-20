@@ -21,7 +21,7 @@
       - price = properties['total_price'] || properties[:indicative_price_in_user_currency]
       .card__tags
         - if price && price > 0
-          = ui_component('price_tag', properties: { currency: raw(currency.to_symbol), price: price(price, :no_pence), scope: properties['total_price'] ? 'total stay' : 'per night' })
+          = ui_component('tags/price', properties: { currency: raw(currency.to_symbol), price: price(price, :no_pence), scope: properties['total_price'] ? 'total stay' : 'per night' })
         = render :partial => '/components/cards/partials/tags', :locals => { properties: properties }
 
     - else
