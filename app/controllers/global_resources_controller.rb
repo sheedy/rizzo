@@ -14,7 +14,7 @@ class GlobalResourcesController < GlobalController
   end
 
   def component
-    render "components/_#{params[:component]}", :locals => { :properties => params }
+    render "components/#{params[:component]}", :locals => { :properties => params }
   end
 
 end
