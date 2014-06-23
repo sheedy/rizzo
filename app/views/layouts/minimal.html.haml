@@ -1,15 +1,13 @@
 = render 'layouts/core/doctype_declaration'
 
 %head
-  = render 'layouts/core/head', responsive: true, suppress_tynt: (defined?(suppress_tynt) ? suppress_tynt : false)
+  = render 'layouts/core/head', responsive: true, suppress_tynt: true
 
-%body.responsive
+%body.responsive.minimal
   .wrapper.js-wrapper
 
-    %a.media--lp-logo.logo--header.icon--lp-logo.icon--white(href='http://www.lonelyplanet.com' title='Return to homepage')
-
-    .nav-container
-      &nbsp;
+    .row--faux-banner
+      %a.media--lp-logo.logo--header.icon--lp-logo.icon--white(href='http://www.lonelyplanet.com' title='Return to homepage')
 
     .row.row--content{ id: 'js-row--content' }
 
@@ -19,8 +17,5 @@
             = yield :alerts
 
       = yield
-
-    .wrapper.wrapper--footer
-      &nbsp;
 
     = render 'layouts/core/snippets/footer_js'
