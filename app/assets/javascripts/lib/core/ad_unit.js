@@ -1,4 +1,4 @@
-define([ "jquery", "lib/core/ads/double_mpu" ], function($, DoubleMPU) {
+define(function() {
 
   "use strict";
 
@@ -51,7 +51,6 @@ define([ "jquery", "lib/core/ads/double_mpu" ], function($, DoubleMPU) {
 
       if (this.$iframe.height() > $container.height()) {
         $container.addClass("card--sponsored--double-mpu");
-        this.extension = new DoubleMPU(this.$target, $container);
       }
     }
 
