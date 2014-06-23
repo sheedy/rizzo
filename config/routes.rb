@@ -49,11 +49,7 @@ Rizzo::Application.routes.draw do
   get 'styleguide/css-utilities/',  to: redirect('/styleguide/css-utilities/proportional-grid')
   get 'styleguide/page-layout/',    to: redirect('/styleguide/page-layout/using-rizzo-layouts')
 
-  get 'styleguide/design-elements/:section' => 'styleguide#designElements'
-  get 'styleguide/page-layout/:section'     => 'styleguide#pageLayout'
-  get 'styleguide/ui-components/:section'   => 'styleguide#uiComponent'
-  get 'styleguide/js-components/:section'   => 'styleguide#jsComponent'
-  get 'styleguide/css-utilities/:section'   => 'styleguide#cssUtility'
+  get 'styleguide/*section' => 'styleguide#show'
 
   get 'performance/',                         to: redirect('/performance/css-analysis')
 
