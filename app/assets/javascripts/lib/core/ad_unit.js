@@ -34,7 +34,7 @@ define(function() {
 
   AdUnit.prototype.getType = function() {
     var patterns = /(leaderboard|mpu|trafficDriver|adSense|sponsorTile)/,
-        matches = this.$target.attr("id").match(patterns);
+        matches = this.$target.attr("class").match(patterns);
 
     return matches ? matches[1] : null;
   };
