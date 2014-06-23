@@ -1,16 +1,18 @@
 module GoogleApiHelper
 
-  def google_js_api_uri(js_api_key = 'ABQIAAAADUr8Vd6I7bfZ5k4c27F7KxR5cxXriAJsP5a75Cx4cnHTXGWMNxQxhFddQkNg7EBCllU86qgA_ugglg')
-    javascript_path "http://www.google.com/jsapi?key=#{js_api_key}"
+  API_KEY = "AIzaSyBQxopw4OR08VaLVtHaY4XEXWk3dvLSj5k"
+
+  def google_js_api_uri(key=API_KEY)
+    javascript_path "http://www.google.com/jsapi?key=#{key}"
   end
 
   def google_maps_url(latitude, longitude)
     "https://www.google.com/maps/place/#{latitude},#{longitude}/"
   end
 
-  def google_static_map_src(properties, use_stylers=true)
+  def google_static_map_src(properties, use_stylers=true, key=API_KEY)
     src = "https://maps.googleapis.com/maps/api/staticmap"
-    src += "?key=AIzaSyDbrk3TRuBye8K33U23ixYzmOpiLKZ58JY"
+    src += "?key=#{key}"
     src += "&size=#{properties[:width]}x#{properties[:height]}"
     src += "&zoom=#{properties[:zoom]}&scale=#{properties[:scale]}"
 

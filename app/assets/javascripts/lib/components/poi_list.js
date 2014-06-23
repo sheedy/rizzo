@@ -109,6 +109,7 @@ define([
     this.$el.find(".is-selected").removeClass("is-selected");
     for (var i = 0, len = this.poiMarkers.length; i < len; i++){
       this.poiMarkers[ i ].setIcon(this._getIcon( this.poiData[ i ].topic, "small" ));
+      this.poiMarkers[ i ].setZIndex(1000);
     }
   };
 
@@ -121,7 +122,7 @@ define([
 
     $poiItem.addClass("is-selected");
     poiMarker.setIcon( this._getIcon( poiData.topic, "large" ) );
-    poiMarker.setZIndex(10000);
+    poiMarker.setZIndex(1000 + i);
 
     // Take into account the list overlay
     this.poiMap.map.setCenter( poiMarker.getPosition() );
