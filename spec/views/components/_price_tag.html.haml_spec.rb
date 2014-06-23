@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'components/_price_tag.html.haml' do
+describe 'components/tags/_price.html.haml' do
 
   describe 'sale price' do
     it 'shows retail price if on sale' do

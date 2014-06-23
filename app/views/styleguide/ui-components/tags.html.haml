@@ -3,7 +3,14 @@
 - tags_list = YAML.load(File.read(File.expand_path('../../../../data/styleguide/tags_stubs.yml', __FILE__)))
 .card.styleguide-intro.context--content
   .clearfix
-    %h1.copy--h1 Tags
+    %h1.copy--h1 Price Tags
 
-- tags_list.each_with_index do | stub, i |
-  = styleguide_component('price_tag', properties: stub, count: i, card_style: true)
+- tags_list['tag_price'].each_with_index do | stub, i |
+  = styleguide_component('tags/price', properties: stub, count: i, card_style: true)
+
+.card.styleguide-intro.context--content
+  .clearfix
+    %h1.copy--h1 Competition Tag
+
+- tags_list['tag_competition'].each_with_index do | stub, i |
+  = styleguide_component('tags/competition', properties: stub, count: i, card_style: true)
