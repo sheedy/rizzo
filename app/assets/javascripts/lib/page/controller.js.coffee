@@ -41,10 +41,10 @@ define ['jquery', 'lib/mixins/events', 'lib/page/pushstate', 'lib/mixins/page_st
         @pushstate.navigate(@_serializeState(), @states[@currentState].documentRoot)
         @_callServer(@_createRequestUrl(@states[@currentState].documentRoot), @newPage, analytics)
 
-      $(LISTENER).on ':layer/request', (e, data, analytics) =>
+      $(LISTENER).on ':layer/request', (e, data) =>
         @_generateState( data.url.split('?')[0] )
         @pushstate.navigate(@_serializeState(), @states[@currentState].documentRoot)
-        @_callServer(@_createRequestUrl(@states[@currentState].documentRoot), @newLayer, analytics)
+        @_callServer(@_createRequestUrl(@states[@currentState].documentRoot), @newLayer)
 
       $(LISTENER).on ':controller/back', (e, data, analytics) =>
         @_removeState()
@@ -70,9 +70,9 @@ define ['jquery', 'lib/mixins/events', 'lib/page/pushstate', 'lib/mixins/page_st
       @_updateOffset(data.pagination) if data.pagination and data.pagination.page_offsets
       @trigger(':page/received', [data, @states[@currentState].state, analytics])
 
-    newLayer: (data, analytics) =>
+    newLayer: (data) =>
       @_updateGoogleAnalytics(data)
-      @trigger(':layer/received', [data, @states[@currentState].state, analytics])
+      @trigger(':layer/received', [data, @states[@currentState].state])
 
 
     # Private

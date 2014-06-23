@@ -43,6 +43,15 @@ define([ "jquery", "sCode" ], function($) {
       }
     }.bind(this));
 
+    $listener.on(":layer/received", function(e, data) {
+      var title = $(data.content).find("#js-article-title").text();
+      this.track({
+        eVar7: title,
+        prop11: title,
+        prop41: window.location.pathname
+      }, true);
+    }.bind(this));
+
   };
 
   // -------------------------------------------------------------------------
