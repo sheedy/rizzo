@@ -25,4 +25,8 @@ class GlobalResourcesController < GlobalController
     render '/global-nav/responsive', :layout=> 'responsive'
   end
 
+  def minimal
+    render '/global-nav/minimal', :layout=> 'minimal'
+  end
+
 end
