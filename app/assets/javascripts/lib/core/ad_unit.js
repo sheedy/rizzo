@@ -1,4 +1,4 @@
-define([ "jquery", "lib/core/ads/double_mpu" ], function($, DoubleMPU) {
+define(function() {
 
   "use strict";
 
@@ -34,7 +34,7 @@ define([ "jquery", "lib/core/ads/double_mpu" ], function($, DoubleMPU) {
 
   AdUnit.prototype.getType = function() {
     var patterns = /(leaderboard|mpu|trafficDriver|adSense|sponsorTile)/,
-        matches = this.$target.attr("id").match(patterns);
+        matches = this.$target.attr("class").match(patterns);
 
     return matches ? matches[1] : null;
   };
@@ -51,7 +51,6 @@ define([ "jquery", "lib/core/ads/double_mpu" ], function($, DoubleMPU) {
 
       if (this.$iframe.height() > $container.height()) {
         $container.addClass("card--sponsored--double-mpu");
-        this.extension = new DoubleMPU(this.$target, $container);
       }
     }
 
