@@ -1,0 +1,28 @@
+.user_attribution__source
+  +font-size(16)
+  &:hover
+    text-decoration: none
+  &.theme--dark
+    color: $base-font-color
+  &.theme--light
+    color: white
+
+.user_attribution__source-text
+  font-style: italic
+  font-weight: lighter
+
+.user_attribution__avatar
+  +size(30px)
+  @extend %inline-block
+  vertical-align: middle
+  border-radius: 50%
+  .user_attribution--small &
+    +size(30px)
+
+  // While we're using the static layout don't hide
+  // all the breakpoints behind the responsive flag
+  +respond-to(wide-view)
+    +size(50px)
+
+.user_attribution__username
+  font-weight: bold

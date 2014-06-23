@@ -1,0 +1,6 @@
+%a.user_attribution__source.mv--split--left{href: properties[:url], class: "theme--#{properties[:theme]} user_attribution--#{properties[:size]}"}
+  = safe_image_tag(properties[:image], class: 'user_attribution__avatar', alt: properties[:name], lazyload: defined?(lazyload))
+  %span.user_attribution__source-text
+    by
+  %span.user_attribution__username
+    = properties[:name]

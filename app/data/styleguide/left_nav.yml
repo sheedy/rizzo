@@ -145,6 +145,9 @@
           :name: "Badges"
           :slug: "badges"
         -
+          :name: "User Attribution"
+          :slug: "user-attribution"
+        -
           :name: "Buttons"
           :slug: "buttons"
         -
