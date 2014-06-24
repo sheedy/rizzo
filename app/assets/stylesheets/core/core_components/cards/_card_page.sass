@@ -5,63 +5,17 @@
 // -----------------------------------------------------------------------------
 
 .card--page
-  @extend %clearfix
-  @extend %rounded-corners
-  padding: 25px 25px 10px
-  position: relative
-
-  .copy--h1
-    line-height: 1.1em
-    margin: 0 0 10px 0
-
-  .tag
-    +font-size(14)
-  .tag--price__amount
-    +font-size(30)
+  border-radius: 4px
 
   .row__inner--full-width &
     border-radius: 0
     +respond-to(wide-view)
       border-radius: 4px
 
-.card--page--full-image
-  margin-bottom: 0
-
-.card--page__hero
-  border-radius: 4px 4px 0 0
-  height: 300px
-  overflow: hidden
-  position: relative
-  &:after
-    @extend %empty-abs-generated-content
-    +image-overlay--gradient($stop: 50%)
-    top: 0
-    left: 0
-    width: 100%
-    height: inherit
-  > img
-    width: 100%
-  .card__content
-    +z-layer
-    padding: 13px 25px
-  .card__name
-    +font-size(32)
-    margin-bottom: 5px
-
-.card--page__hero--attributed
-  .card__content
-    bottom: 0
-    height: 65px
-
-.card--page__inner
-  @extend %clearfix
-
-.card--page__header
-  border-bottom: 1px solid $body-background
-  margin-bottom: 20px
-  padding-bottom: 20px
-  &.has-social
-    margin-bottom: 0
+  .tag
+    +font-size(14)
+  .tag--price__amount
+    +font-size(30)
 
 .card--top-choice
   &:after
@@ -75,19 +29,61 @@
       background: url(image_path("shared/top-choice-2x.png"))
       background-size: 100%
 
-  .card--page__header
+// -----------------------------------------------------------------------------
+//  Hero
+// -----------------------------------------------------------------------------
+
+.card--page__hero
+  position: relative
+  height: 300px
+  overflow: hidden
+  border-radius: 4px 4px 0 0
+  &:after
+    @extend %empty-abs-generated-content
+    +image-overlay--gradient($stop: 50%)
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+
+  > img
+    width: 100%
+
+.card--page__hero-content
+  +z-layer
+  position: absolute
+  left: 0
+  right: 0
+  bottom: 0
+  padding: 15px 25px
+  color: white
+
+.card--page__hero-cta
+  float: right
+  white-space: nowrap
+
+.card--page__hero-name
+  +font-size(32)
+
+// -----------------------------------------------------------------------------
+//  Header
+// -----------------------------------------------------------------------------
+
+.card--page__header
+  padding: 20px 25px
+  .copy--h1
+    line-height: 1.1em
+    margin: 0
+  .card--top-choice &
     min-height: 60px
     padding-left: 73px
 
-
-// Should really live elsewhere, or be a margin-bottom on card--page
-.section--related-content
-  margin-top: 30px
-
-.card--page__breadcrumb--type
-  font-weight: bold
+// -----------------------------------------------------------------------------
+//  Breadcrumb
+// -----------------------------------------------------------------------------
 
 .card--page__breadcrumb
+  margin: 10px 0 0
   line-height: 25px
   position: relative
   text-transform: uppercase
@@ -108,13 +104,36 @@
 .card--page__breadcrumb__link
   color: $body-copy
 
+// -----------------------------------------------------------------------------
+//  Content
+// -----------------------------------------------------------------------------
+
 .card--page__content
-  box-sizing: border-box
-  float: left
-  margin-right: 20px
-  width: 548px
-  .card--single + .stack &
-    width: 427px
+  padding: 20px 25px 20px
+  .card--page__header + &
+    border-top: 1px solid $body-background
+
+// We cannot guarantee that the content will be decorated with classes
+.card--page__content--intro
+  @extend %text--body
+  p:first-of-type
+    @extend %text--feature
+  h2
+    @extend %heading--2
+
+.card--page__content--social
+  padding-top: 0
+  padding-bottom: 0
+
+// -----------------------------------------------------------------------------
+//  Stuff to refactor
+// -----------------------------------------------------------------------------
+
+.section--related-content
+  margin-top: 30px
+
+.card--page__breadcrumb--type
+  font-weight: bold
 
 .card--page__aside
   @extend %transition--base
@@ -131,60 +150,9 @@
 .aside__content--standout
   background-color: $details-panel-bg
 
-
-// -----------------------------------------------------------------------------
-// Tour Itinerary
-// -----------------------------------------------------------------------------
-
 .tour-itinerary
   .copy--meta
     margin: 10px 0 20px 0
-
-// -----------------------------------------------------------------------------
-// Booking Panel (normally as an aside)
-// -----------------------------------------------------------------------------
-
-.booking-panel
-  background: $details-panel-bg
-  padding: 20px
-  position: relative
-
-.booking-panel__logo
-  background-size: 100% 100%
-  background-repeat: no-repeat
-  margin-bottom: 20px
-
-.booking-panel__logo--gadventures
-  background-image: url(/assets/partners/gadventures.png)
-  width: 142px
-  height: 35px
-  .supports-svg &
-    background-image: url(/assets/partners/gadventures.svg)
-
-.booking-panel__logo--intrepid
-  background-image: url(/assets/partners/intrepid.png)
-  width: 48px
-  height: 48px
-  .supports-svg &
-    background-image: url(/assets/partners/intrepid.svg)
-
-.booking-panel__logo--viator
-  background-image: url(/assets/partners/viator.png)
-  width: 92px
-  height: 28px
-  .supports-svg &
-    background-image: url(/assets/partners/viator.svg)
-
-.booking-panel__logo--worldexpeditions
-  background-image: url(/assets/partners/worldexpeditions.png)
-  width: 113px
-  height: 36px
-  .supports-svg &
-    background-image: url(/assets/partners/worldexpeditions.svg)
-
-// -----------------------------------------------------------------------------
-// Details Panel (the lighter panel usually attached to the booking panel)
-// -----------------------------------------------------------------------------
 
 .details-panel
   background: $details-panel-bg
@@ -202,9 +170,6 @@
   li
     margin-bottom: 0
 
-// -----------------------------------------------------------------------------
-// Special Offer tag
-// -----------------------------------------------------------------------------
 .special-offer
   @extend %rounded-corners
   background: $red
@@ -216,10 +181,6 @@
   text-transform: uppercase
   margin-right: 5px
 
-
-// -----------------------------------------------------------------------------
-// Partner Copy
-// -----------------------------------------------------------------------------
 .copy--viator
   b.partner
     @extend .copy--h3
