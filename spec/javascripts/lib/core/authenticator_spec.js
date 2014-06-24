@@ -35,7 +35,7 @@ require([ "jquery", "public/assets/javascripts/lib/core/authenticator" ], functi
     describe("config", function() {
 
       it("always checks the status from the live site", function() {
-        expect(auth.statusUrl).toBe("https://www.lonelyplanet.com/thorntree/users/status");
+        expect(auth.statusUrl).toBe("https://auth.lonelyplanet.com/users/status");
       });
 
     });
@@ -77,7 +77,7 @@ require([ "jquery", "public/assets/javascripts/lib/core/authenticator" ], functi
       });
 
       it("shows the user's avatar", function() {
-        expect($(".nav__item--user-avatar").attr("src")).toBe("/foo.jpg");
+        expect($(".nav__item--user-avatar").attr("src")).toBe("https://auth.lonelyplanet.com/foo.jpg");
       });
 
       it("adds the username to the dropdown menu", function() {
@@ -97,9 +97,9 @@ require([ "jquery", "public/assets/javascripts/lib/core/authenticator" ], functi
       });
 
       it("defines all link urls correctly", function() {
-        expect($(".js-user-activities").attr("href")).toBe("https://www.lonelyplanet.com/thorntree/profiles/foobar/activities");
-        expect($(".js-user-messages").attr("href")).toBe("https://www.lonelyplanet.com/thorntree/profiles/foobar/messages");
-        expect($(".js-user-profile").attr("href")).toBe("https://www.lonelyplanet.com/thorntree/profiles/foobar");
+        expect($(".js-user-activities").attr("href")).toBe("https://www.lonelyplanet.com/thorntree/profiles/1/activities");
+        expect($(".js-user-messages").attr("href")).toBe("https://www.lonelyplanet.com/thorntree/profiles/1/messages");
+        expect($(".js-user-profile").attr("href")).toBe("https://auth.lonelyplanet.com/profiles/1");
         expect($(".js-user-settings").attr("href")).toBe("https://www.lonelyplanet.com/thorntree/forums/settings");
         expect($(".js-user-sign_out").attr("href")).toBe("https://auth.lonelyplanet.com/users/sign_out");
       });
