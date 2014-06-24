@@ -48,11 +48,14 @@ cards:
 
   -
     :styleguide_title: "Symbol Card"
+    :styleguide_description: "icon_colors options are: ('header-grey','body-grey','white','lp-blue') default is white. text_color can be any color from the Rizzo Colour Palette for ex. 'navblue', 'green', 'plum' default is white"
     :slug: "#"
     :title: "Canada, aye"
     :image_url: "http://assets.staticlp.com/assets/stubs/article.jpg"
     :icon_type: "destinations"
     :icon: "canada"
+    :icon_color: "lp-blue"
+    :text_color: "subduedgray"
 
   -
     :styleguide_title: "Quote Card"
