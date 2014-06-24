@@ -6,15 +6,9 @@
 
 .row--secondary
   background: #fff
-  .wv--split--right
-    .responsive &
-      +respond-to(400)
-        float: right
-        text-align: right
   .responsive &
     +z-layer(modal)
-    background: none
-    position: relative
+    position: relative8
     +respond-to(wide-view)
       background: #fff
       position: static
@@ -33,17 +27,16 @@
   max-width: 340px
   .responsive &
     max-width: 100%
-    margin-bottom: 20px
-    margin-top: 40px
+    margin-bottom: 15px
     padding: 4px 0
     +respond-to(400)
       max-width: 70%
       float: left
-      margin-bottom: 0
     +respond-to(medium-view)
       max-width: 340px
     +respond-to(wide-view)
       +vertically-center(30)
+      margin-bottom: 0
       margin-top: 0
       padding: 0
   &:hover
@@ -64,16 +57,21 @@
   margin-top: 6px
 
   .responsive &
+    +z-layer(modal)
+    clear: left
     left: -5.5%
     margin-top: 0
     position: absolute
-    top: 46px
+    top: 110px
     width: 111%
     &.is-active
       display: block
     &.nav__tabs
+      position: relative
       top: 0
     +respond-to(wide-view)
+      +z-layer
+      clear: none
       position: static
       width: auto
 
