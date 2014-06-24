@@ -6,11 +6,12 @@
 //
 // -----------------------------------------------------------------------------
 
-$card--page-padding: 16px 20px
+$card--page-padding: 16px 25px
 
 .card--page
   border-radius: 4px
-  .responsive &
+
+  .row__inner--full-width &
     border-radius: 0
     +respond-to(wide-view)
       border-radius: 4px
@@ -49,6 +50,7 @@ $card--page-padding: 16px 20px
     left: 0
     width: 100%
     height: 100%
+
   > img
     width: 100%
 
@@ -78,8 +80,12 @@ $card--page-padding: 16px 20px
     line-height: 1.1em
     margin: 0
   .card--top-choice &
-    min-height: 60px
-    padding-left: 74px
+    min-height: 40px
+    padding-left: 95px
+
+.card--page__header--headline
+  padding-top: 25px
+  padding-bottom: 25px
 
 .card--page__breadcrumb
   position: relative
@@ -111,7 +117,9 @@ $card--page-padding: 16px 20px
 // -----------------------------------------------------------------------------
 
 .card--page__content
+  @extend %clearfix
   padding: $card--page-padding
+
   .card--page__header + &
     border-top: 1px solid $body-background
 
@@ -127,68 +135,19 @@ $card--page-padding: 16px 20px
   padding-top: 0
   padding-bottom: 0
 
+  .card--page__header + &
+    border-bottom: 1px solid $body-background
+
+  .card--page__content + &
+    border-top: 1px solid $body-background
+
 // -----------------------------------------------------------------------------
 //  Related
 // -----------------------------------------------------------------------------
 
 .card--page__related
-  margin-top: 20px
   border-radius: 0 0 4px 4px
   .responsive &
     border-radius: 0
     +respond-to(wide-view)
       border-radius: 0 0 4px 4px
-
-// -----------------------------------------------------------------------------
-//  Stuff to refactor
-// -----------------------------------------------------------------------------
-
-.card--page__aside
-  @extend %transition--base
-  box-sizing: border-box
-  float: right
-  position: relative
-  width: 382px
-  .card--single + .stack &
-    width: 300px
-
-  .booking-panel + .details-panel
-    border-top: 1px solid $body-background
-
-.aside__content--standout
-  background-color: $details-panel-bg
-
-.tour-itinerary
-  .copy--meta
-    margin: 10px 0 20px 0
-
-.details-panel
-  background: $details-panel-bg
-  padding: 20px
-
-.section-glossary
-  .copy--h3
-    +font-size(14)
-    margin: 20px 0 0
-  .copy--meta
-    margin-bottom: 10px
-  ul
-    padding-left: 1.2em
-    list-style: circle
-  li
-    margin-bottom: 0
-
-.special-offer
-  @extend %rounded-corners
-  background: $red
-  color: #fff
-  display: inline-block
-  font-size: 11px
-  font-weight: bold
-  padding: 1px 5px 2px 5px
-  text-transform: uppercase
-  margin-right: 5px
-
-.copy--viator
-  b.partner
-    @extend .copy--h3
