@@ -68,7 +68,6 @@ left_nav_stub:
 
 
 secondary_navigation_stub:
-  :section_name: 'Hotels'
   :items:
     -
       :title: 'Overview'
@@ -108,6 +107,7 @@ secondary_navigation_stub:
     -
       :title: 'Hotels'
       :slug: 'hotels'
+      :current: true
     -
       :title: 'Tips & articles'
       :slug: 'travel-tips-and-articles'

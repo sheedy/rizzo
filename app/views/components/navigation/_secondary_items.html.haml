@@ -1,5 +1,5 @@
 - items.each do |n|
-  - active = 'current' if n[:title] == section_name || (n[:slug].end_with? section_name.downcase.strip.gsub(' ', '-'))
+  - active = 'current' if n[:current]
 
   - if n[:submenu]
     .nav__item.nav__item--secondary.nav__submenu__trigger.js-secondary-nav-submenu
