@@ -2,10 +2,10 @@
   - if properties[:show_label?]
     %span.sharing__label.nav__item Send this
 
-  .nav__item.sharing__nav__item
-    %a.sharing__icon.icon--print.tooltip--trigger{href:"#", onclick: "javascript:window.print();return false;"}
-      %span.tooltip.tooltip--above Print
+  .nav__item.sharing__nav__item.tooltip--hover
+    %a.sharing__icon.icon--print{href:"#", onclick: "javascript:window.print();return false;"}
+    .tooltip.tooltip--above.icon--tapered-arrow-down--after Print
   
-  .nav__item.sharing__nav__item
-    %a.sharing__icon.icon--email.tooltip--trigger{href: "mailto:?subject=#{properties[:page_title]}&body=#{properties[:url]}", data: {lpa_category: "share", lpa_action: "email", lpa_label: "#{properties[:url]}"}}
-      %span.tooltip.tooltip--above Email
+  .nav__item.sharing__nav__item.tooltip--hover
+    %a.sharing__icon.icon--email{href: "mailto:?subject=#{properties[:page_title]}&body=#{properties[:url]}", data: {lpa_category: "share", lpa_action: "email", lpa_label: "#{properties[:url]}"}}
+    .tooltip.tooltip--above.icon--tapered-arrow-down--after Email

@@ -16,6 +16,7 @@
   padding: 5px 20px
   position: absolute
   text-align: center
+  left: 0
   .enhanced &
     text-shadow: 0px 4px 2px $new-header-grey-shadow
     box-shadow: 0 1px 1px 2px $new-header-grey-shadow
@@ -31,20 +32,13 @@
 .tooltip--above
   +css-arrow-central(bottom, $size: 22px)
   bottom: 115%
-  left: auto
-  right: auto
-  top: auto
 
 .tooltip--below
   +css-arrow-central(top, $size: 22px)
-  bottom: auto
-  left: auto
-  right: auto
   top: 115%
 
 .tooltip--left
   +css-arrow-central(right, $size: 22px)
-  bottom: auto
   left: auto
   right: 105%
   text-align: right
@@ -52,9 +46,7 @@
 
 .tooltip--right
   +css-arrow-central(left, $size: 22px)
-  bottom: auto
   left: 105%
-  right: auto
   text-align: left
   top: -5px
 
@@ -64,26 +56,16 @@
 
 %tooltip--above--hover
   bottom: 105%
-  left: auto
-  right: auto
-  top: auto
 
 %tooltip--below--hover
-  bottom: auto
-  left: auto
-  right: auto
   top: 105%
 
 %tooltip--left--hover
-  bottom: auto
-  left: auto
   right: 100%
   top: -5px
 
 %tooltip--right--hover
-  bottom: auto
   left: 100%
-  right: auto
   top: -5px
 
 %tooltip-visible

@@ -35,16 +35,16 @@
   @if $side == top
     &:after
       left: 50%
-      margin-left: -($size / 2)
+      transform: translateX(-50%)
   @if $side == bottom
     &:after
       left: 50%
-      margin-left: -($size / 2)
+      transform: translateX(-50%)
   @if $side == right
     &:after
       top: 50%
-      margin-top: -($size / 2)
+      transform: translateY(-50%)
   @if $side == left
     &:after
       top: 50%
-      margin-top: -($size / 2)
+      transform: translateY(-50%)
