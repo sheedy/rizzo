@@ -10,7 +10,8 @@
       %a.btn.btn--white.nav__tabs__btn.js-toggle-active.js-secondary-nav-toggles{ href: "#", data: { toggle_target: ".js-secondary-nav-toggles" } }
         Other sections
 
-.wv--split--right.wv--block.nav--inline.nav--secondary.js-secondary-nav-toggles(role="navigation" aria-label="Secondary navigation")
+%nav.wv--split--right.wv--block.nav--inline.nav--secondary.js-secondary-nav-toggles(role="navigation" aria-label="Category navigation" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement")
+  %h6.accessibility Category navigation
   %div{ class: !!responsive_items ? "wv--block" : "" }
     = render :partial => "components/navigation/secondary_items", locals: { items: properties[:items], section_name: properties[:section_name] }
   - if !!responsive_items && responsive_items.length > 0
