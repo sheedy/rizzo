@@ -1,4 +1,4 @@
-%article.card.card--mini.card--image-only
+%article.card.card--mini.card--single.card--image-only
   %a.link--wrapper{href: properties[:video_href], title: "Video Gallery"}
     %span.card__icon.icon--video.icon--white
     %figure.card__hero
@@ -7,5 +7,5 @@
     .card__content
       %h2.card__name.accessibility
         Video gallery
-      %p
+      %p.card__name
         = properties[:video_description]

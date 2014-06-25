@@ -148,6 +148,8 @@ cards:
   -
     :styleguide_title: "Media Card"
     :kind: "media"
+    :size: "mini"
+    :icon?: true
     :resized_image_url: "http://assets.staticlp.com/assets/stubs/sight.jpg"
     :resized_video_url: "http://assets.staticlp.com/assets/stubs/video-thumb.jpg"
     :image_description: "A photo of a building"
@@ -239,3 +241,43 @@ cards:
   -
     :styleguide_title: "Traffic driver Card"
     :kind: "traffic_driver"
+
+  -
+    :styleguide_title: "Image Card"
+    :size: "double"
+    :url: "#"
+    :image_description: "Canada, aye with a long description very very long "
+    :resized_image_url: "http://assets.staticlp.com/assets/stubs/article.jpg"
+    :position: 1
+    :user:
+      :image: "http://img2.wikia.nocookie.net/__cb20111018235020/muppet/images/thumb/1/14/Rizzo11.png/300px-Rizzo11.png"
+      :name: "Rizzo"
+      :theme: "light"
+      :size: "small"
+
+  -
+    :styleguide_title: "Image Card"
+    :size: "single"
+    :url: "#"
+    :image_description: "Canada, aye"
+    :resized_image_url: "http://assets.staticlp.com/assets/stubs/article.jpg"
+    :position: 2
+    :user:
+      :name: "Rizzo"
+      :theme: "light"
+      :size: "small"
+
+  -
+    :styleguide_title: "Image Card"
+    :size: "mini"
+    :url: "#"
+    :image_description: "Canada, aye"
+    :resized_image_url: "http://assets.staticlp.com/assets/stubs/article.jpg"
+    :position: 3
+    :user:
+      :name: "Rizzo with a long name"
+      :theme: "light"
+      :size: "small"
+
+
+

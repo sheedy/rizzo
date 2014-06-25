@@ -17,10 +17,6 @@
       .enhanced &
         box-shadow: 0 2px 2px 0 rgba(3, 46, 92, 0.10)
 
-  // hide the content area for image-only cards when it's not hovered over
-  &.card--image-only
-    overflow: hidden
-
 
 // -----------------------------------------------------------------------------
 // Card Images
@@ -59,10 +55,18 @@
       min-width: 100%
       max-width: 100%
       height: auto
-      min-height: 0
       max-height: none
+    .card--image-only &
+      max-width: none
+      max-height: 100%
+      left: 50%
+      position: relative
+    .card--image-only.card--single &
+      margin-left: -$card-width
+    .card--image-only.card--double &
+      margin-left: -$double-card-width
 
-  .card--full-image &
+  .card--full-image &, .card--image-only &
     height: $card-grid-height
     &:after
       +image-overlay--gradient()
@@ -144,10 +148,9 @@
     background: none
 
   .card--image-only &
-    @extend %transition--base
     +font-size(20)
-    bottom: -76px // This accommodates for 3 lines of copy.
-    color: #fff
+    bottom: 10px
+    color: white
     height: auto
     left: 0
     line-height: 22px
@@ -223,6 +226,15 @@
     .card__content
       height: $card-grid-height - ( 2*$card-content-vertical-padding) - 225px
 
+
+// -----------------------------------------------------------------------------
+// Image-only cards
+// -----------------------------------------------------------------------------
+
+.card--image-only
+  &.card--mini
+    .card__name
+      display: none
 
 // -----------------------------------------------------------------------------
 // Transparent cards (related)
