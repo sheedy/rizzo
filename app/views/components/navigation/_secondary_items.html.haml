@@ -4,7 +4,7 @@
   - if n[:submenu]
     .nav__item.nav__item--secondary.nav__submenu__trigger.js-secondary-nav-submenu
       - if n[:slug]
-        %a.nav__item.nav__item--submenu.js-nav-item{ class: [active, n[:name]], href: n[:slug] }<
+        %a.nav__item.nav__item--submenu.js-nav-item{ class: [active, n[:name]], href: n[:slug], aria: { label: (n[:current] ? "Current page" : nil) } }<
           %i.nav__icon{ class: n[:icon_class] }
           = n[:title]
       - else
@@ -12,8 +12,8 @@
           = n[:title]
 
       .nav__submenu__trigger--responsive.wv--hidden.js-toggle-active{ data: { toggle_target: ".js-secondary-nav-submenu", toggle_class: "is-visible", toggle_me: "true" } }
-        %span.nav__submenu__trigger--icon.icon--chevron-down
-        %span.nav__submenu__trigger--icon.icon--chevron-up
+        %span.nav__submenu__trigger--icon.icon--chevron-down.icon--body-grey
+        %span.nav__submenu__trigger--icon.icon--chevron-up.icon--body-grey
 
       .nav__submenu.nav__submenu--secondary{ class: "nav__submenu--#{n[:title].downcase.gsub(' ', '-')}"}
         .nav--stacked.nav__submenu__content.nav__submenu--secondary__content.js-submenu.icon--tapered-arrow-up--after.icon--white--after
@@ -22,6 +22,6 @@
               %span(itemprop="name")
                 = sub[:title]
   - else
-    %a.nav__item.nav__item--secondary.js-nav-item{ class: [active, n[:name]], href: n[:slug] }(itemprop="url")<
+    %a.nav__item.nav__item--secondary.js-nav-item{ class: [active, n[:name]], href: n[:slug], aria: { label: (n[:current] ? "Current page" : nil) } }(itemprop="url")<
       %span(itemprop="name")
         = n[:title]

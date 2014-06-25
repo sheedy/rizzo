@@ -37,12 +37,12 @@ $submenu__vertical-padding: 18px
 
 .responsive
   .nav__submenu__trigger--responsive
+    +size(52px)
     display: none
-    height: 100%
+    padding-right: 4px
     position: absolute
     right: 0
     top: 0
-    width: 52px
     .js &
       display: block
     &.is-visible
@@ -50,6 +50,15 @@ $submenu__vertical-padding: 18px
         display: block
       .icon--chevron-down
         display: none
+    &:after
+      background: $body-background
+      content: ''
+      display: block
+      height: 70%
+      position: absolute
+      left: 0
+      top: 15%
+      width: 1px
 
   .nav__submenu__trigger--icon
     +size(15px)

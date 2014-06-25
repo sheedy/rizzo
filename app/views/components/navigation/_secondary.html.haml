@@ -5,16 +5,18 @@
   .nav--secondary.nav__tabs.wv--hidden-block
     .grid-wrapper--0
       .col--one-half
-        %a.btn.btn--white.nav__tabs__btn.is-active.js-toggle-active.js-secondary-nav-toggles{ href: "#", data: { toggle_target: ".js-secondary-nav-toggles" } }
+        .nav--secondary__col.copy--h2
           - if !!responsive_items
             = (responsive_items.find {|i| i[:current]} || responsive_items.first)[:title]
           - else
             = (properties[:items].find {|i| i[:current]} || properties[:items].first)[:title]
       .col--one-half
-        %a.btn.btn--white.nav__tabs__btn.js-toggle-active.js-secondary-nav-toggles{ href: "#", data: { toggle_target: ".js-secondary-nav-toggles" } }
+        %a.nav--secondary__other-toggle.nav--secondary__col.js-toggle-active{ data: { toggle_target: ".js-secondary-nav-other-menu", toggle_me: "true" } }
           Other sections
+          %span.nav--secondary__other-toggle--icon.icon--chevron-down.icon--body-grey
+          %span.nav--secondary__other-toggle--icon.icon--chevron-up.icon--body-grey
 
-  %nav.wv--split--right.wv--block.nav--inline.nav--secondary.js-secondary-nav-toggles(role="navigation" aria-label="Category navigation" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement")
+  %nav.wv--split--right.wv--block.nav--inline.nav--secondary.js-secondary-nav-other-menu(role="navigation" aria-label="Category navigation" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement")
     %h6.accessibility Category navigation
     %div{ class: !!responsive_items ? "wv--block" : "" }
       = render :partial => "components/navigation/secondary_items", locals: { items: properties[:items] }
