@@ -12,6 +12,7 @@ define([
       _frame,
       _started = false,
       _heroBanners = [],
+      _parallaxReady = true,
       _transform = features.transform().js;
 
   HeroParallax = function( args ) {
@@ -32,10 +33,12 @@ define([
       };
 
       if (this.withinViewport($el)) {
+        _parallaxReady = false;
         $animEl
           .addClass("hero-banner__image-first-position")
           .on(window.lp.supports.transitionend, function() {
-            $(event.target).removeClass("hero-banner__image-first-position");
+            $animEl.removeClass("hero-banner__image-first-position");
+            _parallaxReady = true;
           });
       }
 
@@ -88,7 +91,9 @@ define([
   HeroParallax.prototype._onScroll = function() {
     clearTimeout(_stopScroll);
     _stopScroll = setTimeout(this._stopRAF.bind(this), 100);
-    this._startRAF();
+    if (_parallaxReady){
+      this._startRAF();
+    }
   };
 
   _autoInit = function() {
