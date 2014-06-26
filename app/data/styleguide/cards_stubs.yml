@@ -95,7 +95,7 @@ cards:
 
   -
     :styleguide_title: "Things to Do Card"
-    :styleguide_description: "Topic must match the class name in Rizzo for the correct icon to show up ex. 'activity' shows up as '.icon--activity--pin' in the code. When 'show_place_name' is set to true and 'place_name' is entered in, it will show up under the large name text. When 'bookable?' is set to true, the yellow button will appear. Set it to false to omit this button. When 'button_text' is entered in that text will appear as the button text. If omitted the default 'Book now' will appear. Set 'top_choice' and/or 'lp-reviewed' to true to make the blue tag at the top appear."
+    :styleguide_description: "Topic must match the class name in Rizzo for the correct icon to show up ex. 'activity' shows up as '.icon--activity--pin' in the code. When 'show_place_name' is set to true and 'place_name' is entered in, it will show up under the large name text. When 'bookable?' is set to true, the yellow button will appear. Set it to false to omit this button. When 'button_text' and 'button_id' are entered in that text will appear as the button text and the id will be added to the button. If one or both are omitted the default 'Book now' will appear. Set 'top_choice' and/or 'lp-reviewed' to true to make the blue tag at the top appear."
     :topic: "activity"
     :image_url: "http://assets.staticlp.com/landing-pages/chitown.jpg"
     :url: "#"
@@ -109,6 +109,7 @@ cards:
     :description: "Some information about Chicago but definitely not ketchup."
     :bookable?: true
     :button_text: "Give me hot dogs!"
+    :button_id: "btn--mustard"
 
   -
     :styleguide_title: "Shop Card"
