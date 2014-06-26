@@ -13,7 +13,7 @@
   %span.user_attribution__source-text
     by
   %span.user_attribution__username
-    = ( properties[:size] == 'small' ? truncate( properties[:name], {length: 15 }) : properties[:name] )
+    = properties[:name]    
 
 - if properties[:url]
   %a{ href: properties[:url], class: css_classes }
