@@ -79,6 +79,26 @@
     height: 100%
     width: 100%
 
+  .row--billboard
+    display: none
+    .content-ready &
+      display: block
+
 .lightbox--open
   overflow: hidden
   -webkit-overflow-scrolling: touch
+
+.lightbox__controls
+  bottom: 0
+  height: 100%
+  left: 0
+  position: absolute
+  right: 0
+  top: 0
+  width: 100%
+
+.lightbox-arrow__text
+  display: inline-block
+  overflow: hidden
+  text-overflow: ellipsis
+  width: 65px
