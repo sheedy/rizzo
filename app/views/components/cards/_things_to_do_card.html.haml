@@ -52,8 +52,8 @@
 
     - if properties[:bookable?]
       %footer.card__footer
-        - if properties[:button_id] && properties[:button_text]
-          %span.btn.btn--yellow.btn--full-width{id: properties[:button_id]}
+        - if properties[:button_class] && properties[:button_text]
+          %span.btn.btn--yellow.btn--full-width{class: properties[:button_class]}
             = properties[:button_text]
         - else
           %span.btn.btn--yellow.btn--full-width
