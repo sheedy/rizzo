@@ -1,21 +1,19 @@
 // -----------------------------------------------------------------------------
 //
-//  Card page module
+// Card page module
+//
+// Full width containers for page sections
 //
 // -----------------------------------------------------------------------------
 
+$card--page-padding: 16px 20px
+
 .card--page
   border-radius: 4px
-
-  .row__inner--full-width &
+  .responsive &
     border-radius: 0
     +respond-to(wide-view)
       border-radius: 4px
-
-  .tag
-    +font-size(14)
-  .tag--price__amount
-    +font-size(30)
 
 .card--top-choice
   &:after
@@ -35,9 +33,15 @@
 
 .card--page__hero
   position: relative
-  height: 300px
   overflow: hidden
+  height: 300px
   border-radius: 4px 4px 0 0
+  .responsive &
+    height: 200px
+    border-radius 0
+    +respond-to(wide-view)
+      height: 300px
+      border-radius: 4px 4px 0 0
   &:after
     @extend %empty-abs-generated-content
     +image-overlay--gradient($stop: 50%)
@@ -45,7 +49,6 @@
     left: 0
     width: 100%
     height: 100%
-
   > img
     width: 100%
 
@@ -55,7 +58,7 @@
   left: 0
   right: 0
   bottom: 0
-  padding: 15px 25px
+  padding: $card--page-padding
   color: white
 
 .card--page__hero-cta
@@ -70,22 +73,18 @@
 // -----------------------------------------------------------------------------
 
 .card--page__header
-  padding: 20px 25px
+  padding: $card--page-padding
   .copy--h1
     line-height: 1.1em
     margin: 0
   .card--top-choice &
     min-height: 60px
-    padding-left: 73px
-
-// -----------------------------------------------------------------------------
-//  Breadcrumb
-// -----------------------------------------------------------------------------
+    padding-left: 74px
 
 .card--page__breadcrumb
+  position: relative
   margin: 10px 0 0
   line-height: 25px
-  position: relative
   text-transform: uppercase
   &:before
     +z-layer(middle)
@@ -101,15 +100,18 @@
     &:before
       width: 20px
 
+.card--page__breadcrumb--type
+  font-weight: bold
+
 .card--page__breadcrumb__link
   color: $body-copy
 
 // -----------------------------------------------------------------------------
-//  Content
+//  Content row
 // -----------------------------------------------------------------------------
 
 .card--page__content
-  padding: 20px 25px 20px
+  padding: $card--page-padding
   .card--page__header + &
     border-top: 1px solid $body-background
 
@@ -126,14 +128,20 @@
   padding-bottom: 0
 
 // -----------------------------------------------------------------------------
-//  Stuff to refactor
+//  Related
 // -----------------------------------------------------------------------------
 
-.section--related-content
-  margin-top: 30px
+.card--page__related
+  margin-top: 20px
+  border-radius: 0 0 4px 4px
+  .responsive &
+    border-radius: 0
+    +respond-to(wide-view)
+      border-radius: 0 0 4px 4px
 
-.card--page__breadcrumb--type
-  font-weight: bold
+// -----------------------------------------------------------------------------
+//  Stuff to refactor
+// -----------------------------------------------------------------------------
 
 .card--page__aside
   @extend %transition--base
