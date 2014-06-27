@@ -49,9 +49,6 @@ define([
 
     this.customClass && this.$lightbox.addClass(this.customClass);
 
-    // Just in case there are defined dimensions already specified.
-    this._centerLightbox();
-
     if (this.showPreloader) {
       this.preloaderTmpl = Template.render($("#tmpl-preloader").text(), {});
       this.$lightboxContent.parent().append( this.preloaderTmpl );
@@ -95,7 +92,6 @@ define([
 
       $("html").addClass("lightbox--open");
       this.$lightbox.addClass("is-active is-visible");
-      this._centerLightbox();
 
       setTimeout(function() {
         this.listenToFlyout(event, data);
@@ -178,15 +174,6 @@ define([
       setupArrow(this.$next, data.pagination.next);
       setupArrow(this.$previous, data.pagination.prev);
     }
-  };
-
-  LightBox.prototype._centerLightbox = function() {
-    var viewport = this.viewport();
-    this.$lightbox.css({
-      left: 0,
-      height: viewport.height,
-      width: viewport.width
-    });
   };
 
   // Self instantiate if the default class is used.
