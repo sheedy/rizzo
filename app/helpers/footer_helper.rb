@@ -76,8 +76,9 @@ module FooterHelper
       {title: 'About us', url: '/about/'},
       {title: 'Work for us', url: '/jobs/'},
       {title: 'Contact us', url: '/contact/'},
-      {title: 'Press centre, trade &amp; advertising', url: '/press-trade-advertising/'},
-      {title: 'Terms &amp; conditions', url: '/legal/website-terms/'}
+      {title: 'Press, trade &amp; advertising', url: '/press-trade-advertising/'},
+      {title: 'Terms &amp; conditions', url: '/legal/website-terms/'},
+      {title: 'Privacy policy', url: '/legal/privacy-policy/'}
     ]
   end
 
