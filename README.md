@@ -404,7 +404,7 @@ typeof thing == "boolean"
 ###### Function
 
 ```javascript
-typeof jQuery.isFunction(thing)
+jQuery.isFunction(thing)
 ```
 ###### Element
 
