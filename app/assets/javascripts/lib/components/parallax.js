@@ -14,7 +14,7 @@ define([
       _started = false,
       _heroBanners = [],
       _parallaxReady = true,
-      _transform = features.transform().js;
+      _transform = window.lp.supports.transform && window.lp.supports.transform.js;
 
   HeroParallax = function( args ) {
     if (this.viewport().width <= 1024) { return; }
@@ -125,7 +125,7 @@ define([
     }
   };
 
-  //Waits for feature detect to be available
+  // Waits for feature detect to be available
   if (window.lp.supports.requestAnimationFrame){
     _autoInit();
   }else {
