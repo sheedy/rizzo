@@ -1,4 +1,5 @@
-.row.row--sitemap#js-footer-nav(role="navigation" aria-label="Sitemap")
+%nav.row.row--sitemap#js-footer-nav(role="navigation" aria-label="Sitemap" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement")
+  %h6.accessibility Sitemap
   .row__inner.row__inner--footer.row--sitemap__inner
 
     .col--footer--last
@@ -29,43 +30,58 @@
       %input{type: "checkbox", id: 'ac-destinations', class: "accordion__input"}
       .nav--stacked.accordion__target.accordion__target--mid
         %label{for: 'ac-destinations', class: 'accordion__title accordion__title--footer icon--chevron-down--after'}
-        %a.js-nav-item.title--footer.title--list--footer(href='http://www.lonelyplanet.com/destinations') Destinations
+        %a.js-nav-item.title--footer.title--list--footer(href='http://www.lonelyplanet.com/destinations' itemprop="url")
+          %span(itemprop="name")
+            Destinations
         - footer_nav_destination_items.each do |destination|
-          %a.js-nav-item.nav__item.nav__item--sitemap.nav__item--footer{href: "http://www.lonelyplanet.com/#{destination[:url]}"}<
-            = destination[:title]
+          %a.js-nav-item.nav__item.nav__item--sitemap.nav__item--footer{href: "http://www.lonelyplanet.com/#{destination[:url]}"}(itemprop="url")<
+            %span(itemprop="name")
+              = destination[:title]
 
     .col--footer
       %input{type: "checkbox", id: 'ac-shop', class: "accordion__input"}
       .nav--stacked.accordion__target.accordion__target--mid
         %label{for: 'ac-shop', class: 'accordion__title accordion__title--footer icon--chevron-down--after'}
-        %a.js-nav-item.title--footer.title--list--footer(href='http://www.lonelyplanet.com/shop') Shop
+        %a.js-nav-item.title--footer.title--list--footer(href='http://www.lonelyplanet.com/shop' itemprop="url")
+          %span(itemprop="name")
+            Shop
         - footer_nav_shop_items.each do |shop|
-          %a.js-nav-item.nav__item.nav__item--sitemap.nav__item--footer{href: "http://www.lonelyplanet.com/shop/#{shop[:url]}"}<
-            = shop[:title]
+          %a.js-nav-item.nav__item.nav__item--sitemap.nav__item--footer{href: "http://www.lonelyplanet.com/shop/#{shop[:url]}"}(itemprop="url")<
+            %span(itemprop="name")
+              = shop[:title]
 
     .col--footer
       %input{type: "checkbox", id: 'ac-thorntree', class: "accordion__input"}
       .nav--stacked.accordion__target.accordion__target--mid
         %label{for: 'ac-thorntree', class: 'accordion__title accordion__title--footer icon--chevron-down--after'}
-        %a.js-nav-item.title--footer.title--list--footer(href='http://www.lonelyplanet.com/thorntree') Thorn Tree Forum
+        %a.js-nav-item.title--footer.title--list--footer(href='http://www.lonelyplanet.com/thorntree' itemprop="url")
+          %span(itemprop="name")
+            Thorn Tree Forum
         - footer_nav_thorntree_items.each do |thorntree|
-          %a.js-nav-item.nav__item.nav__item--sitemap.nav__item--footer{href: "http://www.lonelyplanet.com/thorntree/#{thorntree[:url]}"}<
-            = thorntree[:title]
+          %a.js-nav-item.nav__item.nav__item--sitemap.nav__item--footer{href: "http://www.lonelyplanet.com/thorntree/#{thorntree[:url]}"}(itemprop="url")<
+            %span(itemprop="name")
+              = thorntree[:title]
 
     .col--footer
       %input{type: "checkbox", id: 'ac-interests', class: "accordion__input"}
       .nav--stacked.accordion__target.accordion__target--mid
         %label{for: 'ac-interests', class: 'accordion__title accordion__title--footer icon--chevron-down--after'}
-        %a.js-nav-item.title--footer.title--list--footer(href='http://www.lonelyplanet.com/interests') Interests
+        %a.js-nav-item.title--footer.title--list--footer(href='http://www.lonelyplanet.com/interests' itemprop="url")
+          %span(itemprop="name")
+            Interests
         - footer_nav_interests_items.each do |theme|
-          %a.js-nav-item.nav__item.nav__item--sitemap.nav__item--footer{href: "http://www.lonelyplanet.com/#{theme[:url]}"}<
-            = theme[:title]
+          %a.js-nav-item.nav__item.nav__item--sitemap.nav__item--footer{href: "http://www.lonelyplanet.com/#{theme[:url]}"}(itemprop="url")<
+            %span(itemprop="name")
+              = theme[:title]
 
     .col--footer
       %input{type: "checkbox", id: 'ac-bookings', class: "accordion__input"}
       .nav--stacked.accordion__target.accordion__target--mid
         %label{for: 'ac-bookings', class: 'accordion__title accordion__title--footer icon--chevron-down--after'}
-        %a.js-nav-item.title--footer.title--list--footer(href='http://www.lonelyplanet.com/bookings') Travel Booking
+        %a.js-nav-item.title--footer.title--list--footer(href='http://www.lonelyplanet.com/bookings' itemprop="url")
+          %span(itemprop="name")
+            Travel Booking
         - footer_nav_travel_bookings_items.each do |booking|
-          %a.js-nav-item.nav__item.nav__item--sitemap.nav__item--footer{href: "http://www.lonelyplanet.com/#{booking[:url]}"}<
-            = booking[:title]
+          %a.js-nav-item.nav__item.nav__item--sitemap.nav__item--footer{href: "http://www.lonelyplanet.com/#{booking[:url]}"}(itemprop="url")<
+            %span(itemprop="name")
+              = booking[:title]
