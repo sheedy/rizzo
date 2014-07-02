@@ -29,9 +29,9 @@
           .col--two-thirds
             .grid-wrapper--10
               .col--one-quarter.stat--medium
-                #{stylesheet[:core][:size]}kb
+                #{stylesheet[:sizes][:size]}kb
               .col--one-quarter.stat--medium
-                #{stylesheet[:core][:gzippedSize]}kb
+                #{stylesheet[:sizes][:gzippedSize]}kb
               .col--one-quarter.stat--medium
                 .stat--trend.icon--white--before{class: stylesheet[:compare][:last_week] > 0 ? "stat--red icon--arrow-up--before" : stylesheet[:compare][:last_week] < 0 ? "stat--green icon--arrow-down--before" : "stat--stable"}
                   #{stylesheet[:compare][:last_week]}%
