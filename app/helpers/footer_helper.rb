@@ -85,6 +85,7 @@ module FooterHelper
   def language_options
     [
       ['en', 'English'],
+      ['in', 'English (India)'],
       ['de', 'Deutsch'],
       ['fr', 'Fran&#231;ais'],
       ['es', 'Espa&#241;ol'],
