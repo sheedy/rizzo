@@ -1,6 +1,11 @@
 .read-more
+  @extend %transition--slower
   overflow: hidden
   position: relative
+  max-height: 0
+
+  .no-js &
+    max-height: none
 
 .read-more-block
   padding-bottom: 32px
