@@ -9,13 +9,11 @@ require([ "jquery", "public/assets/javascripts/lib/core/authenticator" ], functi
         loggedInStatus;
 
     loggedInStatus = {
-      id: 1,
-      username: "foobar",
-      profileSlug: "foobar",
-      facebookUid: null,
-      avatar: "/foo.jpg",
-      timestamp: "2014-03-31T14:33:47+01:00",
-      unreadMessageCount: 0
+      sub: 1,
+      preferred_username: "foobar",
+      picture: "/foo.jpg",
+      unread_message_count: 5,
+      current_sign_in_at: '2014-07-06 15:05:35 +0100'
     };
 
     $("body").append("<div id='js-user-nav-template' />");
@@ -26,18 +24,33 @@ require([ "jquery", "public/assets/javascripts/lib/core/authenticator" ], functi
       loadFixtures("authenticator.html");
       $("#js-user-nav-template").html($("#jasmine-fixtures").html());
 
-      // We don't need to test the actual ajax request, and this now being a `jsonp` request, it breaks Phantom.
-      spyOn($, "ajax").andReturn("");
-
       auth = new Authenticator();
     });
 
     describe("config", function() {
 
       it("always checks the status from the live site", function() {
-        expect(auth.statusUrl).toBe("https://auth.lonelyplanet.com/users/status");
+        expect(auth.statusUrl).toBe("https://auth.lonelyplanet.com/users/info");
+      });
+    });
+
+    describe("userinfo request", function() {
+      beforeEach(function() {
+        window.lp.getCookie = null;
+        spyOn($, 'ajax');
       });
 
+      it('performed when bearer exists', function() {
+        spyOn(window.lp, 'getCookie').andReturn('foo');
+        auth.init();
+        expect($.ajax).toHaveBeenCalled();
+      });
+
+      it('not performed when bearer missing', function() {
+        spyOn(window.lp, 'getCookie').andReturn(null);
+        auth.init();
+        expect($.ajax).not.toHaveBeenCalled();
+      });
     });
 
     describe("signed out", function() {
@@ -55,7 +68,6 @@ require([ "jquery", "public/assets/javascripts/lib/core/authenticator" ], functi
         expect($(".js-user-sign_in").attr("href")).toBe("https://auth.lonelyplanet.com/users/sign_in");
         expect($(".js-user-sign_up").attr("href")).toBe("https://auth.lonelyplanet.com/users/sign_up");
       });
-
     });
 
     describe("updating signed in status", function() {
@@ -67,7 +79,6 @@ require([ "jquery", "public/assets/javascripts/lib/core/authenticator" ], functi
       it("sets up window.lp.user", function() {
         expect(window.lp.user).toBe(loggedInStatus);
       });
-
     });
 
     describe("signed in", function() {
@@ -103,7 +114,6 @@ require([ "jquery", "public/assets/javascripts/lib/core/authenticator" ], functi
         expect($(".js-user-settings").attr("href")).toBe("https://www.lonelyplanet.com/thorntree/forums/settings");
         expect($(".js-user-sign_out").attr("href")).toBe("https://auth.lonelyplanet.com/users/sign_out");
       });
-
     });
 
     describe("unread message", function() {
@@ -120,9 +130,6 @@ require([ "jquery", "public/assets/javascripts/lib/core/authenticator" ], functi
       it("shows the number of unread messages on the submenu item", function() {
         expect($(".nav__submenu__notification:visible").text()).toBe("(5)");
       });
-
     });
-
   });
-
 });
