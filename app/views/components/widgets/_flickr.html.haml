@@ -1,23 +1,19 @@
-.widget__flickr  
+.widget__flickr
   .copy--h1
-    = properties[:tag]    
-  
-  - count = 0
-  - properties[:data][:comments].each_pair do |id, entry|    
-    - if ( count == 0 )
-      - entry[:size] = "double"
-      - entry[:user] = {image: entry[:owner_image], name: entry[:owner_name], theme: "light", size: "small"}
-    - elsif ( count > 0 and count <= 2 )
-      - entry[:size] = "single"
-      - entry[:user] = {name: entry[:owner_name], theme: "light", size: "small"}
-    - elsif ( count > 2 )
-      - entry[:size] = "mini"
-      - entry[:user] = {name: entry[:owner_name], theme: "light", size: "small"}
+    = properties[:tag]
 
-    - entry[:position] = count + 1                
+  - if properties[:data].is_a?(Hash)
+    - properties[:data][:comments].first(5).each.with_index do |(id, entry), index|
+      - if index.zero?
+        - entry[:size] = "double"
+        - entry[:user] = {image: entry[:owner_image], name: entry[:owner_name], theme: "light", size: "small"}
+      - elsif (1..2).include?(index)
+        - entry[:size] = "single"
+        - entry[:user] = {name: entry[:owner_name], theme: "light", size: "small"}
+      - elsif index > 2
+        - entry[:size] = "mini"
+        - entry[:user] = {name: entry[:owner_name], theme: "light", size: "small"}
 
-    - count = count + 1
-    - if (count > num_items)
-      - break
+      - entry[:position] = index + 1
 
-    = ui_component("cards/image_card", { properties: entry })              
+      = ui_component("cards/image_card", { properties: entry })
