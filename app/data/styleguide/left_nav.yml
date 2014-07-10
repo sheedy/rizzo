@@ -210,5 +210,12 @@
         -
           :name: "Range Slider"
           :slug: "range-slider"
+  :widgets:
+    -
+      :title: "Widgets"
+      :items:
+        -
+          :name: "Flickr widget"
+          :slug: "flickr-widget"
 #===== yeoman end-hook =====#
 # NB! The above line is required for our yeoman generator and should not be changed.

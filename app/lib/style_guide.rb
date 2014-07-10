@@ -71,6 +71,10 @@ class StyleGuide < RizzoApp
         slug: "/js-components"
       },
       {
+        title: "Widgets",
+        slug: "/widgets"
+      },
+      {
         title: "CSS Utilities",
         slug: "/css-utilities"
       },
