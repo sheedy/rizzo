@@ -8,14 +8,12 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
       doc = $(document);
     });
 
-
-
     describe("initialize", function () {
       var userFeed;
 
       beforeEach(function () {
         spyOn(UserFeed.prototype, "init");
-        userFeed = new UserFeed();
+        userFeed = new UserFeed({ feedUrl: "foo/bar" });
       });
 
       it("should have called 'this.init()' on initialization", function () {
@@ -34,14 +32,12 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
       });
     });
 
-
-
     describe(".init()", function () {
       var userFeed;
 
       beforeEach(function () {
-        spyOn(UserFeed.prototype, '_fetchFeed');
-        userFeed = new UserFeed();
+        spyOn(UserFeed.prototype, "_fetchFeed");
+        userFeed = new UserFeed({ feedUrl: "foo/bar" });
       });
 
       it("should call 'this._fetchFeed()'", function () {
@@ -49,28 +45,26 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
       });
 
       it("should call 'new Tabs()' and assign instance to 'this._tabsInstance'", function () {
-        expect(userFeed._tabsInstance.constructor.name).toBe('Tabs');
+        expect(userFeed._tabsInstance.constructor.name).toBe("Tabs");
       });
     });
-
-
 
     describe("._bindLinks()", function () {
       var userFeed, tempElement;
 
       beforeEach(function () {
-        $('.fake-feed-item').remove();
+        $(".fake-feed-item").remove();
         userFeed = new UserFeed({
-          feedSelector: 'body',
-          feedItemSelector: '.fake-feed-item',
-          targetLinkSelector: 'a'
+          feedSelector: "body",
+          feedItemSelector: ".fake-feed-item",
+          targetLinkSelector: "a"
         });
         tempElement = $(
-          '<div class="fake-feed-item">' +
-            '<a href="FAKE_URL"></a>' +
-            '</div>'
+          "<div class='fake-feed-item'>" +
+            "<a href='FAKE_URL'></a>" +
+            "</div>"
         );
-        doc.find('body').append(tempElement);
+        doc.find("body").append(tempElement);
       });
 
       describe("when called", function () {
@@ -82,22 +76,20 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
         });
 
         it("should call set proper click event listener on proper element", function () {
-          expect(userFeed._goToUrl).toHaveBeenCalledWith('FAKE_URL');
+          expect(userFeed._goToUrl).toHaveBeenCalledWith("FAKE_URL");
         });
       });
     });
-
-
 
     describe("._updateUnreadFeedIndicator()", function () {
       var userFeed, testElement, unreadFeedNumberClass;
 
       beforeEach(function () {
-        unreadFeedNumberClass = 'fake-testing-number-class';
-        $('.' + unreadFeedNumberClass).remove(); // should be in after each but jasmine fails to use after each properly
-        testElement = $('<div/>').addClass(unreadFeedNumberClass).appendTo(doc.find('body'));
+        unreadFeedNumberClass = "fake-testing-number-class";
+        $("." + unreadFeedNumberClass).remove(); // should be in after each but jasmine fails to use after each properly
+        testElement = $("<div/>").addClass(unreadFeedNumberClass).appendTo(doc.find("body"));
         userFeed = new UserFeed({
-          unreadFeedNumberSelector: '.' + unreadFeedNumberClass
+          unreadFeedNumberSelector: "." + unreadFeedNumberClass
         });
       });
 
@@ -109,14 +101,14 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
         var arg = 1;
 
         beforeEach(function () {
-          userFeed.$unreadFeedIndicator.text('').addClass('is-hidden');
+          userFeed.$unreadFeedIndicator.text("").addClass("is-hidden");
           userFeed._updateUnreadFeedIndicator(arg);
         });
 
         it("should call this.$unreadFeedIndicator.text( [passed arg] ).removeClass('is-hidden')", function () {
           expect(userFeed.$unreadFeedIndicator.length).toBe(1);
-          expect(userFeed.$unreadFeedIndicator.text()).toBe('' + arg);
-          expect(userFeed.$unreadFeedIndicator.hasClass('is-hidden')).toBe(false);
+          expect(userFeed.$unreadFeedIndicator.text()).toBe("" + arg);
+          expect(userFeed.$unreadFeedIndicator.hasClass("is-hidden")).toBe(false);
         });
       });
 
@@ -124,18 +116,16 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
         var arg = 0;
 
         beforeEach(function () {
-          userFeed.$unreadFeedIndicator.text('').addClass('is-hidden');
+          userFeed.$unreadFeedIndicator.text("").addClass("is-hidden");
           userFeed._updateUnreadFeedIndicator(arg);
         });
 
         it("should call this.$unreadFeedIndicator.addClass('is-hidden')", function () {
           expect(userFeed.$unreadFeedIndicator.length).toBe(1);
-          expect(userFeed.$unreadFeedIndicator.hasClass('is-hidden')).toBe(true);
+          expect(userFeed.$unreadFeedIndicator.hasClass("is-hidden")).toBe(true);
         });
       });
     });
-
-
 
     describe("._createUserActivities()", function () {
       var userFeed;
@@ -143,7 +133,7 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
       beforeEach(function () {
         userFeed = new UserFeed({
           maxFeedActivities: 4,
-          newFeedHighlightClass: 'FAKE-TEST-CLASS',
+          newFeedHighlightClass: "FAKE-TEST-CLASS",
           initialHighlightedActivitiesNumber: 10
         });
       });
@@ -153,15 +143,15 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
 
         beforeEach(function () {
           feedActivities = [
-            {text: 'a-'},
-            {text: 'b-'},
-            {text: 'c-'},
-            {text: 'd-'},
-            {text: 'e-'}
+            {text: "a-"},
+            {text: "b-"},
+            {text: "c-"},
+            {text: "d-"},
+            {text: "e-"}
           ];
 
           userFeed.$unreadActivitiesIndicator = {
-            text: jasmine.createSpy('text')
+            text: jasmine.createSpy("text")
           };
 
           spyOn(userFeed, "_bindLinks");
@@ -178,15 +168,13 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
         });
       });
     });
-
-
     describe("._createUserMessages()", function () {
       var userFeed;
 
       beforeEach(function () {
         userFeed = new UserFeed({
           maxFeedActivities: 4,
-          newFeedHighlightClass: 'FAKE-TEST-CLASS'
+          newFeedHighlightClass: "FAKE-TEST-CLASS"
         });
       });
 
@@ -195,20 +183,20 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
 
         beforeEach(function () {
           feedMessages = [
-            {text: '<a/>', 'read?': false},
-            {text: 'b-', 'read?': true},
-            {text: 'c-', 'read?': true},
-            {text: 'd-', 'read?': true},
-            {text: 'e-', 'read?': true}
+            {text: "<a/>", "read?": false},
+            {text: "b-", "read?": true},
+            {text: "c-", "read?": true},
+            {text: "d-", "read?": true},
+            {text: "e-", "read?": true}
           ];
           newMessagesNumber = 10;
-          userFeed.$footer = 'FAKE_FOOTER';
+          userFeed.$footer = "FAKE_FOOTER";
           userFeed.$messages = {
-            append: jasmine.createSpy('append')
+            append: jasmine.createSpy("append")
           };
-          userFeed.$messages.html = jasmine.createSpy('html').andReturn(userFeed.$messages);
+          userFeed.$messages.html = jasmine.createSpy("html").andReturn(userFeed.$messages);
           userFeed.$unreadMessagesIndicator = {
-            text: jasmine.createSpy('text')
+            text: jasmine.createSpy("text")
           };
           spyOn(userFeed, "_bindLinks");
           userFeed._createUserMessages(feedMessages, newMessagesNumber);
@@ -220,10 +208,10 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
 
         it("should call 'this.$messages.html( [proper String] ).append( [ footer ] )'", function () {
           expect(userFeed.$messages.html).toHaveBeenCalledWith(
-            $('<a/>').addClass(userFeed.config.newFeedHighlightClass)[0].outerHTML +
-              'b-c-d-'
+            $("<a/>").addClass(userFeed.config.newFeedHighlightClass)[0].outerHTML +
+              "b-c-d-"
           );
-          expect(userFeed.$messages.append).toHaveBeenCalledWith('FAKE_FOOTER');
+          expect(userFeed.$messages.append).toHaveBeenCalledWith("FAKE_FOOTER");
         });
 
         it("should call 'this.$unreadMessagesIndicator.text( [proper Number ] )'", function () {
@@ -231,8 +219,6 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
         });
       });
     });
-
-
 
     describe("._updateActivities()", function () {
       var userFeed, feed;
@@ -242,7 +228,7 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
           initialHighlightedActivitiesNumber: 2
         });
         feed = {
-          activities: ['ITEM_ONE', 'ITEM_TWO']
+          activities: ["ITEM_ONE", "ITEM_TWO"]
         };
       });
 
@@ -254,8 +240,8 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
         });
 
         it("should create new activities", function () {
-          expect(userFeed._createUserActivities).toHaveBeenCalledWith(['ITEM_ONE', 'ITEM_TWO'], 2);
-          expect(userFeed.currentActivities).toEqual(['ITEM_ONE', 'ITEM_TWO']);
+          expect(userFeed._createUserActivities).toHaveBeenCalledWith(["ITEM_ONE", "ITEM_TWO"], 2);
+          expect(userFeed.currentActivities).toEqual(["ITEM_ONE", "ITEM_TWO"]);
         });
       });
 
@@ -263,7 +249,7 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
         describe("if passed object has any new activities", function () {
           describe("and new activities count is higher than highlighted count", function () {
             beforeEach(function () {
-              userFeed.currentActivities = ['a','b','c'];
+              userFeed.currentActivities = ["a","b","c"];
               spyOn(userFeed, "_getActivityNumber").andReturn(5);
               spyOn(userFeed, "_createUserActivities");
               userFeed._updateActivities(feed);
@@ -271,14 +257,14 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
 
             it("should check new activities number, update activities list and highlighted activities number", function () {
               expect(userFeed._getActivityNumber).toHaveBeenCalledWith(feed);
-              expect(userFeed._createUserActivities).toHaveBeenCalledWith(['ITEM_ONE', 'ITEM_TWO']);
+              expect(userFeed._createUserActivities).toHaveBeenCalledWith(["ITEM_ONE", "ITEM_TWO"]);
               expect(userFeed.highlightedActivitiesNumber).toBe(5);
             });
           });
 
           describe("and new activities count is lower than highlighted count", function () {
             beforeEach(function () {
-              userFeed.currentActivities = ['a','b','c'];
+              userFeed.currentActivities = ["a","b","c"];
               spyOn(userFeed, "_getActivityNumber").andReturn(1);
               spyOn(userFeed, "_createUserActivities");
               userFeed._updateActivities(feed);
@@ -286,7 +272,7 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
 
             it("should check new activities number, update activities list but not highlighted activities number", function () {
               expect(userFeed._getActivityNumber).toHaveBeenCalledWith(feed);
-              expect(userFeed._createUserActivities).toHaveBeenCalledWith(['ITEM_ONE', 'ITEM_TWO']);
+              expect(userFeed._createUserActivities).toHaveBeenCalledWith(["ITEM_ONE", "ITEM_TWO"]);
               expect(userFeed.highlightedActivitiesNumber).toBe(2);
             });
           });
@@ -294,7 +280,7 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
 
         describe("if passed object has no new activities", function () {
           beforeEach(function () {
-            userFeed.currentActivities = ['a','b','c'];
+            userFeed.currentActivities = ["a","b","c"];
             spyOn(userFeed, "_getActivityNumber").andReturn(0);
             spyOn(userFeed, "_createUserActivities");
             userFeed._updateActivities(feed);
@@ -308,8 +294,6 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
         });
       });
     });
-
-
 
     describe("._updateMessages()", function () {
       var userFeed;
@@ -363,8 +347,6 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
         });
       });
     });
-
-
 
     describe("._updateFeed()", function () {
       var userFeed;
@@ -430,8 +412,6 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
         });
       });
     });
-
-
 
     describe("._fetchFeed()", function () {
       var userFeed;
