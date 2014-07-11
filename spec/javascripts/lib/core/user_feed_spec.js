@@ -8,14 +8,12 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
       doc = $(document);
     });
 
-
-
     describe("initialize", function () {
       var userFeed;
 
       beforeEach(function () {
         spyOn(UserFeed.prototype, "init");
-        userFeed = new UserFeed();
+        userFeed = new UserFeed({ feedUrl: "foo/bar" });
       });
 
       it("should have called 'this.init()' on initialization", function () {
@@ -34,14 +32,12 @@ require([ "jquery", "public/assets/javascripts/lib/core/user_feed", "public/asse
       });
     });
 
-
-
     describe(".init()", function () {
       var userFeed;
 
       beforeEach(function () {
-        spyOn(UserFeed.prototype, '_fetchFeed');
-        userFeed = new UserFeed();
+        spyOn(UserFeed.prototype, "_fetchFeed");
+        userFeed = new UserFeed({ feedUrl: "foo/bar" });
       });
 
       it("should call 'this._fetchFeed()'", function () {
