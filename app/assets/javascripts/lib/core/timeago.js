@@ -4,6 +4,7 @@ define([ "jquery", "lib/utils/debounce", "jtimeago" ], function($, debounce) {
 
   var breakpoint = 768,
       monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ],
+      refreshMillis = 60000,
 
       calculateMonth = function(number, distanceMillis) {
         return monthNames[new Date(Date.now() - distanceMillis).getMonth()];
@@ -14,7 +15,7 @@ define([ "jquery", "lib/utils/debounce", "jtimeago" ], function($, debounce) {
       },
 
       strings = {
-        desktop: {
+        full: {
           suffixAgo: null,
           seconds: "just now",
           minute: "a minute ago",
@@ -28,7 +29,7 @@ define([ "jquery", "lib/utils/debounce", "jtimeago" ], function($, debounce) {
           year: "a year ago",
           years: "%d years ago"
         },
-        mobile: {
+        short: {
           suffixAgo: null,
           seconds: "%ds",
           minute: "%dm",
@@ -47,13 +48,18 @@ define([ "jquery", "lib/utils/debounce", "jtimeago" ], function($, debounce) {
       extendTimeago = function() {
         var isDesktop = document.documentElement.clientWidth > breakpoint;
 
-        $.extend($.timeago.settings.strings, isDesktop ? strings.desktop : strings.mobile);
+        $.extend($.timeago.settings.strings, isDesktop ? strings.full : strings.short);
+        $("time.js-timeago").timeago();
 
-        return $("time.timeago").timeago();
+        $.extend($.timeago.settings.strings, strings.full);
+        $("time.js-timeago-full").timeago();
       };
 
+  // Replace original refresh function
+  $.timeago.settings.refreshMillis = 0;
+  setInterval(function() { extendTimeago(); }, refreshMillis);
+
+  $(window).resize(debounce(extendTimeago, 300));
+
   extendTimeago();
-
-  $(window).resize(debounce(extendTimeago, 200));
-
 });

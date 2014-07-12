@@ -169,7 +169,7 @@ define([ "jquery", "lib/utils/template", "lib/components/tabs", "lib/core/timeag
     this._updateUnreadFeedIndicator(this.highlightedActivitiesNumber + newMessagesNumber);
 
     // Update timeago for feed content only
-    $(this.config.feedSelector + " time.timeago").timeago();
+    $(this.config.feedSelector + " time.js-timeago-full").timeago();
   };
 
   UserFeed.prototype._updateFeed = function(fetchedFeed) {
