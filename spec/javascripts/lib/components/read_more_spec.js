@@ -45,7 +45,7 @@ require([ "public/assets/javascripts/lib/components/read_more.js" ], function(Se
 
       it("keeps the toggle area open and does not have a toggle button", function() {
         expect(window.SectionToggle.addToggle).not.toHaveBeenCalled();
-        expect(window.SectionToggle.setWrapperState).not.toHaveBeenCalled();
+        expect(window.SectionToggle.setWrapperState).toHaveBeenCalledWith("open");
         expect(window.SectionToggle.$toggle).not.toBeDefined();
       });
     });
@@ -146,7 +146,7 @@ require([ "public/assets/javascripts/lib/components/read_more.js" ], function(Se
 
         it("keeps the toggle area open and does not have a toggle button", function() {
           expect(window.SectionToggle.addToggle).not.toHaveBeenCalled();
-          expect(window.SectionToggle.setWrapperState).not.toHaveBeenCalled();
+          expect(window.SectionToggle.setWrapperState).toHaveBeenCalledWith("open");
           expect(window.SectionToggle.$toggle).not.toBeDefined();
         });
       });
