@@ -5,15 +5,7 @@
   .js-config.is-hidden
     = render 'layouts/core/inline_js/fs_init'
     = js_configuration
-    :javascript
-      (function(d, s) {
-        var firstJs, js;
-        firstJs = d.getElementsByTagName(s)[0];
-        js = d.createElement(s);
-        js.src = "#{normalised_asset_path('requirejs/require.js')}";
-        js.setAttribute("data-main", "#{async_js_path("app_core_legacy")}");
-        firstJs.parentNode.insertBefore(js, firstJs);
-      })(document, 'script');
+    %script{type: "text/javascript", async: true, src: "#{normalised_asset_path('requirejs/require.js')}", data: {main: "#{async_js_path("app_core_legacy")}"}}
 
     = render 'layouts/legacy/snippets/nav_tracking'
 
