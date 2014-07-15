@@ -17,7 +17,8 @@
           %p.hero-banner__strapline
             = properties[:strapline]
 
-    - if image_info = properties[:image_info]
+    - if properties[:image_info].present? && properties[:image_info][:attribution].present?
+      - image_info = properties[:image_info]
       .hero-banner__image-content
         .hero-banner__image-header
           .hero-banner__image-description.text-icon.icon--flickr--before
@@ -29,6 +30,12 @@
               by
             %span.hero-banner__username
               = image_info[:attribution]
+          .hero-banner__image-title
+            = image_info[:title]
+
+    - elsif image_info = properties[:image_info]
+      .hero-banner__image-content
+        .hero-banner__image-footer
           .hero-banner__image-title
             = image_info[:title]
 
