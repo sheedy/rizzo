@@ -113,7 +113,7 @@ define([
 
         if (this.requestMade){
           this.requestMade = false;
-          $("#js-card-holder").trigger(":controller/back");
+          $("#js-card-holder").trigger(":controller/reset");
         }
 
         // Waits for the end of the transition.
