@@ -62,8 +62,9 @@ vendor/assets/javascripts/hogan/wrappers
 vendor/assets/javascripts/hogan/.*
 
 # d3
-vendor/assets/javascripts/d3
-vendor/assets/javascripts/nvd3
+vendor/assets/javascripts/d3/**
+vendor/assets/javascripts/nvd3/**
 !vendor/assets/javascripts/d3/d3.js
 !vendor/assets/javascripts/nvd3/nv.d3.css
+!vendor/assets/javascripts/nvd3/nv.d3.min.css
 !vendor/assets/javascripts/nvd3/nv.d3.js
