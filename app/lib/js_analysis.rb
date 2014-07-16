@@ -12,4 +12,22 @@ class JSAnalysis < AssetAnalysis
 
   end
 
+  def chart_data
+    {
+      perf: @stats[:today].map do |file|
+        file[:id] == "car-rental" ? nil : chart_data_for_file(file)
+      end.compact,
+      upperRange: 300
+    }
+  end
+
+  def decorated_stat(stat)
+    stat[:sizes] = {
+      size: stat[:sizes][:size]/1000,
+      gzippedSize: stat[:sizes][:gzippedSize]/1000
+    }
+    stat
+  end
+
+
 end

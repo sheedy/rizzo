@@ -2,7 +2,7 @@ class AssetAnalysis
 
   require 'open-uri'
 
-  DAYS = ["today", "yesterday", "2_days_ago", "3_days_ago", "4_days_ago", "5_days_ago", "6_days_ago", "last_week"]
+  DAYS = ["today", "yesterday", "two_days_ago", "three_days_ago", "four_days_ago", "five_days_ago", "six_days_ago", "last_week"]
 
   private
 
@@ -22,8 +22,8 @@ class AssetAnalysis
   def add_comparison_stats
     @stats[:today].each do |statistic|
       statistic[:compare] = {
-        yesterday: compare_stats(statistic[:sizes][:size], (@stats[:yesterday].find {|y| y[:id] == statistic[:id]})[:sizes][:size]),
-        last_week: compare_stats(statistic[:sizes][:size], (@stats[:last_week].find {|y| y[:id] == statistic[:id]})[:sizes][:size])
+        yesterday: compare_stats(statistic[:sizes][:size], get_filesize(@stats[:yesterday].find {|y| y[:id] == statistic[:id]})),
+        last_week: compare_stats(statistic[:sizes][:size], get_filesize(@stats[:last_week].find {|y| y[:id] == statistic[:id]}))
       }
     end
   end
@@ -38,13 +38,30 @@ class AssetAnalysis
       suffix = dates[:"#{day_of_week}"]
       begin
         stats[:"#{day_of_week}"] = JSON.parse(open("http://assets.staticlp.com/perf/#{type}-analysis/result-#{suffix}.json").read).map do |stat|
-          type == "css" ? decorated_stat(stat.deep_symbolize_keys) : stat.deep_symbolize_keys
-        end
+          stat = stat.deep_symbolize_keys
+          type == "css" && stat[:result].blank? ? nil : decorated_stat(stat)
+        end.compact
       rescue
         stats[:"#{day_of_week}"] = []
       end
     end
     stats
+  end
+
+  def chart_data_for_file(file)
+    {
+      key: file[:id],
+      values: DAYS.reverse.map do |day|
+        {
+          x: DAYS.length - DAYS.index(day),
+          y: get_filesize(@stats[:"#{day}"].find {|y| y[:id] == file[:id]})
+        }
+      end
+    }
+  end
+
+  def get_filesize(stat)
+    stat.present? ? stat[:sizes][:size] : 1
   end
 
 end

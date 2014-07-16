@@ -11,6 +11,15 @@ class CSSAnalysis < AssetAnalysis
     end
   end
 
+  def chart_data
+    {
+      perf: @stats[:today].map do |file|
+        file[:id] == "fonts" ? nil : chart_data_for_file(file)
+      end.compact,
+      upperRange: 110
+    }
+  end
+
   def decorated_stat(stat)
     remove_cruft(stat)
     reformat_stats(stat)

@@ -6,6 +6,7 @@ require([ "jquery" ], function($) {
     "lib/page/swipe",
     "lib/utils/konami",
     "lib/page/scroll_perf",
+    "lib/styleguide/charts",
     "lib/components/poi_map",
     "lib/components/poi_list",
     "lib/components/slider",
@@ -26,7 +27,7 @@ require([ "jquery" ], function($) {
     "lib/utils/last_input_device",
     "lib/components/range_slider",
     "lib/styleguide/snippet-expand"
-  ], function(Swipe, Konami, ScrollPerf, POIMap, POIList, Slider, ToggleActive, SelectGroupManager) {
+  ], function(Swipe, Konami, ScrollPerf, Charts, POIMap, POIList, Slider, ToggleActive, SelectGroupManager) {
 
     new ScrollPerf();
     new ToggleActive();
