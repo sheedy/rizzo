@@ -23,10 +23,10 @@ $slideHoverArrowSpacing: 0.357em
   position: relative
 
   .slider--16x9 &
-    padding: 0 0 56.25%
+    +intrinsic-ratio(16, 9)
 
   .slider--4x3 &
-    padding: 0 0 75%
+    +intrinsic-ratio(4, 3)
 
 .slider__slide
   +hardware-acceleration()

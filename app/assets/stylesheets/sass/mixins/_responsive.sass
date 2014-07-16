@@ -33,3 +33,18 @@
       @content
   @else if $fallback
     @content
+
+// -----------------------------------------------------------------------------
+// [doc]
+//
+// Calculate padding for a proportional wrapper
+//
+// Force an intrinsic ratio based on the width of the containing block to used as a
+// wrapper for fixed aspect-ratio content.
+//
+// More information: http://alistapart.com/article/creating-intrinsic-ratios-for-video
+//
+// [/doc]
+// -----------------------------------------------------------------------------
+@mixin intrinsic-ratio($ratioX, $ratioY)
+  padding-top: percentage((1 / $ratioX) * $ratioY)
