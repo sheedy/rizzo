@@ -14,7 +14,6 @@ define ['jquery', 'lib/mixins/events', 'lib/page/pushstate', 'lib/mixins/page_st
       @init()
       @listen()
 
-
     init: ->
 
       # Controller uses the main listening element for pub & sub
@@ -37,18 +36,23 @@ define ['jquery', 'lib/mixins/events', 'lib/page/pushstate', 'lib/mixins/page_st
         @_callServer(@_createRequestUrl(existingUrl), @append, analytics)
 
       $(LISTENER).on ':page/request', (e, data, analytics) =>
-        @_generateState( data.url.split('?')[0] )
+        @_generateState(data.url.split('?')[0])
         @pushstate.navigate(@_serializeState(), @states[@currentState].documentRoot)
         @_callServer(@_createRequestUrl(@states[@currentState].documentRoot), @newPage, analytics)
 
       $(LISTENER).on ':layer/request', (e, data) =>
-        @_generateState( data.url.split('?')[0] )
-        @pushstate.navigate(@_serializeState(), @states[@currentState].documentRoot)
+        @_generateState(data.url.split('?')[0])
+        @pushstate.navigate(@_serializeState(), @states[@currentState].documentRoot, true)
         @_callServer(@_createRequestUrl(@states[@currentState].documentRoot), @newLayer)
 
       $(LISTENER).on ':controller/back', (e, data, analytics) =>
         @_removeState()
         @_generateState(@states[@currentState].documentRoot)
+        @pushstate.navigate(@_serializeState(), @states[@currentState].documentRoot)
+
+      $(LISTENER).on ':controller/reset', (e, data) =>
+        @states = [@states[0]]
+        @currentState = 0
         @pushstate.navigate(@_serializeState(), @states[@currentState].documentRoot)
 
     # Publish
