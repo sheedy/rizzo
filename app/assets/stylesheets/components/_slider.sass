@@ -23,10 +23,10 @@ $slideHoverArrowSpacing: 0.357em
   position: relative
 
   .slider--16x9 &
-    padding: 0 0 56.25%
+    +intrinsic-ratio(16, 9)
 
   .slider--4x3 &
-    padding: 0 0 75%
+    +intrinsic-ratio(4, 3)
 
 .slider__slide
   +hardware-acceleration()
@@ -86,12 +86,8 @@ $slideHoverArrowSpacing: 0.357em
   display: none
   width: 100%
   height: 100%
-  opacity: 0
   .slider__show-controls &
     display: initial
-
-  .slider:hover &
-    opacity: 1
 
 .slider__control
   +font-size(14)
