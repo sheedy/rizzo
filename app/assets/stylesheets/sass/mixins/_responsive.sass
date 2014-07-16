@@ -48,3 +48,31 @@
 // -----------------------------------------------------------------------------
 @mixin intrinsic-ratio($ratioX, $ratioY)
   padding-top: percentage((1 / $ratioX) * $ratioY)
+
+// -----------------------------------------------------------------------------
+// [doc]
+//
+// Best fit media to a fixed size wrapper
+//
+// Uses transforms (where available) to 'best fit' an image or video element to it's
+// container. Best used with the intrinsic ratio mixin.
+//
+// Example of use: http://codepen.io/anon/pen/urhmI
+//
+// [/doc]
+// -----------------------------------------------------------------------------
+@mixin best-fit-media
+  position: absolute
+  .no-transform-support &
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    margin: auto
+    min-height: 100%
+    max-height: 100%
+  .supports-transform &
+    top: 50%
+    left: 50%
+    width: 100%
+    transform: translate(-50%, -50%)
