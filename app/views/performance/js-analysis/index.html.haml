@@ -1,9 +1,19 @@
 = render 'styleguide/partials/shared'
+- content_for :stylesheets do
+  %link{rel: "stylesheet", href: "#{asset_path('nvd3/nv.d3.min.css')}"}
+
+- configure_js("chartData", @chart_data)
 
 .context--content.copy--body
 
   .card.styleguide-intro
     %h1.copy--h1 JS Trend and Comparison
+
+  .card.chart-section.styleguide-intro
+    %h4.copy--h4 File Size (kB) changes over the previous 7 days
+    #js-chart.perf-chart.is-loading
+      = ui_component("preloader")
+      %svg
 
   .card.styleguide-intro
     .grid-wrapper--10.perf--row
@@ -29,9 +39,9 @@
           .col--two-thirds
             .grid-wrapper--10
               .col--one-quarter.stat--medium
-                #{(file[:sizes][:size]/1000)}kb
+                #{file[:sizes][:size]}kb
               .col--one-quarter.stat--medium
-                #{(file[:sizes][:gzippedSize]/1000)}kb
+                #{file[:sizes][:gzippedSize]}kb
               .col--one-quarter.stat--medium
                 .stat--trend.icon--white--before{class: file[:compare][:last_week] > 0 ? "stat--red icon--arrow-up--before" : file[:compare][:last_week] < 0 ? "stat--green icon--arrow-down--before" : "stat--stable"}
                   #{file[:compare][:last_week]}%

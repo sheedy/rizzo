@@ -5,7 +5,9 @@ class PerformanceController < GlobalController
   before_filter :setup
 
   def css_index
-    @result = CSSAnalysis.new.fetch("all")
+    css_analysis = CSSAnalysis.new
+    @result = css_analysis.fetch("all")
+    @chart_data = css_analysis.chart_data
     render '/performance/css-analysis/index'
   end
 
@@ -15,7 +17,9 @@ class PerformanceController < GlobalController
   end
 
   def js_index
-    @result = JSAnalysis.new.fetch("all")
+    js_analysis = JSAnalysis.new
+    @result = js_analysis.fetch("all")
+    @chart_data = js_analysis.chart_data
     render '/performance/js-analysis/index'
   end
 
