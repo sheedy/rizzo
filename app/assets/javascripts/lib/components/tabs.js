@@ -1,7 +1,8 @@
-// Params: @args {
-//   selector: tabs element selector
-// }
-
+// ------------------------------------------------------------------------------
+//
+// Tabs
+//
+// ------------------------------------------------------------------------------
 define([ "jquery" ], function($) {
 
   "use strict";
@@ -23,6 +24,10 @@ define([ "jquery" ], function($) {
     this._init();
   }
 
+  // -------------------------------------------------------------------------
+  // Initialise
+  // -------------------------------------------------------------------------
+
   Tabs.prototype._init = function() {
     var _this = this;
 
@@ -39,6 +44,10 @@ define([ "jquery" ], function($) {
 
     this.$container.removeClass("is-loading");
   };
+
+  // -------------------------------------------------------------------------
+  // Private Functions
+  // -------------------------------------------------------------------------
 
   Tabs.prototype._openTab = function($label, contents) {
     if ($label.hasClass(this.config.activeClassName)) {
