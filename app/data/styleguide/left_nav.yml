@@ -85,6 +85,9 @@
           :name: "Proximity Loader"
           :slug: "proximity-loader"
         -
+          :name: "Tabs"
+          :slug: "tabs"
+        -
           :name: "Template"
           :slug: "template"
         -
