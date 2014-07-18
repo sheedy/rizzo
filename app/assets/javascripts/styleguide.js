@@ -12,6 +12,7 @@ require([ "jquery" ], function($) {
     "lib/components/slider",
     "lib/components/toggle_active",
     "lib/components/select_group_manager",
+    "lib/styleguide/page_hopper",
     "lib/components/parallax",
     "lib/styleguide/svg",
     "lib/styleguide/copy",
@@ -26,9 +27,8 @@ require([ "jquery" ], function($) {
     "pickadate/lib/picker.date",
     "lib/utils/last_input_device",
     "lib/components/range_slider",
-    "lib/styleguide/snippet-expand",
-    "lib/styleguide/page_hopper"
-  ], function(Swipe, Konami, ScrollPerf, Charts, POIMap, POIList, Slider, ToggleActive, SelectGroupManager) {
+    "lib/styleguide/snippet-expand"
+  ], function(Swipe, Konami, ScrollPerf, Charts, POIMap, POIList, Slider, ToggleActive, SelectGroupManager, PageHopper) {
 
     new ScrollPerf();
     new ToggleActive();
@@ -37,7 +37,7 @@ require([ "jquery" ], function($) {
     new POIList(null, new POIMap);
     new Slider({ el: ".js-slider", assetReveal: true });
     new SelectGroupManager();
-    new SelectGroupManager();
+    new PageHopper();
 
     var d = new Date();
     $(".input--datepicker").pickadate({

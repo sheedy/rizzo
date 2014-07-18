@@ -2,6 +2,7 @@ class RizzoApp
 
   def initialize(path)
     @path = path
+    @page_hopper_sections = flatten_page_hopper_sections
   end
 
   def page_title
@@ -45,6 +46,10 @@ class RizzoApp
     active_left_nav
   end
 
+  def page_hopper_sections
+    { sections: @page_hopper_sections }
+  end
+
   private
 
   def active_section
@@ -55,6 +60,35 @@ class RizzoApp
       end
     end
     sections[0]
+  end
+
+  def flatten_page_hopper_sections
+    sections = {
+      styleguide: (YAML.load_file(File.expand_path('../../data/styleguide/left_nav.yml', __FILE__))),
+      performance: (YAML.load_file(File.expand_path('../../data/performance-monitoring/left_nav.yml', __FILE__)))
+    }
+
+    converted_sections ||= sections.inject([]) do |result, (k,v)|
+      styleguide_slug = k.to_s
+      v.each do |k2,v2|
+        group_slug = k2.to_s.gsub('_', '-')
+
+        v2.each do |h|
+          group_title = h[:title]
+          h[:items].each do |h2|
+            result << { title: "#{group_title} - #{h2[:name]}", slug: File.join('', styleguide_slug, group_slug, h2[:slug]) }
+          end
+        end
+      end
+
+      result
+    end
+
+    converted_sections.push({ title: "Style Guide", slug: "/styleguide" })
+    converted_sections.push({ title: "Performance Monitoring", slug: "/performance" })
+
+    converted_sections.concat (YAML.load_file(File.expand_path('../../data/styleguide/secondary_nav.yml', __FILE__)))
+    converted_sections.concat (YAML.load_file(File.expand_path('../../data/performance-monitoring/secondary_nav.yml', __FILE__)))
   end
 
 end
