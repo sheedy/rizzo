@@ -14,10 +14,9 @@ define([
 
   var config = {
         autocompleteInputClass: "js-autocomplete-page-hopper",
-        listener: "body",
-        linkClass: "js-page-hopper-opener"
+        listener: "body"
       },
-      $link, lightbox, isOpen, _this;
+      lightbox, _this;
 
   function PageHopper(args) {
     $.extend(config, args);
@@ -29,13 +28,9 @@ define([
   PageHopper.prototype.init = function() {
     _this = this;
 
-    $link = $("<a class='" + config.linkClass + "' />");
-    this.$listener.append($link);
-
     lightbox = new LightBox({
       customClass: "lightbox--page-hopper",
       $el: "body",
-      $opener: "." + config.linkClass
     });
 
     this.listen();
@@ -48,27 +43,26 @@ define([
   PageHopper.prototype.listen = function() {
 
     _this.$listener.on("keydown", function(e) {
-      if (isOpen) { return; }
+      if ($("." + config.lightboxClass).is(":visible")) { return; }
 
       // 75 =k
       if ( e.keyCode == 75 && (e.metaKey || e.ctrlKey) ) {
-        $link.trigger("click");
+        _this.$listener.trigger(":lightbox/open", {
+          listener: this.$el,
+          opener: event.currentTarget,
+          target: this.$lightboxWrapper
+        });
         e.preventDefault();
       }
     });
 
     _this.$listener.on(":lightbox/open", function(event, data) {
-      if (data.opener == $link[0]) {
-        isOpen = true;
+      if (data.customClass == config.lightboxClass) {
         _this.$listener.trigger(":lightbox/renderContent", "<div class='card card--page page-hopper'> <div class='card--page__header'><input class='page-hopper__input " + config.autocompleteInputClass + "' type='text'></div></div>");
       }
     });
 
     _this.$listener.on(":lightbox/contentReady", _this._setupAutocomplete);
-
-    _this.$listener.on(":flyout/close", function() {
-      isOpen = false;
-    });
 
   };
 
