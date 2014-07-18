@@ -48,7 +48,7 @@ Rizzo::Application.routes.draw do
   get 'styleguide/js-components',   to: redirect('/styleguide/js-components/asset-reveal')
   get 'styleguide/css-utilities/',  to: redirect('/styleguide/css-utilities/proportional-grid')
   get 'styleguide/page-layout/',    to: redirect('/styleguide/page-layout/using-rizzo-layouts')
-  get 'styleguide/widgets/',        to: redirect('/styleguide/widgets/flickr-widget')
+  get 'styleguide/widgets/',        to: redirect('/styleguide/widgets/flickr')
 
 
   get 'styleguide/*section' => 'styleguide#show'
