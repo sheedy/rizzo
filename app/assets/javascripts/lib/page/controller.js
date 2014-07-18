@@ -98,7 +98,7 @@ define([
       url: url,
       dataType: dataType || "json",
       success: function(data) {
-        return callback(data, analytics);
+        return callback(data, analytics).bind(this);
       }
     });
   };
