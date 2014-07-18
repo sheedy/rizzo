@@ -6,7 +6,8 @@
 //
 // -----------------------------------------------------------------------------
 
-$card--page-padding: 16px 25px
+$card--page-padding-y: 16px
+$card--page-padding-x: 25px
 
 .card--page
   border-radius: 4px
@@ -60,7 +61,7 @@ $card--page-padding: 16px 25px
   left: 0
   right: 0
   bottom: 0
-  padding: $card--page-padding
+  padding: $card--page-padding-y $card--page-padding-x
   color: white
 
 .card--page__hero-cta
@@ -75,7 +76,7 @@ $card--page-padding: 16px 25px
 // -----------------------------------------------------------------------------
 
 .card--page__header
-  padding: $card--page-padding
+  padding: $card--page-padding-y $card--page-padding-x
   .copy--h1
     line-height: 1.1em
     margin: 0
@@ -84,8 +85,8 @@ $card--page-padding: 16px 25px
     padding-left: 95px
 
 .card--page__header--headline
-  padding-top: 25px
-  padding-bottom: 25px
+  padding-top: $card--page-padding-x
+  padding-bottom: $card--page-padding-x
 
 .card--page__breadcrumb
   position: relative
@@ -113,15 +114,23 @@ $card--page-padding: 16px 25px
   color: $body-copy
 
 // -----------------------------------------------------------------------------
-//  Content row
+//  Content rows
 // -----------------------------------------------------------------------------
 
 .card--page__content
   @extend %clearfix
-  padding: $card--page-padding
+  padding: $card--page-padding-y $card--page-padding-x
 
   .card--page__header + &
     border-top: 1px solid $body-background
+
+.card--page__fill
+  .responsive &
+    margin-left: $card--page-padding-x * -1
+    margin-right: $card--page-padding-x * -1
+    +respond-to(medium-view)
+      margin-left: auto
+      margin-right: auto
 
 // We cannot guarantee that the content will be decorated with classes
 .card--page__content--intro
