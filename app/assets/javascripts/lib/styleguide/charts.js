@@ -2,6 +2,8 @@ define([ "jquery", "d3", ], function($, d3) {
 
   "use strict";
 
+  if (!window.lp.chartData) return;
+
   // nvd3 isn't currently AMD compliant and requires a global d3 object
   window.d3 = d3;
 
