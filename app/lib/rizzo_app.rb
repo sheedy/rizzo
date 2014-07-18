@@ -63,7 +63,7 @@ class RizzoApp
   end
 
   def flatten_page_hopper_sections
-    converted_sections ||= sg_sections[:left_nav].inject([]) do |result, (k,v)|
+    converted_sections = sg_sections[:left_nav].inject([]) do |result, (k,v)|
       styleguide_slug = k.to_s
       v.each do |k2,v2|
         group_slug = k2.to_s.gsub('_', '-')

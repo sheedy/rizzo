@@ -12,7 +12,7 @@ require([ "jquery" ], function($) {
     "lib/components/slider",
     "lib/components/toggle_active",
     "lib/components/select_group_manager",
-    "lib/styleguide/page_hopper",
+    "lib/components/page_hopper",
     "lib/components/parallax",
     "lib/styleguide/svg",
     "lib/styleguide/copy",
