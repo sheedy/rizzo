@@ -63,27 +63,34 @@ class RizzoApp
   end
 
   def flatten_page_hopper_sections
-    converted_sections = sg_sections[:left_nav].inject([]) do |result, (k,v)|
+    converted_sections = flatten_page_hopper_section(sg_sections[:left_nav])
+
+    converted_sections.push({ title: "Style Guide", slug: "/styleguide" })
+    converted_sections.push({ title: "Performance Monitoring", slug: "/performance" })
+
+    converted_sections.concat flatten_page_hopper_section(sg_sections[:secondary_nav])
+  end
+
+  def flatten_page_hopper_section section
+    section.inject([]) do |result, (k,v)|
       styleguide_slug = k.to_s
       v.each do |k2,v2|
         group_slug = k2.to_s.gsub('_', '-')
 
-        v2.each do |h|
-          group_title = h[:title]
-          h[:items].each do |h2|
-            result << { title: "#{group_title} - #{h2[:name]}", slug: File.join('', styleguide_slug, group_slug, h2[:slug]) }
+        if v2.nil?
+          result << { title: "#{k2[:title]}", slug: File.join('', styleguide_slug, k2[:slug]) }
+        else
+          v2.each do |h|
+            group_title = h[:title]
+            h[:items].each do |h2|
+              result << { title: "#{group_title} - #{h2[:name]}", slug: File.join('', styleguide_slug, group_slug, h2[:slug]) }
+            end
           end
         end
       end
 
       result
     end
-
-    converted_sections.push({ title: "Style Guide", slug: "/styleguide" })
-    converted_sections.push({ title: "Performance Monitoring", slug: "/performance" })
-
-    converted_sections.concat sg_sections[:secondary_nav][:styleguide]
-    converted_sections.concat sg_sections[:secondary_nav][:performance]
   end
 
   def sg_sections
