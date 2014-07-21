@@ -1,0 +1,23 @@
+.page-hopper
+  @extend %fly-out-shadow
+
+.page-hopper__input
+  +font-size(24)
+  width: 100%
+
+.lightbox--page-hopper
+  .lightbox__close
+    right: -40px
+    top: 65px
+  .autocomplete
+    top: 70%
+
+.supports-cssfilters
+  .page-hopper--open
+    .row--primary,
+    .row--secondary,
+    .row__inner--content
+      filter: blur(4px)
+
+    .lightbox
+      background: rgba(238, 241, 243, 0.5)
