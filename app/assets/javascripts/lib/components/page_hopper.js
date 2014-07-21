@@ -49,7 +49,7 @@ define([
       if ( e.keyCode == 75 && (e.metaKey || e.ctrlKey) ) {
         _this.$listener.trigger(":lightbox/open", {
           listener: this.$el,
-          opener: event.currentTarget,
+          opener: e.currentTarget,
           target: this.$lightboxWrapper
         });
         e.preventDefault();
