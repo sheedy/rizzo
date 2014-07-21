@@ -45,7 +45,7 @@ define([
     _this.$listener.on("keydown", function(e) {
       if ($("." + config.lightboxClass).is(":visible")) { return; }
 
-      // 75 =k
+      // 75 = k
       if ( e.keyCode == 75 && (e.metaKey || e.ctrlKey) ) {
         _this.$listener.trigger(":lightbox/open", {
           listener: this.$el,
@@ -63,7 +63,7 @@ define([
       _this.$listener.addClass("page-hopper--open");
     });
 
-    _this.$listener.on(":lightbox/close", function() {
+    _this.$listener.on(":lightbox/is-closed", function() {
       _this.$listener.removeClass("page-hopper--open");
     });
 
