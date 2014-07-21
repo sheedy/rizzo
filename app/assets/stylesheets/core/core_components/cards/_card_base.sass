@@ -28,11 +28,6 @@
   position: relative
   text-align: center
 
-  .responsive &
-    height: $mobile-standard-card-image-height
-    +respond-to(medium-view)
-      height: $standard-card-image-height
-
   &:after
     @extend %transition--slower
     @extend %empty-abs-generated-content
@@ -70,21 +65,12 @@
     height: $card-grid-height
     &:after
       +image-overlay--gradient()
-    .responsive &
-      height: $mobile-card-grid-height
-      +respond-to(medium-view)
-        height: $card-grid-height
 
   .card--mini &
     height: $card-grid-half-height
-    .responsive &
-      height: $mobile-card-grid-half-height
-      +respond-to(medium-view)
-        height: $card-grid-half-height
 
   .card--small-image &
-    &, .responsive &
-      height: $small-card-image-height
+    height: $small-card-image-height
 
 .card__hero__overlay
   +z-layer
@@ -114,10 +100,6 @@
 
   .card--small-image &
     height: ($card-grid-height - $small-card-image-height - (2 * $card-content-vertical-padding) )
-    .responsive &
-      height: ($mobile-card-grid-height - $small-card-image-height - (2 * $card-content-vertical-padding) )
-      +respond-to(medium-view)
-        height: ($card-grid-height - $small-card-image-height - (2 * $card-content-vertical-padding) )
 
   .card--full-image &
     @extend %transition--base
@@ -170,10 +152,6 @@
 .card--extended-content,
 .card--extended-content--half
   height: $card-grid-height
-  .responsive &
-    height: $mobile-card-grid-height
-    +respond-to(medium-view)
-      height: $card-grid-height
 
   .card__content
     +z-layer
@@ -213,11 +191,6 @@
   &:hover
     .card__content
       height: $card-grid-height - ( 2*$card-content-vertical-padding) - 40px
-  .js-hover.responsive &:hover
-    .card__content
-      height: $mobile-card-grid-height - ( 2*$card-content-vertical-padding) - 40px
-      +respond-to(medium-view)
-        height: $card-grid-height - ( 2*$card-content-vertical-padding) - 40px
 
 .card--extended-content--half
   .card__content
