@@ -58,8 +58,13 @@ define([
 
     _this.$listener.on(":lightbox/open", function(event, data) {
       if (data.customClass == config.lightboxClass) {
-        _this.$listener.trigger(":lightbox/renderContent", "<div class='card card--page page-hopper'> <div class='card--page__header'><input class='page-hopper__input " + config.autocompleteInputClass + "' type='text'></div></div>");
+        _this.$listener.trigger(":lightbox/renderContent", "<div class='card card--page page-hopper'> <div class='card--page__header'><input class='page-hopper__input " + config.autocompleteInputClass + "' type='text' /></div></div>");
       }
+      _this.$listener.addClass("page-hopper--open");
+    });
+
+    _this.$listener.on(":flyout/close", function() {
+      _this.$listener.removeClass("page-hopper--open");
     });
 
     _this.$listener.on(":lightbox/contentReady", _this._setupAutocomplete);
