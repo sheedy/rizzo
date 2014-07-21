@@ -120,6 +120,7 @@ define([
         setTimeout(function() {
           this.$lightboxContent.empty();
           this.$lightbox.removeClass("is-active is-visible");
+          this.trigger(":lightbox/close");
         }.bind(this), 300);
 
         this.$lightbox.removeClass("content-ready");

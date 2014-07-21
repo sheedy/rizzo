@@ -63,7 +63,7 @@ define([
       _this.$listener.addClass("page-hopper--open");
     });
 
-    _this.$listener.on(":flyout/close", function() {
+    _this.$listener.on(":lightbox/close", function() {
       _this.$listener.removeClass("page-hopper--open");
     });
 
@@ -104,10 +104,7 @@ define([
       }
     });
 
-    // To get around a weird bug where the lightbox was jumping out of the view.
-    setTimeout(function() {
-      $("." + config.autocompleteInputClass).focus();
-    }, 250);
+    $("." + config.autocompleteInputClass).focus();
   };
 
   return PageHopper;
