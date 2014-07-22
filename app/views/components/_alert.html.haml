@@ -1,0 +1,8 @@
+.alert{class: ui_alert_classes(properties)}
+
+  - if properties[:title].present?
+    .alert__title
+      = properties[:title]
+
+  %p.alert__content
+    = properties[:message]

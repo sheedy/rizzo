@@ -9,9 +9,11 @@
   margin: 10px 0
   padding: 15px 15px 13px 15px
   position: relative
+  color: white
+
 
   &:before
-    +icon-color("custom")
+    +icon-color(white)
     height: 18px
     left: 15px
     position: absolute
@@ -36,15 +38,16 @@
   margin-top: 10px
 
 .alert--success
-  background: $highlight-success
+  background: $green
 
 .alert--error
-  background: $highlight-error
+  background: $red
 
 .alert--warning
-  background: $highlight-warning
+  background: $yella
+  color: $body-copy
+  &:before, &:after
+    +icon-color(custom)
 
 .alert--announcement
-  background: $highlight-announcement
-  &:before, &:after
-    background-position: 0 60%
+  background: $linkblue

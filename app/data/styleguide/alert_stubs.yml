@@ -1,0 +1,27 @@
+alerts:
+  -
+    :type: "Success"
+    :title: "Success!"
+    :message: "You are now logged in."
+    :animate: false
+  -
+    :type: "Error"
+    :title: "Error!"
+    :message: "Maybe check yourself before..."
+    :animate: false
+  -
+    :type: "Warning"
+    :title: "Be careful"
+    :message: "Mind the gap."
+    :animate: false
+  -
+    :type: "Announcement"
+    :title: "Half price books"
+    :message: "Get them now, they're hot."
+    :animate: false
+
+  -
+    :type: "Success"
+    :title: "Animated success"
+    :message: "This will animate in."
+    :animate: true
