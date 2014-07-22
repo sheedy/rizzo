@@ -1,13 +1,13 @@
 = render 'layouts/core/doctype_declaration'
 
 %head
-  = render 'layouts/core/head', tynt: false
+  = render 'layouts/core/head', tynt: false, responsive: true
 
 %body.responsive.minimal
   .wrapper.js-wrapper
 
     .row--faux-banner
-      %a.media--lp-logo.logo--header.icon--lp-logo.icon--white(href='http://www.lonelyplanet.com' title='Return to homepage')
+      %a.media--lp-logo.logo--header.icon--lp-logo.icon--white{ href: 'http://www.lonelyplanet.com', title: 'Return to homepage' }
 
     .row.row--content{ id: 'js-row--content' }
 

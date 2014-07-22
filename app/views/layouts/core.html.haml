@@ -1,7 +1,7 @@
 = render 'layouts/core/doctype_declaration'
 
 %head
-  = render 'layouts/core/head', tynt: (defined?(tynt) ? tynt : false), include_js: true, responsive: false
+  = render 'layouts/core/head', tynt: (defined?(tynt) ? tynt : true), include_js: true, responsive: false
 
 %body
   = ui_component('lightbox')
@@ -30,6 +30,7 @@
   = render 'layouts/core/snippets/one_by_one'
 
   = render 'layouts/core/snippets/footer_js'
+  
   - if defined? Variant
     /
       = "build: #{Variant.full_namespace}"
