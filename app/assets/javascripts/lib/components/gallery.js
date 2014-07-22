@@ -70,23 +70,23 @@ define([
   };
   /* jshint ignore:end */
 
+  Gallery.prototype._afterNavigation = function(event) {
+    // Ensure we're handling the correct transitionend event
+    if (window.lp.supports.transform.css.indexOf(event.originalEvent.propertyName) < 0) return;
+
+    var partial = this.slider.$currentSlide.data("partial-slug");
+    this.analytics.track();
+    this._updateImageInfo();
+    this._updateSlug(partial);
+    this._updateGoogleAnalytics(partial, window.lp.analytics);
+    this.$listener.trigger(":ads/refresh");
+  };
+
   Gallery.prototype._handleEvents = function() {
-    var afterTransition = debounce(function(e) {
-
-      // Ensure we're handling the correct transitionend event
-      if (window.lp.supports.transform.css.indexOf(e.originalEvent.propertyName) < 0) return;
-
-      var partial = this.slider.$currentSlide.data("partial-slug");
-      this.analytics.track();
-      this._updateImageInfo();
-      this._updateSlug(partial);
-      this._updateGoogleAnalytics(partial, window.lp.analytics);
-      this.$listener.trigger(":ads/refresh");
-    }.bind(this), 200);
 
     onTransitionEnd({
       $listener: this.slider.$slides,
-      fn: afterTransition
+      fn: debounce(this._afterNavigation.bind(this), 200)
     });
 
     this.$gallery.on("click", ".is-previous", function() {
