@@ -25,6 +25,7 @@ define([
 
     $(window).on("scroll", this._onScroll.bind(this));
     $(window).on("resize", debounce(this._onResize.bind(this), 100));
+
   };
 
   withViewportHelper.call(HeroParallax.prototype);
@@ -125,14 +126,16 @@ define([
     }
   };
 
-  // Waits for feature detect to be available
-  if (window.lp.supports.requestAnimationFrame){
-    _autoInit();
-  }else {
-    $(document).on(":featureDetect/available", function() {
+  $(window).on("load", function() {
+    // Waits for feature detect to be available
+    if (window.lp.supports.requestAnimationFrame){
       _autoInit();
-    });
-  }
+    }else {
+      $(document).on(":featureDetect/available", function() {
+        _autoInit();
+      });
+    }
+  });
 
   return HeroParallax;
 
