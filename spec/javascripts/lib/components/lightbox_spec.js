@@ -105,22 +105,5 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
       });
     });
 
-    describe("Lightbox centering", function() {
-
-      it("sets up the container to be the full height and width of the viewport", function() {
-
-        spyOn(lightbox, "viewport").andReturn({
-          height: 800,
-          width: 1000
-        });
-
-        lightbox._centerLightbox();
-
-        expect($("#js-lightbox").height()).toBe(800);
-        expect($("#js-lightbox").width()).toBe(1000);
-      });
-
-    });
-
   });
 });
