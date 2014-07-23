@@ -43,6 +43,7 @@
     "loadFixtures": false,
     "module":       false,
     "require":      false,
-    "spyOn":        false
+    "spyOn":        false,
+    "spyOnEvent":   false
   }
 }
