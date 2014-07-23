@@ -51,14 +51,14 @@ Rizzo::Application.routes.draw do
   get 'styleguide/widgets/',        to: redirect('/styleguide/widgets/flickr')
 
 
-  get 'styleguide/*section' => 'styleguide#show'
+  get 'styleguide/*section' => 'styleguide#show', :defaults => { :suppress_tynt => "true" }
 
   get 'performance/',                         to: redirect('/performance/css-analysis')
 
-  get '/performance/css-analysis'             => 'performance#css_index'
-  get '/performance/css-analysis/:stylesheet' => 'performance#css_show'
+  get '/performance/css-analysis'             => 'performance#css_index', :defaults => { :suppress_tynt => "true" }
+  get '/performance/css-analysis/:stylesheet' => 'performance#css_show', :defaults => { :suppress_tynt => "true" }
 
-  get '/performance/js-analysis'             => 'performance#js_index'
-  get '/performance/js-analysis/:javascript' => 'performance#js_show'
+  get '/performance/js-analysis'             => 'performance#js_index', :defaults => { :suppress_tynt => "true" }
+  get '/performance/js-analysis/:javascript' => 'performance#js_show', :defaults => { :suppress_tynt => "true"  }
 
 end if defined?(Rizzo::Application)
