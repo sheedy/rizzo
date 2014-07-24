@@ -81,12 +81,12 @@ module LayoutSupport
     if route == "core" ||  route == "responsive" || route == "minimal"
       return {
         layout: route,
-        template: "/global-nav/#{route}"
+        template: "layouts/examples/#{route}"
       }
     end
     {
       layout: false,
-      template: "custom_layouts/preview"
+      template: "layouts/custom/preview"
     }
   end
 

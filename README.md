@@ -53,21 +53,12 @@ To enable rizzo, add it to your gemfile:
 
     gem 'rizzo', git: 'git@github.com:lonelyplanet/rizzo.git', submodules: true
 
-This will add Rizzo's Components, Javascript and Sass into your applications load paths. In order to use the layouts, specify it in your controller. There are currently three layouts that Rizzo provides:
-
-- Core (Fixed width) - [http://rizzo.lonelyplanet.com/global](http://rizzo.lonelyplanet.com/global)
-- Responsive - [http://rizzo.lonelyplanet.com/responsive](http://rizzo.lonelyplanet.com/responsive)
+This will add Rizzo's Components, Javascript and Sass into your applications load paths. In order to use the layouts, specify it in your controller. Available layouts are detailed [within the documentation](http://rizzo.lonelyplanet.com/styleguide/page-layout/core-layouts).
 
 -----
 ## Rizzo as a service
 
-Rizzo also exposes the Global Head (html, css, meta etc.), Global Body Header (Primary navigation) and Global Body Footer (scripts and footer) as a service. These are used for non-rails apps. They are available at:
-
-- Global Head - [http://rizzo.lonelyplanet.com/global-head](http://rizzo.lonelyplanet.com/global-head)
-- Global Body Header - [http://rizzo.lonelyplanet.com/global-body-header](http://rizzo.lonelyplanet.com/global-body-header)
-- Global Body Footer - [http://rizzo.lonelyplanet.com/global-body-footer](http://rizzo.lonelyplanet.com/global-body-footer)
-
-An example of the legacy navigation can be viewed at [http://rizzo.lonelyplanet.com/legacy](http://rizzo.lonelyplanet.com/legacy).
+Rizzo also exposes the Global Head (html, css, meta etc.), Global Body Header (Primary navigation) and Global Body Footer (scripts and footer) as a service. These are used for non-rails apps. Layouts as a service are detailed [within the documentation](http://rizzo.lonelyplanet.com/styleguide/page-layout/core-layouts).
 
 
 -----

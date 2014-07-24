@@ -101,11 +101,14 @@
       :title: "Page Layout"
       :items:
         -
-          :name: "Using Rizzo Layouts"
-          :slug: "using-rizzo-layouts"
+          :name: "Core Layouts"
+          :slug: "core-layouts"
         -
-          :name: "Rows"
-          :slug: "rows"
+          :name: "Custom Layouts"
+          :slug: "custom-layouts"
+        -
+          :name: "Layout Content"
+          :slug: "layout-content"
   :design_elements:
     -
       :title: "Design"

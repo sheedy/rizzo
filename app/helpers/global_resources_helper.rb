@@ -126,7 +126,7 @@ module GlobalResourcesHelper
   end
 
   def breadcrumbs_nav(breadcrumb_content)
-    render :partial=>'layouts/core/snippets/footer_breadcrumbs', locals: {breadcrumbs: breadcrumb_content} if breadcrumb_content.present?
+    render :partial=>'layouts/partials/snippets/footer_breadcrumbs', locals: {breadcrumbs: breadcrumb_content} if breadcrumb_content.present?
   end
 
   def breadcrumb_for(breadcrumb, last)
