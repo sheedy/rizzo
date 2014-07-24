@@ -99,17 +99,6 @@ field_components:
           :key: "value"
           :super: "man"
 
-  -
-    :styleguide_title: "Security Code field"
-    :label: "Field label"
-    :id: "text_id"
-    :name: "text_name"
-    :placeholder: "Placeholder"
-    :data:
-      :key: "value"
-      :super: "man"
-
-
 dropdown_components:
   -
     :styleguide_title: "Dropdown"
