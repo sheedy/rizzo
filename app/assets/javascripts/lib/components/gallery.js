@@ -49,10 +49,10 @@ define([
 
   Gallery.prototype._updateImageInfo = function() {
     var slideDetails = this.slider.$currentSlide.find(".js-slide-details"),
-        caption = slideDetails.find(".caption").text(),
-        poi = slideDetails.find(".poi").html(),
-        breadcrumb = slideDetails.find(".breadcrumb").html(),
-        social = slideDetails.find(".social").html();
+        caption = slideDetails.find(".js-slide-caption").text(),
+        poi = slideDetails.find(".js-slide-poi").html(),
+        breadcrumb = slideDetails.find(".js-slide-breadcrumb").html(),
+        social = slideDetails.find(".js-slide-social").html();
 
     this.galleryTitle.text(caption);
     this.galleryPoi.html(poi);
