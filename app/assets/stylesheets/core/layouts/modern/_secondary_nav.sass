@@ -29,13 +29,9 @@
     max-width: 100%
     margin-bottom: 0
     padding: 0
-    +respond-to(400)
-      max-width: 70%
-      float: left
-    +respond-to(medium-view)
-      max-width: 340px
     +respond-to(wide-view)
       +vertically-center(30)
+      max-width: 340px
       margin-bottom: 0
       margin-top: 0
       padding: 0
@@ -110,7 +106,7 @@
     +size(13px)
     display: inline-block
     position: relative
-    top: 0
+    top: -1px
     left: 2px
     vertical-align: top
     &.icon--chevron-up
@@ -129,6 +125,10 @@
   &:active, &:hover, &.current,
   &.nav__submenu__trigger:hover > .nav__item
     color: $lpblue
+    .responsive &
+      color: $titlegray
+      +respond-to(wide-view)
+        color: $lpblue
   &.current
     border-bottom: 2px solid $lpblue
     font-weight: bold
@@ -141,13 +141,11 @@
     border-bottom: 1px solid $body-background
     display: block
     margin: 0
-    padding: 18px 24px
+    padding: 14px 5%
     text-align: left
     width: 100%
     &:hover
       background-color: $responsive-nav-hover
-      .nav__submenu__item
-        background-color: none
 
     +respond-to(wide-view)
       background: none
@@ -156,7 +154,7 @@
       padding: 6px 0 12px
       width: auto
       &:hover
-        background-color: none
+        background-color: transparent
       &.current
         border-bottom: 2px solid $lpblue
 

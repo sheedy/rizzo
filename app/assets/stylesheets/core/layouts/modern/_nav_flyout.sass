@@ -150,14 +150,15 @@ $submenu__vertical-padding: 18px
         display: block
 
   .nav__submenu__item--secondary
-    background-color: mix($linkblue, #FFF, 3%)
+    position: relative
     border-bottom: none
     border-top: 1px solid $body-background
     padding: $submenu__vertical-padding 20px
     padding-left: 45px
     text-transform: uppercase
+    background-color: $responsive-nav-hover
     &:hover
-      color: $linkblue
+      background-color: $responsive-nav-subnav-hover
     &:before
       +size(20px)
       left: 18px
