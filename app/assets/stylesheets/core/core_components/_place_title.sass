@@ -17,21 +17,24 @@
   padding-right: 6px
   padding-left: 22px
   .responsive &
+    padding: 7px 6px 7px 22px
     text-overflow: none
     overflow: visible
     white-space: normal
+    +font-size(16)
     +respond-to(medium-view)
       text-overflow: ellipsis
       overflow: hidden
       white-space: nowrap
     +respond-to(wide-view)
+      +font-size(20)
       margin-left: 0
   .no-background-size &
     padding-left: 0
     &:before
       display: none
   &:before
-    top: 4px
+    top: 10px
     left: 0px
     height: 18px
     width: 18px

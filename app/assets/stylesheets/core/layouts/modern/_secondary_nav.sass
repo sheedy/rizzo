@@ -16,7 +16,7 @@
 .row__inner--secondary
   padding-top: 28px
   .responsive &
-    padding-top: 15px
+    padding-top: 0
     +respond-to(wide-view)
       width: $fixed-layout-width
       margin: 0 auto
@@ -27,8 +27,8 @@
   max-width: 340px
   .responsive &
     max-width: 100%
-    margin-bottom: 15px
-    padding: 4px 0
+    margin-bottom: 0
+    padding: 0
     +respond-to(400)
       max-width: 70%
       float: left
@@ -69,10 +69,10 @@
     left: -5.5%
     margin-top: 0
     position: absolute
-    top: 46px
+    top: 34px
     width: 111%
     &.is-active
-      border-top: 1px solid $body-background
+      @extend %standard-shadow
       display: block
     &.nav__tabs
       position: relative
@@ -85,18 +85,21 @@
 
 .responsive
   .nav--secondary__col
-    border-top: 1px solid $body-background
-    padding: 18px 10%
+    padding: 10px 10%
     text-align: left
+    line-height: 1
+
   .nav--secondary__other-toggle
-    color: $bodygray
+    +font-size(13)
+    color: $lightgray
     display: block
     font-weight: bold
-    padding-top: 15px
     text-align: right
     text-transform: uppercase
+    padding-bottom: 11px
     &:hover
       text-decoration: none
+      background-color: $responsive-nav-hover
     &.is-active
       .icon--chevron-up
         display: inline-block
@@ -104,11 +107,12 @@
         display: none
 
   .nav--secondary__other-toggle--icon
-    +size(15px)
+    +size(13px)
     display: inline-block
-    left: 2px
     position: relative
-    top: 3px
+    top: 0
+    left: 2px
+    vertical-align: top
     &.icon--chevron-up
       display: none
 
@@ -132,6 +136,7 @@
     display: block
     margin: -18px 0
     padding: 18px 0
+
   .responsive &
     border-bottom: 1px solid $body-background
     display: block
@@ -139,12 +144,21 @@
     padding: 18px 24px
     text-align: left
     width: 100%
+    &:hover
+      background-color: $responsive-nav-hover
+      .nav__submenu__item
+        background-color: none
+
     +respond-to(wide-view)
       background: none
       border-bottom: none
-      display: inline-block
       margin: 0 8px
       padding: 6px 0 12px
       width: auto
+      &:hover
+        background-color: none
       &.current
         border-bottom: 2px solid $lpblue
+
+.nav--secondary__title
+  +font-size(14)
