@@ -2,8 +2,8 @@
   .copy--h1
     = properties[:tag]
 
-  - if properties[:data].is_a?(Hash)
-    - properties[:data][:comments].first(5).each.with_index do |(id, entry), index|
+  - if properties[:comments].present?
+    - properties[:comments].first(5).each.with_index do |(id, entry), index|
       - if index.zero?
         - entry[:size] = "double"
         - entry[:user] = {image: entry[:owner_image], name: entry[:owner_name], theme: "light", size: "small"}
