@@ -1,7 +1,7 @@
 = render 'layouts/partials/doctype_declaration'
 
 %head
-  = render 'layouts/custom/head', tynt: (defined?(tynt) ? tynt : true), include_js: true, responsive: false, third_party: false, legacy_lp: false, app_core: false
+  = render 'layouts/custom/head', tynt: (defined?(tynt) ? tynt : true), include_js: true, responsive: false, third_party: false, legacy_lp: false, app_core: false, default_title: true
 
 %body
   = ui_component('lightbox')
@@ -9,8 +9,10 @@
     = ui_component('preloader')
 
   .wrapper.js-wrapper
+  
+    = render 'layouts/custom/pre_header', third_party: false, ads_header: true
+    = render 'layouts/custom/post_header', search: true, user_nav: true, include_js: true, nav_primary: true, responsive: false
 
-    = render 'layouts/custom/header', user_nav: true, include_js: true, nav_primary: true, search: true, responsive: false, ads_header: true, third_party: false
 
     .row.row--content#js-row--content
       - if content_for?(:secondary)
