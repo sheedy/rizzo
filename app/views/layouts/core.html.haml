@@ -1,7 +1,7 @@
-= render 'layouts/core/doctype_declaration'
+= render 'layouts/partials/doctype_declaration'
 
 %head
-  = render 'custom_layouts/head', tynt: (defined?(tynt) ? tynt : true), include_js: true, responsive: false, third_party: false, legacy_lp: false, app_core: false
+  = render 'layouts/custom/head', tynt: (defined?(tynt) ? tynt : true), include_js: true, responsive: false, third_party: false, legacy_lp: false, app_core: false
 
 %body
   = ui_component('lightbox')
@@ -10,7 +10,7 @@
 
   .wrapper.js-wrapper
 
-    = render 'custom_layouts/header', user_nav: true, include_js: true, nav_primary: true, search: true, responsive: false, ads_header: true, third_party: false
+    = render 'layouts/custom/header', user_nav: true, include_js: true, nav_primary: true, search: true, responsive: false, ads_header: true, third_party: false
 
     .row.row--content#js-row--content
       - if content_for?(:secondary)
@@ -25,11 +25,11 @@
 
     .wrapper.wrapper--footer
       = yield :breadcrumbs
-      = render 'custom_layouts/footer', include_js: true, ads_footer: false, nav_sitemap: true, about: true, languages: true, third_party: false, legacy_lp: false
+      = render 'layouts/custom/footer', include_js: true, ads_footer: false, nav_sitemap: true, about: true, languages: true, third_party: false, legacy_lp: false
 
-  = render 'layouts/core/snippets/one_by_one'
+  = render 'layouts/partials/snippets/one_by_one'
 
-  
+
   - if defined? Variant
     /
       = "build: #{Variant.full_namespace}"

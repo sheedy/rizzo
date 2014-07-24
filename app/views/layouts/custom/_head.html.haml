@@ -2,7 +2,7 @@
 %meta{ charset: "utf-8" }
 %meta{ name: "author", content: 'Lonely Planet' }
 - unless third_party
-  %meta{name: "fb:app_id", content: "111537044496"} 
+  %meta{name: "fb:app_id", content: "111537044496"}
 
 %title
   = content_for?(:head_title) ? yield(:head_title) : 'Lonely Planet Travel Guides and Travel Information'
@@ -20,9 +20,9 @@
 = csrf_meta_tags
 
 - if include_js
-  = render 'layouts/core/snippets/head_js'
+  = render 'layouts/partials/snippets/head_js'
   - if tynt
-    = render 'layouts/core/inline_js/tynt'
+    = render 'layouts/partials/inline_js/tynt'
 
 - if legacy_lp
   = smart_stylesheet('common_core_overrides')

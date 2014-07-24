@@ -1,11 +1,11 @@
-class LayoutController < GlobalController
+class LayoutController < ActionController::Base
 
   layout nil
 
   include LayoutSupport
 
   def snippet
-    render "custom_layouts/_#{params[:snippet]}", locals: get_layout_config(params[:route])
+    render "layouts/custom/_#{params[:snippet]}", locals: get_layout_config(params[:route])
   end
 
   def preview
