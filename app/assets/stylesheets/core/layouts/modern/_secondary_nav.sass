@@ -122,20 +122,20 @@
   text-transform: uppercase
   &, & > .nav__item
     color: $titlegray
-  &:active, &:hover, &.current,
+  &.is-current
+    color: $lpblue
+  &:active, &:hover,
   &.nav__submenu__trigger:hover > .nav__item
     color: $lpblue
     .responsive &
       color: $titlegray
       +respond-to(wide-view)
         color: $lpblue
-  &.current
+  &.is-current
     border-bottom: 2px solid $lpblue
     font-weight: bold
   > .nav__item--submenu
     display: block
-    margin: -18px 0
-    padding: 18px 0
 
   .responsive &
     border-bottom: 1px solid $body-background
@@ -155,7 +155,7 @@
       width: auto
       &:hover
         background-color: transparent
-      &.current
+      &.is-current
         border-bottom: 2px solid $lpblue
 
 .nav--secondary__title

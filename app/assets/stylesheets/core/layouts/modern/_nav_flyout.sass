@@ -14,7 +14,7 @@ $submenu__padding--content: 4px 0
 $submenu__padding__item: 12px
 $submenu__padding__item--icon-left: 39px
 $submenu__left-offset: -(($submenu--width/2) + $submenu__arrow--width)
-$submenu__vertical-padding: 18px
+$submenu__vertical-padding: 14px
 
 .nav__submenu__trigger
   cursor: pointer
@@ -37,7 +37,7 @@ $submenu__vertical-padding: 18px
 
 .responsive
   .nav__submenu__trigger--responsive
-    +size(52px)
+    +size(44px)
     display: none
     padding-right: 4px
     position: absolute
@@ -122,11 +122,10 @@ $submenu__vertical-padding: 18px
 
 .responsive
   .nav__submenu--secondary
-    margin-left: -20px
-    margin-top: $submenu__vertical-padding
+    margin-left: 0
     padding: 0
     position: static
-    width: 106%
+    width: auto
     +respond-to(wide-view)
       border-top: none
       margin-left: $submenu__left-offset
@@ -138,7 +137,6 @@ $submenu__vertical-padding: 18px
   .nav__submenu--secondary__content
     border-top: 1px solid $body-background
     box-shadow: none
-    margin-right: -23px
     padding: 0
     &:after
       display: none
@@ -149,34 +147,37 @@ $submenu__vertical-padding: 18px
       &:after
         display: block
 
-  .nav__submenu__item--secondary
+  .nav__submenu__item--secondary__icon
     position: relative
+    padding-left: 30px
+    &:before
+      +size(20px)
+      position: absolute
+      top: -4px
+      left: -2px
+    +respond-to(wide-view)
+      padding-left: $submenu__padding__item--icon-left
+      &:before
+        left: $submenu__icon--left
+        top: $submenu__icon--top
+
+  .nav__submenu__item--secondary
     border-bottom: none
     border-top: 1px solid $body-background
-    padding: $submenu__vertical-padding 20px
-    padding-left: 45px
+    padding: $submenu__vertical-padding 5%
     text-transform: uppercase
     background-color: $responsive-nav-hover
     &:hover
       background-color: $responsive-nav-subnav-hover
-    &:before
-      +size(20px)
-      left: 18px
-      position: absolute
-      top: 14px
     &:first-child
       border-top: none
     +respond-to(wide-view)
       background-color: transparent
       padding: $submenu__padding__item
-      padding-left: $submenu__padding__item--icon-left
       text-transform: none
       &:hover
         background-color: $body-background-offset
         color: $body-copy
-      &:before
-        left: $submenu__icon--left
-        top: $submenu__icon--top
 
 // ----------------------------------------------------------------------------
 //
