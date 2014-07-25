@@ -44,17 +44,20 @@ define([
     this.galleryTitle = this.$gallery.find(".js-gallery-title");
     this.galleryPoi = this.$gallery.find(".js-gallery-poi");
     this.galleryBreadcrumb = this.$gallery.find(".js-gallery-breadcrumb");
+    this.gallerySocial = this.$gallery.find(".js-gallery-social");
   };
 
   Gallery.prototype._updateImageInfo = function() {
     var slideDetails = this.slider.$currentSlide.find(".js-slide-details"),
-        caption = slideDetails.find(".caption").text(),
-        poi = slideDetails.find(".poi").html(),
-        breadcrumb = slideDetails.find(".breadcrumb").html();
+        caption = slideDetails.find(".js-slide-caption").text(),
+        poi = slideDetails.find(".js-slide-poi").html(),
+        breadcrumb = slideDetails.find(".js-slide-breadcrumb").html(),
+        social = slideDetails.find(".js-slide-social").html();
 
     this.galleryTitle.text(caption);
     this.galleryPoi.html(poi);
     this.galleryBreadcrumb.html(breadcrumb);
+    this.gallerySocial.html(social);
   };
 
   Gallery.prototype._updateSlug = function(partial) {

@@ -52,9 +52,10 @@ require([ "jquery", "public/assets/javascripts/lib/components/gallery.js" ], fun
       });
 
       it("updates the gallery with the new slide details", function() {
-        expect(gallery.galleryTitle.text()).toBe($(".fixture-incoming-slide").find(".caption").text());
-        expect(gallery.galleryPoi.html()).toBe($(".fixture-incoming-slide").find(".poi").text());
-        expect(gallery.galleryBreadcrumb.html()).toBe($(".fixture-incoming-slide").find(".breadcrumb").text());
+        expect(gallery.galleryTitle.text()).toBe($(".fixture-incoming-slide").find(".js-slide-caption").text());
+        expect(gallery.galleryPoi.html()).toBe($(".fixture-incoming-slide").find(".js-slide-poi").text());
+        expect(gallery.galleryBreadcrumb.html()).toBe($(".fixture-incoming-slide").find(".js-slide-breadcrumb").text());
+        expect(gallery.gallerySocial.html()).toBe($(".fixture-incoming-slide").find(".js-slide-social").text());
       });
     });
 
