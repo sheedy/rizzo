@@ -67,9 +67,6 @@ module LayoutSupport
       legacy: {
         responsive:     false,
         legacy_lp:      true
-      },
-      basic: {
-        app_core: true
       }
     }
   end

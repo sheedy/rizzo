@@ -7,8 +7,8 @@
   = ui_component('lightbox')
   %script#tmpl-preloader{ type: 'text-mustache' }
     = ui_component('preloader')
-  = render 'layouts/partials/snippets/accessibility'
-  = render 'layouts/partials/snippets/leaderboard'
+    
+    = render 'layouts/custom/pre_header', third_party: false, ads_header: true
   .wrapper.js-wrapper
     = render 'layouts/custom/post_header', search: true, user_nav: true, include_js: true, nav_primary: true, responsive: true
 
