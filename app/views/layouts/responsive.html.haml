@@ -1,16 +1,17 @@
 = render 'layouts/partials/doctype_declaration'
 
 %head
-  = render 'layouts/custom/head', tynt: (defined?(tynt) ? tynt : true), include_js: true, responsive: true, third_party: false, legacy_lp: false, app_core: false
+  = render 'layouts/custom/head', tynt: (defined?(tynt) ? tynt : true), include_js: true, responsive: true, third_party: false, legacy_lp: false, app_core: false, default_title: true
 
 %body.responsive
   = ui_component('lightbox')
   %script#tmpl-preloader{ type: 'text-mustache' }
     = ui_component('preloader')
-  = render 'layouts/partials/snippets/accessibility'
-  = render 'layouts/partials/snippets/leaderboard'
+    
+    = render 'layouts/custom/pre_header', third_party: false, ads_header: true
   .wrapper.js-wrapper
-    = render 'layouts/partials/snippets/primary_navigation_bar', user_nav: true, include_js: true, search: true, nav_primary: true, responsive: true
+    = render 'layouts/custom/post_header', search: true, user_nav: true, include_js: true, nav_primary: true, responsive: true
+
     .row.row--content{id: @no_wallpaper ? "" : "js-row--content"}
       - if (yield :secondary).present?
         .row.row--secondary#js-secondary-nav

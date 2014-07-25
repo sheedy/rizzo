@@ -4,8 +4,9 @@
 - unless third_party
   %meta{name: "fb:app_id", content: "111537044496"}
 
-%title
-  = content_for?(:head_title) ? yield(:head_title) : 'Lonely Planet Travel Guides and Travel Information'
+- if default_title
+  %title
+    = content_for?(:head_title) ? yield(:head_title) : 'Lonely Planet Travel Guides and Travel Information'
 
 = yield :dns_prefetch
 %link{ rel: "dns-prefetch", href: "http://assets.staticlp.com" }

@@ -1,10 +1,3 @@
-- unless third_party
-  = render 'layouts/partials/snippets/cookie_compliance'
+= render 'layouts/custom/pre_header', third_party: third_party, ads_header: ads_header
+= render 'layouts/custom/post_header', search: search, user_nav: user_nav, include_js: include_js, nav_primary: nav_primary, responsive: responsive
 
-= render 'layouts/partials/snippets/accessibility'
-
-- if ads_header
-  = render 'layouts/partials/snippets/leaderboard'
-
-.row--primary#js-primary-nav
-  = render 'layouts/partials/snippets/primary_navigation_bar', search: search, user_nav: user_nav, include_js: include_js, nav_primary: nav_primary, responsive: responsive

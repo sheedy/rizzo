@@ -15,7 +15,8 @@ module LayoutSupport
       responsive:     true,
       third_party:    false,
       legacy_lp:      false,
-      app_core:       false
+      app_core:       false,
+      default_title:  true
     }
   end
 
@@ -31,7 +32,8 @@ module LayoutSupport
         user_nav:       false,
         tynt:           false,
         third_party:    true,
-        app_core:       true
+        app_core:       true,
+        default_title:  false
       },
       modern: {
         responsive:     false,
